@@ -15,7 +15,7 @@ namespace NoteToMusic
             {
                 string fileName = Path.GetFileNameWithoutExtension(midiPath);
                 string sfName = Path.GetFileNameWithoutExtension(soundFontPath);
-                outputWavPath = Path.Combine(FileManager.musicDir, $"{fileName}({sfName})");
+                outputWavPath = Path.Combine(FileManager.musicDir, $"{fileName}({sfName}).wav");
                 int sampleRate = 44100;
 
                 var synthesizer = new Synthesizer(soundFontPath, sampleRate);

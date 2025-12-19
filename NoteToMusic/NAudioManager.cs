@@ -20,7 +20,14 @@ namespace NoteToMusic
                 var midiEvents = new MidiEventCollection(1, ticksPerQuarter);
 
                 // Tempo
-                midiEvents.AddEvent(new TempoEvent(60000000 / 90, 0), 0); // 90 BPM ideal
+                if (MainForm.bpm == 0)
+                {
+                    midiEvents.AddEvent(new TempoEvent(60000000 / 90, 0), 0);
+                }
+                else
+                {
+                    midiEvents.AddEvent(new TempoEvent(60000000 / MainForm.bpm, 0), 0);
+                }
 
                 foreach (var part in doc.Descendants("part"))
                 {
