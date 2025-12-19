@@ -225,23 +225,39 @@ namespace NoteToMusic
         {
             int index = lstMusics.SelectedIndex;
 
-            if (index != -1)
-            {
-                // GÜNCELLEME: ?. ve ?? "" ekledik.
-                string fileName = lstMusics.Items[index]?.ToString() ?? "";
+            // 1. Index kontrolü her şeyi kapsamalı
+            if (index == -1) return;
 
-                // Boş değilse yolu birleştir
-                if (!string.IsNullOrEmpty(fileName))
+            string fileName = lstMusics.Items[index]?.ToString() ?? "";
+
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                currentMusic = Path.Combine(FileManager.musicDir, fileName);
+
+                // Trim() ekledik ki boşluklar eşleşmeyi bozmasın
+                string newMusic = fileName.Split('(')[0].Trim();
+
+                foreach (var item in lstNotes.Items)
                 {
-                    currentMusic = Path.Combine(FileManager.musicDir, fileName);
+                    string fullImageName = item.ToString() ?? "";
+                    string imageNameOnly = Path.GetFileNameWithoutExtension(fullImageName); // Split yerine daha güvenli
+
+                    // İhtiyaca göre: imageNameOnly.Contains(newMusic) de olabilir
+                    if (imageNameOnly.Contains(newMusic))
+                    {
+                        // Resim dosyasını yükle
+                        picNote.Image = Image.FromFile(Path.Combine(FileManager.notesDir, fullImageName));
+                        break; // Eşleşme bulduysan döngüden çıkabilirsin (isteğe bağlı)
+                    }
                 }
             }
+
         }
 
         IWavePlayer? waveOutDevice;
         AudioFileReader? audioFileReader;
         private void btnPlayStop_Click(object sender, EventArgs e)
-        {
+        { 
             if (string.IsNullOrEmpty(currentMusic) || !File.Exists(currentMusic))
             {
                 MessageBox.Show("Lütfen geçerli bir müzik seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -284,6 +300,8 @@ namespace NoteToMusic
                 if (waveOutDevice != null)
                 {
                     waveOutDevice.Pause();
+                    isPlaying = false;
+                    btnPlayStop.Text = "Devam";
                 }
                 // Stop eventi zaten tetikleneceği için buton yazısını orası değiştirecek
             }
