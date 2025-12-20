@@ -21,26 +21,35 @@ namespace NoteToMusic
         }
 
 
+        //1. adım kodları
         public async Task ConvertToMXL(string imagePath)
         {
             await Task.Run(() =>
             {
-                using (Process p = new Process())
+                try
                 {
-                    var startInfo = new ProcessStartInfo
+                    using (Process p = new Process())
                     {
-                        FileName = audiverisPath,
-                        //KOD:  audiveris -batch -output cıkısyolu -export -- resimyolu
-                        Arguments = $"-batch -output \"{FileManager.tempDir}\" -export -- \"{imagePath}\"",
-                        RedirectStandardOutput = false,
-                        RedirectStandardError = false,
-                        CreateNoWindow = true,
-                        UseShellExecute = false
-                    };
-                    p.StartInfo = startInfo;
-                    p.Start();
-                    p.WaitForExit();
+                        var startInfo = new ProcessStartInfo
+                        {
+                            FileName = audiverisPath,
+                            //KOD:  audiveris -batch -output cıkısyolu -export -- resimyolu
+                            Arguments = $"-batch -output \"{FileManager.tempDir}\" -export -- \"{imagePath}\"",
+                            RedirectStandardOutput = false,
+                            RedirectStandardError = false,
+                            CreateNoWindow = true,
+                            UseShellExecute = false
+                        };
+                        p.StartInfo = startInfo;
+                        p.Start();
+                        p.WaitForExit();
+                    }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("XML Dönüştürme işlemi sırasında bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
             });
             
         }
@@ -49,37 +58,47 @@ namespace NoteToMusic
         {
             return Path.Combine(FileManager.tempDir, Path.GetFileNameWithoutExtension(imagePath) + ".mxl");
         }
-
-        public string GetXmlPath(string imagePath)
-        {
-            return Path.Combine(FileManager.tempDir, Path.GetFileNameWithoutExtension(imagePath) + ".xml");
-        }
-
+        
+        //2. adım kodları
         public async Task ConvertToXML(string mxlFile)
         {
             await Task.Run(() =>
             {
-                if (!File.Exists(mxlFile))
+                try
                 {
-                    return;
-                }
-
-                using (ZipArchive archive = ZipFile.OpenRead(mxlFile))
-                {
-                    var xmlEntry = archive.Entries.FirstOrDefault(f => f.Name.EndsWith(".xml") || f.Name.EndsWith(".musicxml"));
-
-                    if (xmlEntry == null)
+                    if (!File.Exists(mxlFile))
                     {
-                        MessageBox.Show(".mxl içinde .xml veya .musicxml dosyası bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
-                    string xmlFilePath = Path.Combine(FileManager.tempDir, xmlEntry.Name);
+                    using (ZipArchive archive = ZipFile.OpenRead(mxlFile))
+                    {
+                        var xmlEntry = archive.Entries.FirstOrDefault(f => f.Name.EndsWith(".xml") || f.Name.EndsWith(".musicxml"));
 
-                    xmlEntry.ExtractToFile(xmlFilePath, true);
+                        if (xmlEntry == null)
+                        {
+                            MessageBox.Show(".mxl içinde .xml veya .musicxml dosyası bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        string xmlFilePath = Path.Combine(FileManager.tempDir, xmlEntry.Name);
+
+                        xmlEntry.ExtractToFile(xmlFilePath, true);
+                    }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ayıklama işlemi sırasında bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+
             });
             
+        }
+
+        public string GetXmlPath(string imagePath)
+        {
+            return Path.Combine(FileManager.tempDir, Path.GetFileNameWithoutExtension(imagePath) + ".xml");
         }
         private void CheckDepens()
         {
