@@ -1,4 +1,4 @@
-ï»¿using NAudio.Wave;
+using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,12 +28,18 @@ namespace NoteToMusic
         SoundRenderer renderer = new SoundRenderer();
 
         //Variables
-
         string currentNote = "", currentSound = "", currentMusic  = "";
         bool isPlaying;
+        bool isUpdatingTrackBar = false;
         public static int bpm = 0;
+
+        IWavePlayer? waveOutDevice;
+        AudioFileReader? audioFileReader;
+        private System.Windows.Forms.Timer? playbackTimer;
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Form yüklenirken tüm listBox'larý doldur ve gerekli klasörleri oluþtur
             string[] paths = { FileManager.assetDir, FileManager.notesDir, FileManager.soundsDir, FileManager.musicDir, FileManager.tempDir };
             foreach (var item in paths)
             {
@@ -45,16 +51,20 @@ namespace NoteToMusic
             FileManager.ListItems(lstNotes, FileManager.notesDir);
             FileManager.ListItems(lstSounds, FileManager.soundsDir);
             FileManager.ListItems(lstMusics, FileManager.musicDir);
+
+            // TrackBar baþlangýç ayarlarý
+            trackVolume.Value = 100; // Ses seviyesi 100% ile baþla
+            trackTime.Enabled = false; // Müzik açýlana kadar devre dýþý
         }
 
         private void btnNotes_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                ofd.Filter = "Resim DosyalarÄ±|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+                ofd.Filter = "Resim Dosyalarý|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
                 ofd.RestoreDirectory = true;
                 ofd.CheckFileExists = true;
-                ofd.Title = "Nota Åžemasyonu SeÃ§iniz...";
+                ofd.Title = "Nota Þemasyonu Seçiniz...";
 
                 if (ofd.ShowDialog() != DialogResult.OK) return;
                 else
@@ -71,10 +81,10 @@ namespace NoteToMusic
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                ofd.Filter = "SoundFont DosyalarÄ±|*.sf2";
+                ofd.Filter = "SoundFont Dosyalarý|*.sf2";
                 ofd.RestoreDirectory = true;
                 ofd.CheckFileExists = true;
-                ofd.Title = "SoundFont DosyasÄ± SeÃ§iniz...";
+                ofd.Title = "SoundFont Dosyasý Seçiniz...";
                 if (ofd.ShowDialog() != DialogResult.OK) return;
                 else
                 {
@@ -90,9 +100,10 @@ namespace NoteToMusic
         {
             if (currentNote == "" || currentSound == "")
             {
-                MessageBox.Show("LÃ¼tfen bir nota ÅŸemasyonu ve bir SoundFont dosyasÄ± seÃ§iniz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lütfen bir nota þemasyonu ve bir SoundFont dosyasý seçiniz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
 
 
             #region FIRSTSTEP
@@ -100,35 +111,35 @@ namespace NoteToMusic
             try
             {
                 btnConvert.Enabled = false;
-                btnConvert.Text = "XML DÃ¶nÃ¼ÅŸÃ¼mÃ¼ yapÄ±lÄ±yor...";
+                btnConvert.Text = "XML Dönüþümü yapýlýyor...";
                 await audiveris.ConvertToMXL(currentNote);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("XML DÃ¶nÃ¼ÅŸtÃ¼rme iÅŸlemi sÄ±rasÄ±nda bir hata oluÅŸtu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("XML Dönüþtürme iþlemi sýrasýnda bir hata oluþtu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 btnConvert.Enabled = true;
-                btnConvert.Text = "DÃ¶nÃ¼ÅŸtÃ¼r!";
+                btnConvert.Text = "Dönüþtür!";
             }
             #endregion
             #region SECONDSTEP
             //MXL to XML
             try
             {
-                btnConvert.Text = "XML Ã‡Ä±karÄ±lÄ±yor...";
+                btnConvert.Text = "XML Çýkarýlýyor...";
                 await audiveris.ConvertToXML(audiveris.GetMxlPath(currentNote));
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("AyÄ±klama iÅŸlemi sÄ±rasÄ±nda bir hata oluÅŸtu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ayýklama iþlemi sýrasýnda bir hata oluþtu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 btnConvert.Enabled = true;
-                btnConvert.Text = "DÃ¶nÃ¼ÅŸtÃ¼r!";
+                btnConvert.Text = "Dönüþtür!";
             }
             #endregion
             #region THIRDSTEP
@@ -137,18 +148,18 @@ namespace NoteToMusic
             {
                 BpmForm bpmform = new BpmForm();
                 bpmform.ShowDialog();
-                btnConvert.Text = "Midi DÃ¶nÃ¼ÅŸÃ¼mÃ¼...";
-                await naudio.ConvertXmlToMidi(audiveris.GetXmlPath(currentNote), naudio.getMidPath(currentNote), bpm);
+                btnConvert.Text = "Midi Dönüþümü...";
+                await naudio.ConvertXmlToMidi(audiveris.GetXmlPath(currentNote), naudio.GetMidPath(currentNote), bpm);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Midi DÃ¶nÃ¼ÅŸtÃ¼rme iÅŸlemi sÄ±rasÄ±nda bir hata oluÅŸtu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Midi Dönüþtürme iþlemi sýrasýnda bir hata oluþtu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
             finally
             {
                 btnConvert.Enabled = true;
-                btnConvert.Text = "DÃ¶nÃ¼ÅŸtÃ¼r!";
+                btnConvert.Text = "Dönüþtür!";
             }
 
             #endregion
@@ -156,27 +167,27 @@ namespace NoteToMusic
             //MID + sf2 TO WAW
             try
             {
-                btnConvert.Text = "WAV Render AlÄ±nÄ±yor...";
+                btnConvert.Text = "WAV Render Alýnýyor...";
                 btnConvert.Enabled = false;
 
-                // SoundRenderer sÄ±nÄ±fÄ±nÄ± Ã§aÄŸÄ±r
-                await renderer.ConvertMidiToWav(naudio.getMidPath(currentNote), currentSound);
+                // SoundRenderer sýnýfýný çaðýr
+                await renderer.ConvertMidiToWav(naudio.GetMidPath(currentNote), currentSound);
 
-                MessageBox.Show("DÃ¶nÃ¼ÅŸtÃ¼rme BaÅŸarÄ±yla TamamlandÄ±!", "BaÅŸarÄ±lÄ±", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Dönüþtürme Baþarýyla Tamamlandý!", "Baþarýlý", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 currentMusic = renderer.GetWavPath();
 
-                // Listbox'Ä± yenile ki yeni gelen mÃ¼zik gÃ¶rÃ¼nsÃ¼n
+                // Listbox'ý yenile ki yeni gelen müzik görünsün
                 FileManager.ListItems(lstMusics, FileManager.musicDir);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Render sÄ±rasÄ±nda hata: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Render sýrasýnda hata: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 btnConvert.Enabled = true;
-                btnConvert.Text = "DÃ¶nÃ¼ÅŸtÃ¼r!";
+                btnConvert.Text = "Dönüþtür!";
             }
             #endregion
         }
@@ -211,10 +222,8 @@ namespace NoteToMusic
 
             if (index != -1)
             {
-                // GÃœNCELLEME: ?. ve ?? "" ekledik.
                 string fileName = lstSounds.Items[index]?.ToString() ?? "";
 
-                // BoÅŸ deÄŸilse yolu birleÅŸtir
                 if (!string.IsNullOrEmpty(fileName))
                 {
                     currentSound = Path.Combine(FileManager.soundsDir, fileName);
@@ -225,49 +234,47 @@ namespace NoteToMusic
         {
             int index = lstMusics.SelectedIndex;
 
-            // 1. Index kontrolÃ¼ her ÅŸeyi kapsamalÄ±
             if (index == -1) return;
 
             string fileName = lstMusics.Items[index]?.ToString() ?? "";
 
             if (!string.IsNullOrEmpty(fileName))
             {
+                waveOutDevice?.Stop();
+                DisposeWave();
+                isPlaying = false;
+                btnPlayStop.Text = "Oynat";
+
                 currentMusic = Path.Combine(FileManager.musicDir, fileName);
 
-                // Trim() ekledik ki boÅŸluklar eÅŸleÅŸmeyi bozmasÄ±n
                 string newMusic = fileName.Split('(')[0].Trim();
 
                 foreach (var item in lstNotes.Items)
                 {
                     string fullImageName = item.ToString() ?? "";
-                    string imageNameOnly = Path.GetFileNameWithoutExtension(fullImageName); // Split yerine daha gÃ¼venli
+                    string imageNameOnly = Path.GetFileNameWithoutExtension(fullImageName);
 
-                    // Ä°htiyaca gÃ¶re: imageNameOnly.Contains(newMusic) de olabilir
                     if (imageNameOnly.Contains(newMusic))
                     {
-                        // Resim dosyasÄ±nÄ± yÃ¼kle
                         picNote.Image = Image.FromFile(Path.Combine(FileManager.notesDir, fullImageName));
-                        break; // EÅŸleÅŸme bulduysan dÃ¶ngÃ¼den Ã§Ä±kabilirsin (isteÄŸe baÄŸlÄ±)
+                        break;
                     }
                 }
             }
 
         }
 
-        IWavePlayer? waveOutDevice;
-        AudioFileReader? audioFileReader;
         private void btnPlayStop_Click(object sender, EventArgs e)
         { 
             if (string.IsNullOrEmpty(currentMusic) || !File.Exists(currentMusic))
             {
-                MessageBox.Show("LÃ¼tfen geÃ§erli bir mÃ¼zik seÃ§in.", "UyarÄ±", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Lütfen geçerli bir müzik seçin.", "Uyarý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!isPlaying)
             {
-
-                // OYNATMA BAÅžLAT
+                // OYNATMA BAÞLAT
                 try
                 {
                     if (waveOutDevice == null)
@@ -276,13 +283,33 @@ namespace NoteToMusic
                         audioFileReader = new AudioFileReader(currentMusic);
                         waveOutDevice.Init(audioFileReader);
 
-                        // ÅžarkÄ± bittiÄŸinde butonu eski haline getirmek iÃ§in event
+                        // Ses seviyesini trackVolume'e göre ayarla
+                        if (audioFileReader != null)
+                        {
+                            audioFileReader.Volume = trackVolume.Value / 100f;
+                        }
+
+                        // Þarký bittiðinde butonu eski haline getirmek için event
                         waveOutDevice.PlaybackStopped += (s, a) =>
                         {
                             isPlaying = false;
                             btnPlayStop.Text = "Oynat";
+                            trackTime.Value = 0;
+                            playbackTimer?.Stop();
                             DisposeWave();
                         };
+
+                        // Playback Timer'ý baþlat (100ms interval ile güncelle)
+                        if (playbackTimer == null)
+                        {
+                            playbackTimer = new System.Windows.Forms.Timer();
+                            playbackTimer.Interval = 100;
+                            playbackTimer.Tick += PlaybackTimer_Tick;
+                        }
+                        playbackTimer.Start();
+
+                        trackTime.Enabled = true;
+                        trackTime.Maximum = (int)audioFileReader.TotalTime.TotalSeconds;
                     }
 
                     waveOutDevice.Play();
@@ -291,7 +318,7 @@ namespace NoteToMusic
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Oynatma hatasÄ±: " + ex.Message);
+                    MessageBox.Show("Oynatma hatasý: " + ex.Message);
                 }
             }
             else
@@ -302,15 +329,61 @@ namespace NoteToMusic
                     waveOutDevice.Pause();
                     isPlaying = false;
                     btnPlayStop.Text = "Devam";
+                    playbackTimer?.Stop();
                 }
-                // Stop eventi zaten tetikleneceÄŸi iÃ§in buton yazÄ±sÄ±nÄ± orasÄ± deÄŸiÅŸtirecek
             }
         }
 
-        // Bellek temizliÄŸi iÃ§in yardÄ±mcÄ± metod (Memory Leak olmasÄ±n)
+        private void PlaybackTimer_Tick(object? sender, EventArgs e)
+        {
+            if (audioFileReader != null && !isUpdatingTrackBar)
+            {
+                isUpdatingTrackBar = true;
+                
+                // Mevcut pozisyon (saniye cinsinden)
+                int currentSeconds = (int)audioFileReader.CurrentTime.TotalSeconds;
+                int totalSeconds = (int)audioFileReader.TotalTime.TotalSeconds;
+
+                // TrackBar'ý güncelle
+                trackTime.Value = Math.Min(currentSeconds, trackTime.Maximum);
+
+                // Zaman etiketi güncelle (MM:SS / MM:SS formatýnda)
+                int currentMinutes = currentSeconds / 60;
+                int currentSecs = currentSeconds % 60;
+                int totalMinutes = totalSeconds / 60;
+                int totalSecs = totalSeconds % 60;
+
+                lblTime.Text = $"{currentMinutes:D2}:{currentSecs:D2} / {totalMinutes:D2}:{totalSecs:D2}";
+
+                isUpdatingTrackBar = false;
+            }
+        }
+
+        private void trackTime_Scroll(object sender, EventArgs e)
+        {
+            // Kullanýcý TrackBar'ý kaydýrdýðýnda, müzik pozisyonunu deðiþtir
+            if (audioFileReader != null && waveOutDevice != null && waveOutDevice.PlaybackState != PlaybackState.Stopped)
+            {
+                audioFileReader.CurrentTime = TimeSpan.FromSeconds(trackTime.Value);
+            }
+        }
+
+        private void trackVolume_Scroll(object sender, EventArgs e)
+        {
+            // Ses seviyesini 0-100 arasýnda ayarla
+            if (audioFileReader != null)
+            {
+                audioFileReader.Volume = trackVolume.Value / 100f;
+            }
+        }
+
+        // Bellek temizliði için yardýmcý metod (Memory Leak olmasýn)
         private void DisposeWave()
         {
-            // ?. operatÃ¶rÃ¼: "EÄŸer null deÄŸilse Dispose et, null ise hiÃ§bir ÅŸey yapma"
+            playbackTimer?.Stop();
+            playbackTimer?.Dispose();
+            playbackTimer = null;
+
             waveOutDevice?.Dispose();
             waveOutDevice = null;
 
@@ -318,7 +391,7 @@ namespace NoteToMusic
             audioFileReader = null;
         }
 
-        // Form kapanÄ±rken sesi kapatmayÄ± unutma
+        // Form kapanýrken sesi kapatmayý unutma
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             DisposeWave();

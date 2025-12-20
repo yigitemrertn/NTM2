@@ -1,4 +1,4 @@
-ï»¿using NAudio;
+using NAudio;
 using NAudio.Midi;
 using System;
 using System.Collections.Generic;
@@ -35,13 +35,13 @@ namespace NoteToMusic
                     var divNode = part.Descendants("divisions").FirstOrDefault();
                     if (divNode != null) int.TryParse(divNode.Value, out divisions);
 
-                    long currentTick = 0; // ÅžarkÄ±nÄ±n baÅŸÄ±ndan beri geÃ§en sÃ¼re
+                    long currentTick = 0; // Þarkýnýn baþýndan beri geçen süre
 
                     foreach (var measure in part.Elements("measure"))
                     {
-                        long measureStartTick = currentTick; // Ã–lÃ§Ã¼ baÅŸlangÄ±Ã§ noktasÄ±
-                        long cursor = 0; // Ã–lÃ§Ã¼ iÃ§indeki baÄŸÄ±l sÃ¼re
-                        long lastNoteStart = 0; // Akorlar iÃ§in hafÄ±za
+                        long measureStartTick = currentTick; // Ölçü baþlangýç noktasý
+                        long cursor = 0; // Ölçü içindeki baðýl süre
+                        long lastNoteStart = 0; // Akorlar için hafýza
 
                         foreach (var element in measure.Elements())
                         {
@@ -52,31 +52,31 @@ namespace NoteToMusic
                                 bool isRest = element.Element("rest") != null;
                                 bool isChord = element.Element("chord") != null;
 
-                                // SÃ¼re Hesaplama
+                                // Süre Hesaplama
                                 int durVal = int.Parse(element.Element("duration")?.Value ?? "0");
                                 long midiDur = (long)((double)durVal / divisions * ticksPerQuarter);
 
-                                // Nota ZamanlamasÄ±
+                                // Nota Zamanlamasý
                                 long noteOnTime;
                                 if (isChord)
                                 {
-                                    // Akorsa, bir Ã¶nceki notanÄ±n baÅŸladÄ±ÄŸÄ± yerde baÅŸlar
+                                    // Akorsa, bir önceki notanýn baþladýðý yerde baþlar
                                     noteOnTime = measureStartTick + lastNoteStart;
-                                    // Akorlar genelde cursor'u ilerletmez (ana nota ilerletmiÅŸtir)
-                                    // Ama MusicXML'de bazen akor notalarÄ±nÄ±n da duration'Ä± vardÄ±r.
-                                    // En gÃ¼venli yÃ¶ntem: Chord ise cursor'a dokunma.
+                                    // Akorlar genelde cursor'u ilerletmez (ana nota ilerletmiþtir)
+                                    // Ama MusicXML'de bazen akor notalarýnýn da duration'ý vardýr.
+                                    // En güvenli yöntem: Chord ise cursor'a dokunma.
                                 }
                                 else
                                 {
-                                    // Akor deÄŸilse, cursor'un olduÄŸu yerde baÅŸlar
+                                    // Akor deðilse, cursor'un olduðu yerde baþlar
                                     noteOnTime = measureStartTick + cursor;
-                                    lastNoteStart = cursor; // HafÄ±zaya al
+                                    lastNoteStart = cursor; // Hafýzaya al
                                     cursor += midiDur; // Cursor'u ilerlet
                                 }
 
                                 if (!isRest)
                                 {
-                                    // Nota DeÄŸerleri
+                                    // Nota Deðerleri
                                     var pitch = element.Element("pitch");
                                     if (pitch != null)
                                     {
@@ -90,7 +90,7 @@ namespace NoteToMusic
                                 }
                                 else
                                 {
-                                    // Es (Rest) ise sadece cursor zaten ilerledi, extra iÅŸlem yok
+                                    // Es (Rest) ise sadece cursor zaten ilerledi, extra iþlem yok
                                 }
                             }
                             else if (name == "backup")
@@ -102,24 +102,24 @@ namespace NoteToMusic
                             }
                             else if (name == "forward")
                             {
-                                // Ä°leri Sarma
+                                // Ýleri Sarma
                                 int durVal = int.Parse(element.Element("duration")?.Value ?? "0");
                                 long fwdMidi = (long)((double)durVal / divisions * ticksPerQuarter);
                                 cursor += fwdMidi;
                             }
                         }
 
-                        // Ã–lÃ§Ã¼ bittiÄŸinde, currentTick'i Ã¶lÃ§Ã¼ iÃ§inde gidilen EN SON noktaya taÅŸÄ±
-                        // (Genelde cursor Ã¶lÃ§Ã¼ sonundadÄ±r ama backup varsa dikkat etmek lazÄ±m)
-                        // MusicXML sÄ±ralÄ± olduÄŸu iÃ§in, Ã¶lÃ§Ã¼ bittiÄŸinde cursor nerede kaldÄ±ysa oradan devam etmeyiz.
+                        // Ölçü bittiðinde, currentTick'i ölçü içinde gidilen EN SON noktaya taþý
+                        // (Genelde cursor ölçü sonundadýr ama backup varsa dikkat etmek lazým)
+                        // MusicXML sýralý olduðu için, ölçü bittiðinde cursor nerede kaldýysa oradan devam etmeyiz.
                         // Genelde divisions * beats kadar artar.
-                        // Ama pratik olarak: Cursor'un son hali o Ã¶lÃ§Ã¼nÃ¼n bittiÄŸi yerdir (backup'lar sÄ±fÄ±rlanmÄ±ÅŸsa).
+                        // Ama pratik olarak: Cursor'un son hali o ölçünün bittiði yerdir (backup'lar sýfýrlanmýþsa).
 
-                        // EÄžER backup ile baÅŸa dÃ¶nÃ¼p ikinci sesi yazdÄ±ysak cursor yine sonda olmalÄ±.
-                        // BasitÃ§e: currentTick += (measure duration).
+                        // EÐER backup ile baþa dönüp ikinci sesi yazdýysak cursor yine sonda olmalý.
+                        // Basitçe: currentTick += (measure duration).
                         // Ama measure duration XML'de yazmaz.
-                        // O yÃ¼zden en gÃ¼venlisi:
-                        // cursor deÄŸeri Ã¶lÃ§Ã¼ sonunda neyse onu ekle.
+                        // O yüzden en güvenlisi:
+                        // cursor deðeri ölçü sonunda neyse onu ekle.
                         currentTick = measureStartTick + cursor;
                     }
                 }
@@ -130,7 +130,7 @@ namespace NoteToMusic
             
         }
 
-        // Nota harfini MIDI numarasÄ±na Ã§eviren yardÄ±mcÄ± fonksiyon
+        // Nota harfini MIDI numarasýna çeviren yardýmcý fonksiyon
         private int GetMidiNote(XElement pitch)
         {
             string step = pitch.Element("step")?.Value;
@@ -142,7 +142,7 @@ namespace NoteToMusic
             return ((octave + 1) * 12) + baseN + alter;
         }
 
-        public string getMidPath(string currentImage)
+        public string GetMidPath(string currentImage)
         {
             return Path.Combine(FileManager.tempDir, Path.GetFileNameWithoutExtension(currentImage) + ".mid");
         }

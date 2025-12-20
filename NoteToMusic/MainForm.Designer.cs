@@ -1,16 +1,16 @@
-ï»¿namespace NoteToMusic
+namespace NoteToMusic
 {
     partial class MainForm
     {
         /// <summary>
-        ///Gerekli tasarÄ±mcÄ± deÄŸiÅŸkeni.
+        ///Gerekli tasarýmcý deðiþkeni.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///KullanÄ±lan tÃ¼m kaynaklarÄ± temizleyin.
+        ///Kullanýlan tüm kaynaklarý temizleyin.
         /// </summary>
-        ///<param name="disposing">yÃ¶netilen kaynaklar dispose edilmeliyse doÄŸru; aksi halde yanlÄ±ÅŸ.</param>
+        ///<param name="disposing">yönetilen kaynaklar dispose edilmeliyse doðru; aksi halde yanlýþ.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,11 +20,11 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer Ã¼retilen kod
+        #region Windows Form Designer üretilen kod
 
         /// <summary>
-        /// TasarÄ±mcÄ± desteÄŸi iÃ§in gerekli metot - bu metodun 
-        ///iÃ§eriÄŸini kod dÃ¼zenleyici ile deÄŸiÅŸtirmeyin.
+        /// Tasarýmcý desteði için gerekli metot - bu metodun 
+        ///içeriðini kod düzenleyici ile deðiþtirmeyin.
         /// </summary>
         private void InitializeComponent()
         {
@@ -92,6 +92,7 @@
             trackTime.TabIndex = 8;
             trackTime.TickFrequency = 100;
             trackTime.TickStyle = TickStyle.Both;
+            trackTime.Scroll += trackTime_Scroll;
             // 
             // lblTime
             // 
@@ -146,7 +147,7 @@
             label3.Name = "label3";
             label3.Size = new Size(60, 20);
             label3.TabIndex = 14;
-            label3.Text = "MÃ¼zikler";
+            label3.Text = "Müzikler";
             // 
             // lstMusics
             // 
@@ -193,6 +194,8 @@
             trackVolume.TabIndex = 18;
             trackVolume.TickFrequency = 100;
             trackVolume.TickStyle = TickStyle.Both;
+            trackVolume.Value = 100;
+            trackVolume.Scroll += trackVolume_Scroll;
             // 
             // btnConvert
             // 
@@ -201,7 +204,7 @@
             btnConvert.Name = "btnConvert";
             btnConvert.Size = new Size(275, 33);
             btnConvert.TabIndex = 19;
-            btnConvert.Text = "DÃ¶nÃ¼ÅŸtÃ¼r!";
+            btnConvert.Text = "Dönüþtür!";
             btnConvert.UseVisualStyleBackColor = true;
             btnConvert.Click += btnConvert_Click;
             // 
@@ -229,6 +232,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "NoteToMusic";
             Load += Form1_Load;
+            FormClosing += Form1_FormClosing;
             ((System.ComponentModel.ISupportInitialize)picNote).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackTime).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackVolume).EndInit();
@@ -255,4 +259,3 @@
         private System.Windows.Forms.Button btnConvert;
     }
 }
-
