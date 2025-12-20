@@ -22,7 +22,6 @@ namespace NoteToMusic
             try
             {
                 bpm = Convert.ToInt32(textBox1.Text);
-
                 this.Close();
             }
             catch (Exception ex)
@@ -39,6 +38,11 @@ namespace NoteToMusic
         private void BpmForm_KeyDown(object sender, KeyEventArgs e)
         {
 
+        }
+
+        private void BpmForm_Load(object sender, EventArgs e)
+        {
+            textBox1.Focus();
         }
     }
 }
