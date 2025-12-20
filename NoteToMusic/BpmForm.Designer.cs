@@ -64,6 +64,7 @@
             // 
             // BpmForm
             // 
+            AcceptButton = button1;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(433, 183);
@@ -72,8 +73,10 @@
             Controls.Add(textBox1);
             Margin = new Padding(4, 3, 4, 3);
             Name = "BpmForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "BpmForm";
             FormClosing += BpmForm_FormClosing;
+            Load += BpmForm_Load;
             KeyDown += BpmForm_KeyDown;
             ResumeLayout(false);
             PerformLayout();
