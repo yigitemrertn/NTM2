@@ -30,13 +30,13 @@ namespace NoteToMusic
         {
             picNote = new PictureBox();
             lstNotes = new ListBox();
-            label1 = new Label();
+            lblNotes = new Label();
             trackTime = new TrackBar();
             lblTime = new Label();
             btnPlayStop = new Button();
-            label2 = new Label();
+            lblSounds = new Label();
             lstSounds = new ListBox();
-            label3 = new Label();
+            lblMusics = new Label();
             lstMusics = new ListBox();
             btnNotes = new Button();
             btnSounds = new Button();
@@ -70,16 +70,16 @@ namespace NoteToMusic
             lstNotes.TabIndex = 1;
             lstNotes.SelectedIndexChanged += lstNotes_SelectedIndexChanged;
             // 
-            // label1
+            // lblNotes
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Noto Sans", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label1.Location = new Point(653, 54);
-            label1.Margin = new Padding(4, 0, 4, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(54, 20);
-            label1.TabIndex = 5;
-            label1.Text = "Notalar";
+            lblNotes.AutoSize = true;
+            lblNotes.Font = new Font("Noto Sans", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblNotes.Location = new Point(653, 54);
+            lblNotes.Margin = new Padding(4, 0, 4, 0);
+            lblNotes.Name = "lblNotes";
+            lblNotes.Size = new Size(54, 20);
+            lblNotes.TabIndex = 5;
+            lblNotes.Text = "Notalar";
             // 
             // trackTime
             // 
@@ -115,16 +115,16 @@ namespace NoteToMusic
             btnPlayStop.UseVisualStyleBackColor = true;
             btnPlayStop.Click += btnPlayStop_Click;
             // 
-            // label2
+            // lblSounds
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Noto Sans", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label2.Location = new Point(654, 340);
-            label2.Margin = new Padding(4, 0, 4, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(76, 20);
-            label2.TabIndex = 12;
-            label2.Text = "SoundFont";
+            lblSounds.AutoSize = true;
+            lblSounds.Font = new Font("Noto Sans", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblSounds.Location = new Point(654, 340);
+            lblSounds.Margin = new Padding(4, 0, 4, 0);
+            lblSounds.Name = "lblSounds";
+            lblSounds.Size = new Size(76, 20);
+            lblSounds.TabIndex = 12;
+            lblSounds.Text = "SoundFont";
             // 
             // lstSounds
             // 
@@ -138,16 +138,16 @@ namespace NoteToMusic
             lstSounds.TabIndex = 11;
             lstSounds.SelectedIndexChanged += lstSounds_SelectedIndexChanged;
             // 
-            // label3
+            // lblMusics
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Noto Sans", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label3.Location = new Point(654, 703);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(60, 20);
-            label3.TabIndex = 14;
-            label3.Text = "Müzikler";
+            lblMusics.AutoSize = true;
+            lblMusics.Font = new Font("Noto Sans", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblMusics.Location = new Point(654, 703);
+            lblMusics.Margin = new Padding(4, 0, 4, 0);
+            lblMusics.Name = "lblMusics";
+            lblMusics.Size = new Size(60, 20);
+            lblMusics.TabIndex = 14;
+            lblMusics.Text = "Müzikler";
             // 
             // lstMusics
             // 
@@ -217,22 +217,22 @@ namespace NoteToMusic
             Controls.Add(trackVolume);
             Controls.Add(btnSounds);
             Controls.Add(btnNotes);
-            Controls.Add(label3);
+            Controls.Add(lblMusics);
             Controls.Add(lstMusics);
-            Controls.Add(label2);
+            Controls.Add(lblSounds);
             Controls.Add(lstSounds);
             Controls.Add(btnPlayStop);
             Controls.Add(lblTime);
             Controls.Add(trackTime);
-            Controls.Add(label1);
+            Controls.Add(lblNotes);
             Controls.Add(lstNotes);
             Controls.Add(picNote);
             Margin = new Padding(4, 3, 4, 3);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "NoteToMusic";
-            Load += Form1_Load;
-            FormClosing += Form1_FormClosing;
+            FormClosing += MainForm_FormClosing;
+            Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)picNote).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackTime).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackVolume).EndInit();
@@ -245,13 +245,13 @@ namespace NoteToMusic
 
         private System.Windows.Forms.PictureBox picNote;
         private System.Windows.Forms.ListBox lstNotes;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblNotes;
         private System.Windows.Forms.TrackBar trackTime;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Button btnPlayStop;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblSounds;
         private System.Windows.Forms.ListBox lstSounds;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblMusics;
         private System.Windows.Forms.ListBox lstMusics;
         private System.Windows.Forms.Button btnNotes;
         private System.Windows.Forms.Button btnSounds;
