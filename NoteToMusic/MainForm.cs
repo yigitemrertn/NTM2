@@ -1,4 +1,6 @@
 using NAudio.Wave;
+using NoteToMusic.Interfaces;
+using NoteToMusic.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,9 +25,9 @@ namespace NoteToMusic
         }
 
         //Objects
-        AudiverisManager audiveris = new AudiverisManager();
-        NAudioManager naudio = new NAudioManager();
-        SoundRenderer renderer = new SoundRenderer();
+        private readonly IAudiverisService _audiverisService  = new AudiverisService();
+        private readonly INaudioService _naudioService = new NaudioService();
+        private readonly IMeltySynthService _meltySytnhService = new MeltySynthService();
 
         //Variables
         string currentNote = "", currentSound = "", currentMusic  = "";
@@ -37,24 +39,27 @@ namespace NoteToMusic
         AudioFileReader? audioFileReader;
         private System.Windows.Forms.Timer? playbackTimer;
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void ListItems(ListBox lstBox, List<string> files)
         {
-            //Form yüklenirken tüm listBox'larý doldur ve gerekli klasörleri oluþtur
-            string[] paths = { FileManager.assetDir, FileManager.notesDir, FileManager.soundsDir, FileManager.musicDir, FileManager.tempDir };
-            foreach (var item in paths)
+            lstBox.Items.Clear();
+            foreach (var item in files)
             {
-                if (!Directory.Exists(item))
-                {
-                    Directory.CreateDirectory(item);
-                }
+                lstBox.Items.Add(item);
             }
-            FileManager.ListItems(lstNotes, FileManager.notesDir);
-            FileManager.ListItems(lstSounds, FileManager.soundsDir);
-            FileManager.ListItems(lstMusics, FileManager.musicDir);
+        }
 
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            //Dosya oluþturma
+            FileService.CheckAndCreateDirectories();
+            //Listeleme
+            ListItems(lstNotes, FileService.GetFiles(FileService.notesDir));
+            ListItems(lstSounds, FileService.GetFiles(FileService.soundsDir));
+            ListItems(lstMusics, FileService.GetFiles(FileService.musicDir));
             // TrackBar baþlangýç ayarlarý
-            trackVolume.Value = 100; // Ses seviyesi 100% ile baþla
-            trackTime.Enabled = false; // Müzik açýlana kadar devre dýþý
+            trackVolume.Value = 100;
+            trackTime.Enabled = false;
         }
 
         private void btnNotes_Click(object sender, EventArgs e)
@@ -70,10 +75,10 @@ namespace NoteToMusic
                 else
                 {
                     picNote.Image = Image.FromFile(ofd.FileName);
-                    string destPath = Path.Combine(FileManager.notesDir, Path.GetFileName(ofd.FileName));
+                    string destPath = Path.Combine(FileService.notesDir, Path.GetFileName(ofd.FileName));
                     File.Copy(ofd.FileName, destPath, true);
                     currentNote = ofd.FileName;
-                    FileManager.ListItems(lstNotes, FileManager.notesDir);
+                    ListItems(lstNotes, FileService.GetFiles(FileService.notesDir));
                 }
             }
         }
@@ -88,10 +93,10 @@ namespace NoteToMusic
                 if (ofd.ShowDialog() != DialogResult.OK) return;
                 else
                 {
-                    string destPath = Path.Combine(FileManager.soundsDir, Path.GetFileName(ofd.FileName));
+                    string destPath = Path.Combine(FileService.soundsDir, Path.GetFileName(ofd.FileName));
                     File.Copy(ofd.FileName, destPath, true);
                     currentSound = ofd.FileName;
-                    FileManager.ListItems(lstSounds, FileManager.soundsDir);
+                    ListItems(lstSounds, FileService.GetFiles(FileService.soundsDir));
                 }
             }
         }
@@ -112,7 +117,7 @@ namespace NoteToMusic
             {
                 btnConvert.Enabled = false;
                 btnConvert.Text = "XML Dönüþümü yapýlýyor...";
-                await audiveris.ConvertToMXL(currentNote);
+                await _audiverisService.ConvertToMxlAsync(currentNote);
             }
             catch (Exception ex)
             {
@@ -129,7 +134,7 @@ namespace NoteToMusic
             try
             {
                 btnConvert.Text = "XML Çýkarýlýyor...";
-                await audiveris.ConvertToXML(audiveris.GetMxlPath(currentNote));
+                await _audiverisService.ConvertToXmlAsync(_audiverisService.GetMxlPath(currentNote));
 
             }
             catch (Exception ex)
@@ -149,7 +154,7 @@ namespace NoteToMusic
                 BpmForm bpmform = new BpmForm();
                 bpmform.ShowDialog();
                 btnConvert.Text = "Midi Dönüþümü...";
-                await naudio.ConvertXmlToMidi(audiveris.GetXmlPath(currentNote), naudio.GetMidPath(currentNote), bpm);
+                await _naudioService.ConvertXmlToMidiAsync(_audiverisService.GetXmlPath(currentNote), _naudioService.GetMidPath(currentNote), bpm);
             }
             catch (Exception ex)
             {
@@ -171,14 +176,15 @@ namespace NoteToMusic
                 btnConvert.Enabled = false;
 
                 // SoundRenderer sýnýfýný çaðýr
-                await renderer.ConvertMidiToWav(naudio.GetMidPath(currentNote), currentSound);
+                await _meltySytnhService.ConvertMidiToWav(_naudioService.GetMidPath(currentNote), currentSound);
 
                 MessageBox.Show("Dönüþtürme Baþarýyla Tamamlandý!", "Baþarýlý", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                currentMusic = renderer.GetWavPath();
+                currentMusic = _meltySytnhService.GetWavPath();
 
                 // Listbox'ý yenile ki yeni gelen müzik görünsün
-                FileManager.ListItems(lstMusics, FileManager.musicDir);
+                ListItems(lstMusics, FileService.GetFiles(FileService.musicDir));
+
             }
             catch (Exception ex)
             {
@@ -202,7 +208,7 @@ namespace NoteToMusic
 
                 if (string.IsNullOrEmpty(fileName)) return;
 
-                currentNote = Path.Combine(FileManager.notesDir, fileName);
+                currentNote = Path.Combine(FileService.notesDir, fileName);
 
                 if (picNote.Image != null)
                 {
@@ -226,7 +232,7 @@ namespace NoteToMusic
 
                 if (!string.IsNullOrEmpty(fileName))
                 {
-                    currentSound = Path.Combine(FileManager.soundsDir, fileName);
+                    currentSound = Path.Combine(FileService.soundsDir, fileName);
                 }
             }
         }
@@ -245,7 +251,7 @@ namespace NoteToMusic
                 isPlaying = false;
                 btnPlayStop.Text = "Oynat";
 
-                currentMusic = Path.Combine(FileManager.musicDir, fileName);
+                currentMusic = Path.Combine(FileService.musicDir, fileName);
 
                 string newMusic = fileName.Split('(')[0].Trim();
 
@@ -256,7 +262,7 @@ namespace NoteToMusic
 
                     if (imageNameOnly.Contains(newMusic))
                     {
-                        picNote.Image = Image.FromFile(Path.Combine(FileManager.notesDir, fullImageName));
+                        picNote.Image = Image.FromFile(Path.Combine(FileService.notesDir, fullImageName));
                         break;
                     }
                 }
@@ -309,7 +315,7 @@ namespace NoteToMusic
                         playbackTimer.Start();
 
                         trackTime.Enabled = true;
-                        trackTime.Maximum = (int)audioFileReader.TotalTime.TotalSeconds;
+                        if (audioFileReader != null) trackTime.Maximum = (int)audioFileReader.TotalTime.TotalSeconds;
                     }
 
                     waveOutDevice.Play();
@@ -392,7 +398,7 @@ namespace NoteToMusic
         }
 
         // Form kapanýrken sesi kapatmayý unutma
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             DisposeWave();
         }

@@ -28,65 +28,65 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
-            label1 = new Label();
-            button1 = new Button();
-            label2 = new Label();
+            txtBpm = new TextBox();
+            lblBpm = new Label();
+            btnStart = new Button();
+            lblInfo = new Label();
             SuspendLayout();
             // 
-            // textBox1
+            // txtBpm
             // 
-            textBox1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            textBox1.Location = new Point(187, 47);
-            textBox1.Margin = new Padding(4, 3, 4, 3);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(204, 29);
-            textBox1.TabIndex = 0;
+            txtBpm.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            txtBpm.Location = new Point(187, 47);
+            txtBpm.Margin = new Padding(4, 3, 4, 3);
+            txtBpm.Name = "txtBpm";
+            txtBpm.Size = new Size(204, 29);
+            txtBpm.TabIndex = 0;
             // 
-            // label1
+            // lblBpm
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label1.Location = new Point(40, 51);
-            label1.Margin = new Padding(4, 0, 4, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(139, 20);
-            label1.TabIndex = 1;
-            label1.Text = "Lütfen Bpm Giriniz:";
+            lblBpm.AutoSize = true;
+            lblBpm.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblBpm.Location = new Point(40, 51);
+            lblBpm.Margin = new Padding(4, 0, 4, 0);
+            lblBpm.Name = "lblBpm";
+            lblBpm.Size = new Size(139, 20);
+            lblBpm.TabIndex = 1;
+            lblBpm.Text = "Lütfen Bpm Giriniz:";
             // 
-            // button1
+            // btnStart
             // 
-            button1.Location = new Point(40, 91);
-            button1.Margin = new Padding(4, 3, 4, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(351, 37);
-            button1.TabIndex = 2;
-            button1.Text = "Başla";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnStart.Location = new Point(40, 91);
+            btnStart.Margin = new Padding(4, 3, 4, 3);
+            btnStart.Name = "btnStart";
+            btnStart.Size = new Size(351, 37);
+            btnStart.TabIndex = 2;
+            btnStart.Text = "Başla";
+            btnStart.UseVisualStyleBackColor = true;
+            btnStart.Click += btnStart_Click;
             // 
-            // label2
+            // lblInfo
             // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Segoe UI Emoji", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = SystemColors.GrayText;
-            label2.Location = new Point(17, 198);
-            label2.Name = "label2";
-            label2.Size = new Size(404, 40);
-            label2.TabIndex = 3;
-            label2.Text = "Şarkının BPM(Tempo) değerini metin kutusuna girip.\r\nEnter tuşuna basarak keyfinize göre ayarlayınız.";
+            lblInfo.AutoSize = true;
+            lblInfo.BackColor = Color.Transparent;
+            lblInfo.Font = new Font("Segoe UI Emoji", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblInfo.ForeColor = SystemColors.GrayText;
+            lblInfo.Location = new Point(17, 198);
+            lblInfo.Name = "lblInfo";
+            lblInfo.Size = new Size(404, 40);
+            lblInfo.TabIndex = 3;
+            lblInfo.Text = "Şarkının BPM(Tempo) değerini metin kutusuna girip.\r\nEnter tuşuna basarak keyfinize göre ayarlayınız.";
             // 
             // BpmForm
             // 
-            AcceptButton = button1;
+            AcceptButton = btnStart;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(433, 247);
-            Controls.Add(label2);
-            Controls.Add(button1);
-            Controls.Add(label1);
-            Controls.Add(textBox1);
+            Controls.Add(lblInfo);
+            Controls.Add(btnStart);
+            Controls.Add(lblBpm);
+            Controls.Add(txtBpm);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Margin = new Padding(4, 3, 4, 3);
             MaximizeBox = false;
@@ -96,7 +96,6 @@
             Text = "BpmForm";
             FormClosing += BpmForm_FormClosing;
             Load += BpmForm_Load;
-            KeyDown += BpmForm_KeyDown;
             ResumeLayout(false);
             PerformLayout();
 
@@ -104,9 +103,9 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private Label label2;
+        private System.Windows.Forms.TextBox txtBpm;
+        private System.Windows.Forms.Label lblBpm;
+        private System.Windows.Forms.Button btnStart;
+        private Label lblInfo;
     }
 }
