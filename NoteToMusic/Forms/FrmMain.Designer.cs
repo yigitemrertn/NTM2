@@ -1,16 +1,16 @@
-namespace NoteToMusic
+namespace NoteToMusic.Forms
 {
-    partial class MainForm
+    partial class FrmMain
     {
         /// <summary>
-        ///Gerekli tasarýmcý deðiþkeni.
+        ///Gerekli tasarï¿½mcï¿½ deï¿½iï¿½keni.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///Kullanýlan tüm kaynaklarý temizleyin.
+        ///Kullanï¿½lan tï¿½m kaynaklarï¿½ temizleyin.
         /// </summary>
-        ///<param name="disposing">yönetilen kaynaklar dispose edilmeliyse doðru; aksi halde yanlýþ.</param>
+        ///<param name="disposing">yï¿½netilen kaynaklar dispose edilmeliyse doï¿½ru; aksi halde yanlï¿½ï¿½.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,11 +20,11 @@ namespace NoteToMusic
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer üretilen kod
+        #region Windows Form Designer ï¿½retilen kod
 
         /// <summary>
-        /// Tasarýmcý desteði için gerekli metot - bu metodun 
-        ///içeriðini kod düzenleyici ile deðiþtirmeyin.
+        /// Tasarï¿½mcï¿½ desteï¿½i iï¿½in gerekli metot - bu metodun 
+        ///iï¿½eriï¿½ini kod dï¿½zenleyici ile deï¿½iï¿½tirmeyin.
         /// </summary>
         private void InitializeComponent()
         {
@@ -34,6 +34,7 @@ namespace NoteToMusic
             trackTime = new TrackBar();
             lblTime = new Label();
             btnPlayStop = new Button();
+            btnFeedback = new Button();
             lblSounds = new Label();
             lstSounds = new ListBox();
             lblMusics = new Label();
@@ -60,7 +61,7 @@ namespace NoteToMusic
             // 
             // lstNotes
             // 
-            lstNotes.Font = new Font("Noto Sans", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lstNotes.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
             lstNotes.FormattingEnabled = true;
             lstNotes.ItemHeight = 20;
             lstNotes.Location = new Point(658, 81);
@@ -73,7 +74,7 @@ namespace NoteToMusic
             // lblNotes
             // 
             lblNotes.AutoSize = true;
-            lblNotes.Font = new Font("Noto Sans", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblNotes.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
             lblNotes.Location = new Point(653, 54);
             lblNotes.Margin = new Padding(4, 0, 4, 0);
             lblNotes.Name = "lblNotes";
@@ -115,10 +116,23 @@ namespace NoteToMusic
             btnPlayStop.UseVisualStyleBackColor = true;
             btnPlayStop.Click += btnPlayStop_Click;
             // 
+            // btnFeedback
+            // 
+            btnFeedback.Enabled = false;
+            btnFeedback.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnFeedback.Location = new Point(658, 939);
+            btnFeedback.Margin = new Padding(4, 3, 4, 3);
+            btnFeedback.Name = "btnFeedback";
+            btnFeedback.Size = new Size(275, 40);
+            btnFeedback.TabIndex = 17;
+            btnFeedback.Text = "Geri Bildirim Ver";
+            btnFeedback.UseVisualStyleBackColor = true;
+            btnFeedback.Click += btnFeedback_Click;
+            // 
             // lblSounds
             // 
             lblSounds.AutoSize = true;
-            lblSounds.Font = new Font("Noto Sans", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblSounds.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
             lblSounds.Location = new Point(654, 340);
             lblSounds.Margin = new Padding(4, 0, 4, 0);
             lblSounds.Name = "lblSounds";
@@ -128,7 +142,7 @@ namespace NoteToMusic
             // 
             // lstSounds
             // 
-            lstSounds.Font = new Font("Noto Sans", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lstSounds.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
             lstSounds.FormattingEnabled = true;
             lstSounds.ItemHeight = 20;
             lstSounds.Location = new Point(658, 368);
@@ -141,17 +155,17 @@ namespace NoteToMusic
             // lblMusics
             // 
             lblMusics.AutoSize = true;
-            lblMusics.Font = new Font("Noto Sans", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblMusics.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
             lblMusics.Location = new Point(654, 703);
             lblMusics.Margin = new Padding(4, 0, 4, 0);
             lblMusics.Name = "lblMusics";
             lblMusics.Size = new Size(60, 20);
             lblMusics.TabIndex = 14;
-            lblMusics.Text = "Müzikler";
+            lblMusics.Text = "MÃ¼zikler";
             // 
             // lstMusics
             // 
-            lstMusics.Font = new Font("Noto Sans", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lstMusics.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
             lstMusics.FormattingEnabled = true;
             lstMusics.ItemHeight = 20;
             lstMusics.Location = new Point(658, 729);
@@ -204,7 +218,7 @@ namespace NoteToMusic
             btnConvert.Name = "btnConvert";
             btnConvert.Size = new Size(275, 33);
             btnConvert.TabIndex = 19;
-            btnConvert.Text = "Dönüþtür!";
+            btnConvert.Text = "DÃ¶nÃ¼ÅŸtÃ¼r!";
             btnConvert.UseVisualStyleBackColor = true;
             btnConvert.Click += btnConvert_Click;
             // 
@@ -222,6 +236,7 @@ namespace NoteToMusic
             Controls.Add(lblSounds);
             Controls.Add(lstSounds);
             Controls.Add(btnPlayStop);
+            Controls.Add(btnFeedback);
             Controls.Add(lblTime);
             Controls.Add(trackTime);
             Controls.Add(lblNotes);
@@ -249,6 +264,7 @@ namespace NoteToMusic
         private System.Windows.Forms.TrackBar trackTime;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Button btnPlayStop;
+        private System.Windows.Forms.Button btnFeedback;
         private System.Windows.Forms.Label lblSounds;
         private System.Windows.Forms.ListBox lstSounds;
         private System.Windows.Forms.Label lblMusics;
@@ -259,3 +275,6 @@ namespace NoteToMusic
         private System.Windows.Forms.Button btnConvert;
     }
 }
+
+
+

@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NoteToMusic.Entities
 {
+    /// <summary>
+    /// İşlem kayıtlarını tutan entity sınıfı
+    /// </summary>
     public class ProcessLog
     {
         public int Id { get; set; }
