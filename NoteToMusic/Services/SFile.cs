@@ -1,29 +1,23 @@
-﻿using NoteToMusic.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NoteToMusic.Services
 {
-    public static class FileService
+    /// <summary>
+    /// Created by: Yiğit Emre ERTEN
+    /// Date: 21.12.2025
+    /// Description: Dosya yollarının bulunduğu static class
+    /// </summary>
+    public static class SFile
     {
-        /*
-        * Created by: Yiğit Emre ERTEN
-        * Date: 21.12.2025
-        * Description: Dosya yollarının bulunduğu static class
-        */
-
         public static string baseDir => Application.StartupPath;
         public static string assetDir => Path.Combine(baseDir, "Assets");
         public static string notesDir => Path.Combine(assetDir, "Notes");
         public static string soundsDir => Path.Combine(assetDir, "Soundfonts");
         public static string musicDir => Path.Combine(assetDir, "Musics");
         public static string tempDir => Path.Combine(assetDir, "Temp");
-
 
         /// <summary>
         /// Kök dizininde gerekli klasörlerin varlığını kontrol eder, yoksa oluşturur.
@@ -68,5 +62,3 @@ namespace NoteToMusic.Services
         }
     }
 }
-
-    

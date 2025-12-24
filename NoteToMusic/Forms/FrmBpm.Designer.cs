@@ -1,6 +1,6 @@
-ï»¿namespace NoteToMusic
+namespace NoteToMusic.Forms
 {
-    partial class BpmForm
+    partial class FrmBpm
     {
         /// <summary>
         /// Required designer variable.
@@ -52,7 +52,7 @@
             lblBpm.Name = "lblBpm";
             lblBpm.Size = new Size(139, 20);
             lblBpm.TabIndex = 1;
-            lblBpm.Text = "LÃ¼tfen Bpm Giriniz:";
+            lblBpm.Text = "Lütfen Bpm Giriniz:";
             // 
             // btnStart
             // 
@@ -61,7 +61,7 @@
             btnStart.Name = "btnStart";
             btnStart.Size = new Size(351, 37);
             btnStart.TabIndex = 2;
-            btnStart.Text = "BaÅŸla";
+            btnStart.Text = "Baþla";
             btnStart.UseVisualStyleBackColor = true;
             btnStart.Click += btnStart_Click;
             // 
@@ -75,7 +75,7 @@
             lblInfo.Name = "lblInfo";
             lblInfo.Size = new Size(404, 40);
             lblInfo.TabIndex = 3;
-            lblInfo.Text = "ÅžarkÄ±nÄ±n BPM(Tempo) deÄŸerini metin kutusuna girip.\r\nEnter tuÅŸuna basarak keyfinize gÃ¶re ayarlayÄ±nÄ±z.";
+            lblInfo.Text = "Þarkýnýn BPM(Tempo) deðerini metin kutusuna girip.\r\nEnter tuþuna basarak keyfinize göre ayarlayýnýz.";
             // 
             // BpmForm
             // 

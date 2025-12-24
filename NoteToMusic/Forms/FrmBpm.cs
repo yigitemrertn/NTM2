@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 using System.Windows.Forms;
 
-namespace NoteToMusic
+namespace NoteToMusic.Forms
 {
-    public partial class BpmForm : Form
+    public partial class FrmBpm : Form
     {
-        public BpmForm()
+        public FrmBpm()
         {
             InitializeComponent();
         }
+
         int bpm = 0;
+
         private void btnStart_Click(object sender, EventArgs e)
         {
             try
@@ -26,14 +21,15 @@ namespace NoteToMusic
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Bir hata oluştu. " + ex.Message);
+                lblInfo.Text = $"Hata: {ex.Message}";
             }
         }
 
         private void BpmForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MainForm.bpm = bpm;
+            FrmMain.bpm = bpm;
         }
+
         private void BpmForm_Load(object sender, EventArgs e)
         {
             txtBpm.Focus();
