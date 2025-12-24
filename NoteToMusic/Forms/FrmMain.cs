@@ -446,6 +446,80 @@ namespace NoteToMusic.Forms
         {
             DisposeWave();
         }
+
+        // === Online Download Feature ===
+
+        /// <summary>
+        /// Nota arama kutucuğu - Canlı filtreleme
+        /// </summary>
+        private void txtNoteSearch_TextChanged(object sender, EventArgs e)
+        {
+            string filter = txtNoteSearch.Text.ToLower();
+            var allNotes = SFile.GetFiles(SFile.notesDir);
+
+            if (string.IsNullOrWhiteSpace(filter))
+            {
+                ListItems(lstNotes, allNotes);
+            }
+            else
+            {
+                var filtered = allNotes.FindAll(note => 
+                    Path.GetFileName(note).ToLower().Contains(filter));
+                ListItems(lstNotes, filtered);
+            }
+        }
+
+        /// <summary>
+        /// SoundFont arama kutucuğu - Canlı filtreleme
+        /// </summary>
+        private void txtSoundSearch_TextChanged(object sender, EventArgs e)
+        {
+            string filter = txtSoundSearch.Text.ToLower();
+            var allSounds = SFile.GetFiles(SFile.soundsDir);
+
+            if (string.IsNullOrWhiteSpace(filter))
+            {
+                ListItems(lstSounds, allSounds);
+            }
+            else
+            {
+                var filtered = allSounds.FindAll(sound => 
+                    Path.GetFileName(sound).ToLower().Contains(filter));
+                ListItems(lstSounds, filtered);
+            }
+        }
+
+        /// <summary>
+        /// Online nota indirme formu aç
+        /// </summary>
+        private void btnOnlineNotes_Click(object sender, EventArgs e)
+        {
+            using (FrmOnlineNotes frm = new FrmOnlineNotes())
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    // Yeni notalar eklendiyse listeyi yenile
+                    ListItems(lstNotes, SFile.GetFiles(SFile.notesDir));
+                    txtNoteSearch.Text = ""; // Aramayı temizle
+                }
+            }
+        }
+
+        /// <summary>
+        /// Online SoundFont indirme formu aç
+        /// </summary>
+        private void btnOnlineSounds_Click(object sender, EventArgs e)
+        {
+            using (FrmOnlineSoundFonts frm = new FrmOnlineSoundFonts())
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    // Yeni soundfont'lar eklendiyse listeyi yenile
+                    ListItems(lstSounds, SFile.GetFiles(SFile.soundsDir));
+                    txtSoundSearch.Text = ""; // Aramayı temizle
+                }
+            }
+        }
     }
 }
 

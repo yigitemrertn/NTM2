@@ -31,12 +31,16 @@ namespace NoteToMusic.Forms
             picNote = new PictureBox();
             lstNotes = new ListBox();
             lblNotes = new Label();
+            txtNoteSearch = new TextBox();
+            btnOnlineNotes = new Button();
             trackTime = new TrackBar();
             lblTime = new Label();
             btnPlayStop = new Button();
             btnFeedback = new Button();
             lblSounds = new Label();
             lstSounds = new ListBox();
+            txtSoundSearch = new TextBox();
+            btnOnlineSounds = new Button();
             lblMusics = new Label();
             lstMusics = new ListBox();
             btnNotes = new Button();
@@ -81,6 +85,26 @@ namespace NoteToMusic.Forms
             lblNotes.Size = new Size(54, 20);
             lblNotes.TabIndex = 5;
             lblNotes.Text = "Notalar";
+            // 
+            // txtNoteSearch
+            // 
+            txtNoteSearch.Location = new Point(658, 24);
+            txtNoteSearch.Name = "txtNoteSearch";
+            txtNoteSearch.PlaceholderText = "Ara...";
+            txtNoteSearch.Size = new Size(195, 23);
+            txtNoteSearch.TabIndex = 18;
+            txtNoteSearch.TextChanged += txtNoteSearch_TextChanged;
+            // 
+            // btnOnlineNotes
+            // 
+            btnOnlineNotes.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            btnOnlineNotes.Location = new Point(858, 24);
+            btnOnlineNotes.Name = "btnOnlineNotes";
+            btnOnlineNotes.Size = new Size(75, 23);
+            btnOnlineNotes.TabIndex = 19;
+            btnOnlineNotes.Text = "🌐 Online";
+            btnOnlineNotes.UseVisualStyleBackColor = true;
+            btnOnlineNotes.Click += btnOnlineNotes_Click;
             // 
             // trackTime
             // 
@@ -139,6 +163,26 @@ namespace NoteToMusic.Forms
             lblSounds.Size = new Size(76, 20);
             lblSounds.TabIndex = 12;
             lblSounds.Text = "SoundFont";
+            // 
+            // txtSoundSearch
+            // 
+            txtSoundSearch.Location = new Point(658, 310);
+            txtSoundSearch.Name = "txtSoundSearch";
+            txtSoundSearch.PlaceholderText = "Ara...";
+            txtSoundSearch.Size = new Size(195, 23);
+            txtSoundSearch.TabIndex = 20;
+            txtSoundSearch.TextChanged += txtSoundSearch_TextChanged;
+            // 
+            // btnOnlineSounds
+            // 
+            btnOnlineSounds.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            btnOnlineSounds.Location = new Point(858, 310);
+            btnOnlineSounds.Name = "btnOnlineSounds";
+            btnOnlineSounds.Size = new Size(75, 23);
+            btnOnlineSounds.TabIndex = 21;
+            btnOnlineSounds.Text = "🌐 Online";
+            btnOnlineSounds.UseVisualStyleBackColor = true;
+            btnOnlineSounds.Click += btnOnlineSounds_Click;
             // 
             // lstSounds
             // 
@@ -241,6 +285,10 @@ namespace NoteToMusic.Forms
             Controls.Add(trackTime);
             Controls.Add(lblNotes);
             Controls.Add(lstNotes);
+            Controls.Add(txtNoteSearch);
+            Controls.Add(btnOnlineNotes);
+            Controls.Add(txtSoundSearch);
+            Controls.Add(btnOnlineSounds);
             Controls.Add(picNote);
             Margin = new Padding(4, 3, 4, 3);
             Name = "MainForm";
@@ -273,6 +321,10 @@ namespace NoteToMusic.Forms
         private System.Windows.Forms.Button btnSounds;
         private System.Windows.Forms.TrackBar trackVolume;
         private System.Windows.Forms.Button btnConvert;
+        private System.Windows.Forms.TextBox txtNoteSearch;
+        private System.Windows.Forms.Button btnOnlineNotes;
+        private System.Windows.Forms.TextBox txtSoundSearch;
+        private System.Windows.Forms.Button btnOnlineSounds;
     }
 }
 
