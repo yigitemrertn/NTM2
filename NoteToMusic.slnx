@@ -1,3 +1,5 @@
 <Solution>
-  <Project Path="NoteToMusic/NoteToMusic.csproj" />
+  <Project Path="NoteToMusic/NoteToMusic.csproj">
+    <BuildType Project="Release" />
+  </Project>
 </Solution>
