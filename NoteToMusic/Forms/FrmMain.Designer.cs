@@ -44,15 +44,7 @@ namespace NoteToMusic.Forms
             trackVolume = new TrackBar();
             btnConvert = new Button();
             txtNoteSearch = new TextBox();
-            btnOnlineNotes = new Button();
             txtSoundSearch = new TextBox();
-            btnOnlineSounds = new Button();
-            grpPdfPages = new GroupBox();
-            lstPdfPages = new CheckedListBox();
-            lblPageCount = new Label();
-            btnProcessSelectedPages = new Button();
-            btnProcessAllPages = new Button();
-            progressMultiPage = new ProgressBar();
             btnPrevious = new Button();
             btnRewind = new Button();
             btnForward = new Button();
@@ -60,7 +52,6 @@ namespace NoteToMusic.Forms
             ((System.ComponentModel.ISupportInitialize)picNote).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trackTime).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trackVolume).BeginInit();
-            grpPdfPages.SuspendLayout();
             SuspendLayout();
             // 
             // picNote
@@ -114,21 +105,6 @@ namespace NoteToMusic.Forms
             txtNoteSearch.TabIndex = 18;
             txtNoteSearch.TextChanged += txtNoteSearch_TextChanged;
             // 
-            // btnOnlineNotes
-            // 
-            btnOnlineNotes.BackColor = Color.FromArgb(0, 122, 204);
-            btnOnlineNotes.FlatAppearance.BorderSize = 0;
-            btnOnlineNotes.FlatStyle = FlatStyle.Flat;
-            btnOnlineNotes.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnOnlineNotes.ForeColor = Color.White;
-            btnOnlineNotes.Location = new Point(245, 50);
-            btnOnlineNotes.Name = "btnOnlineNotes";
-            btnOnlineNotes.Size = new Size(75, 30);
-            btnOnlineNotes.TabIndex = 21;
-            btnOnlineNotes.Text = "🌐";
-            btnOnlineNotes.UseVisualStyleBackColor = false;
-            btnOnlineNotes.Click += btnOnlineNotes_Click;
-            // 
             // btnNotes
             // 
             btnNotes.BackColor = Color.FromArgb(28, 151, 234);
@@ -170,21 +146,6 @@ namespace NoteToMusic.Forms
             txtSoundSearch.TabIndex = 20;
             txtSoundSearch.TextChanged += txtSoundSearch_TextChanged;
             // 
-            // btnOnlineSounds
-            // 
-            btnOnlineSounds.BackColor = Color.FromArgb(0, 122, 204);
-            btnOnlineSounds.FlatAppearance.BorderSize = 0;
-            btnOnlineSounds.FlatStyle = FlatStyle.Flat;
-            btnOnlineSounds.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnOnlineSounds.ForeColor = Color.White;
-            btnOnlineSounds.Location = new Point(245, 390);
-            btnOnlineSounds.Name = "btnOnlineSounds";
-            btnOnlineSounds.Size = new Size(75, 30);
-            btnOnlineSounds.TabIndex = 21;
-            btnOnlineSounds.Text = "🌐";
-            btnOnlineSounds.UseVisualStyleBackColor = false;
-            btnOnlineSounds.Click += btnOnlineSounds_Click;
-            // 
             // lstSounds
             // 
             lstSounds.BackColor = Color.FromArgb(37, 37, 38);
@@ -215,85 +176,6 @@ namespace NoteToMusic.Forms
             btnSounds.Text = "➕ SoundFont Ekle";
             btnSounds.UseVisualStyleBackColor = false;
             btnSounds.Click += btnSounds_Click;
-            // 
-            // grpPdfPages
-            // 
-            grpPdfPages.BackColor = Color.FromArgb(37, 37, 38);
-            grpPdfPages.Controls.Add(progressMultiPage);
-            grpPdfPages.Controls.Add(btnProcessAllPages);
-            grpPdfPages.Controls.Add(btnProcessSelectedPages);
-            grpPdfPages.Controls.Add(lblPageCount);
-            grpPdfPages.Controls.Add(lstPdfPages);
-            grpPdfPages.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            grpPdfPages.ForeColor = Color.FromArgb(0, 122, 204);
-            grpPdfPages.Location = new Point(1260, 20);
-            grpPdfPages.Name = "grpPdfPages";
-            grpPdfPages.Size = new Size(310, 360);
-            grpPdfPages.TabIndex = 22;
-            grpPdfPages.TabStop = false;
-            grpPdfPages.Text = "📄 PDF Sayfaları";
-            grpPdfPages.Visible = false;
-            // 
-            // lstPdfPages
-            // 
-            lstPdfPages.BackColor = Color.FromArgb(45, 45, 48);
-            lstPdfPages.BorderStyle = BorderStyle.FixedSingle;
-            lstPdfPages.CheckOnClick = true;
-            lstPdfPages.Font = new Font("Segoe UI", 9F);
-            lstPdfPages.ForeColor = Color.White;
-            lstPdfPages.FormattingEnabled = true;
-            lstPdfPages.Location = new Point(10, 60);
-            lstPdfPages.Name = "lstPdfPages";
-            lstPdfPages.Size = new Size(250, 170);
-            lstPdfPages.TabIndex = 0;
-            // 
-            // lblPageCount
-            // 
-            lblPageCount.AutoSize = true;
-            lblPageCount.Font = new Font("Segoe UI", 9F);
-            lblPageCount.ForeColor = Color.LightGray;
-            lblPageCount.Location = new Point(10, 35);
-            lblPageCount.Name = "lblPageCount";
-            lblPageCount.Size = new Size(82, 20);
-            lblPageCount.TabIndex = 1;
-            lblPageCount.Text = "Sayfa: 0 / 0";
-            // 
-            // btnProcessSelectedPages
-            // 
-            btnProcessSelectedPages.BackColor = Color.FromArgb(28, 151, 234);
-            btnProcessSelectedPages.FlatAppearance.BorderSize = 0;
-            btnProcessSelectedPages.FlatStyle = FlatStyle.Flat;
-            btnProcessSelectedPages.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            btnProcessSelectedPages.ForeColor = Color.White;
-            btnProcessSelectedPages.Location = new Point(10, 240);
-            btnProcessSelectedPages.Name = "btnProcessSelectedPages";
-            btnProcessSelectedPages.Size = new Size(120, 32);
-            btnProcessSelectedPages.TabIndex = 2;
-            btnProcessSelectedPages.Text = "Seçilenleri";
-            btnProcessSelectedPages.UseVisualStyleBackColor = false;
-            btnProcessSelectedPages.Click += btnProcessSelectedPages_Click;
-            // 
-            // btnProcessAllPages
-            // 
-            btnProcessAllPages.BackColor = Color.FromArgb(106, 176, 76);
-            btnProcessAllPages.FlatAppearance.BorderSize = 0;
-            btnProcessAllPages.FlatStyle = FlatStyle.Flat;
-            btnProcessAllPages.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            btnProcessAllPages.ForeColor = Color.White;
-            btnProcessAllPages.Location = new Point(140, 240);
-            btnProcessAllPages.Name = "btnProcessAllPages";
-            btnProcessAllPages.Size = new Size(120, 32);
-            btnProcessAllPages.TabIndex = 3;
-            btnProcessAllPages.Text = "Tümünü İşle";
-            btnProcessAllPages.UseVisualStyleBackColor = false;
-            btnProcessAllPages.Click += btnProcessAllPages_Click;
-            // 
-            // progressMultiPage
-            // 
-            progressMultiPage.Location = new Point(10, 280);
-            progressMultiPage.Name = "progressMultiPage";
-            progressMultiPage.Size = new Size(250, 20);
-            progressMultiPage.TabIndex = 4;
             // 
             // lblMusics
             // 
@@ -485,9 +367,6 @@ namespace NoteToMusic.Forms
             Controls.Add(btnForward);
             Controls.Add(btnRewind);
             Controls.Add(btnPrevious);
-            Controls.Add(grpPdfPages);
-            Controls.Add(btnOnlineSounds);
-            Controls.Add(btnOnlineNotes);
             Controls.Add(txtSoundSearch);
             Controls.Add(txtNoteSearch);
             Controls.Add(trackVolume);
@@ -510,14 +389,12 @@ namespace NoteToMusic.Forms
             MaximizeBox = true;
             Name = "FrmMain";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "🎵 Note To Music - PDF Multi-Page Support";
+            Text = "🎵 Note To Music";
             FormClosing += MainForm_FormClosing;
             Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)picNote).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackTime).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackVolume).EndInit();
-            grpPdfPages.ResumeLayout(false);
-            grpPdfPages.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
 
@@ -541,15 +418,7 @@ namespace NoteToMusic.Forms
         private System.Windows.Forms.TrackBar trackVolume;
         private System.Windows.Forms.Button btnConvert;
         private System.Windows.Forms.TextBox txtNoteSearch;
-        private System.Windows.Forms.Button btnOnlineNotes;
         private System.Windows.Forms.TextBox txtSoundSearch;
-        private System.Windows.Forms.Button btnOnlineSounds;
-        private System.Windows.Forms.GroupBox grpPdfPages;
-        private System.Windows.Forms.CheckedListBox lstPdfPages;
-        private System.Windows.Forms.Label lblPageCount;
-        private System.Windows.Forms.Button btnProcessSelectedPages;
-        private System.Windows.Forms.Button btnProcessAllPages;
-        private System.Windows.Forms.ProgressBar progressMultiPage;
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.Button btnRewind;
         private System.Windows.Forms.Button btnForward;
