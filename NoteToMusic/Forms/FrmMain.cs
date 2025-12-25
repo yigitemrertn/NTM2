@@ -15,21 +15,12 @@ namespace NoteToMusic.Forms
         public FrmMain()
         {
             InitializeComponent();
-            
-            // PDF desteği için event handler'ı manuel olarak bağla
-            // (Designer generated code'da tanımlı değilse)
-            if (lstNotes != null)
-            {
-                lstNotes.SelectedIndexChanged -= lstNotes_SelectedIndexChanged; // Önce kaldır (çift bağlama önleme)
-                lstNotes.SelectedIndexChanged += lstNotes_SelectedIndexChanged; // Sonra ekle
-            }
         }
 
         // Service Objects
         private readonly ISAudiveris _audiverisService = new SAudiveris();
         private readonly ISNaudio _naudioService = new SNaudio();
         private readonly ISMeltySynth _meltySynthService = new SMeltySynth();
-        private readonly ISPdfProcessor _pdfProcessor = new SPdfProcessor();
 
         // Variables
         string currentNote = "", currentSound = "", currentMusic = "";
@@ -41,11 +32,6 @@ namespace NoteToMusic.Forms
         AudioFileReader? audioFileReader;
         private System.Windows.Forms.Timer? playbackTimer;
         private bool feedbackEnabled = false;
-
-        // PDF Variables
-        private bool isCurrentNotePdf = false;
-        private string currentPdfPath = "";
-        private List<Entities.PdfPageInfo> pdfPages = new List<Entities.PdfPageInfo>();
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -161,29 +147,16 @@ namespace NoteToMusic.Forms
 
                 currentNote = Path.Combine(SFile.notesDir, fileName);
 
-                // PDF kontrolü
-                if (SFile.IsPdfFile(currentNote))
+                // Görsel dosyası için önizleme göster
+                if (picNote.Image != null)
                 {
-                    isCurrentNotePdf = true;
-                    currentPdfPath = currentNote;
-                    LoadPdfPages();
+                    picNote.Image.Dispose();
+                    picNote.Image = null;
                 }
-                else
-                {
-                    isCurrentNotePdf = false;
-                    grpPdfPages.Visible = false;
-                    
-                    // Normal görsel dosyası için önizleme göster
-                    if (picNote.Image != null)
-                    {
-                        picNote.Image.Dispose();
-                        picNote.Image = null;
-                    }
 
-                    if (File.Exists(currentNote))
-                    {
-                        picNote.Image = Image.FromFile(currentNote);
-                    }
+                if (File.Exists(currentNote))
+                {
+                    picNote.Image = Image.FromFile(currentNote);
                 }
             }
         }
@@ -392,7 +365,7 @@ namespace NoteToMusic.Forms
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                ofd.Filter = "Görsel ve PDF Dosyalar|*.png;*.jpg;*.jpeg;*.bmp;*.pdf";
+                ofd.Filter = "Görsel Dosyalar|*.png;*.jpg;*.jpeg;*.bmp";
                 ofd.Multiselect = false;
                 ofd.Title = "Nota Dosyası Seçiniz...";
 
@@ -498,7 +471,7 @@ namespace NoteToMusic.Forms
             DisposeWave();
         }
 
-        // === Online Download Feature ===
+        // === Local Search Feature ===
 
         /// <summary>
         /// Nota arama kutucuğu - Canlı filtreleme
@@ -540,174 +513,8 @@ namespace NoteToMusic.Forms
             }
         }
 
-        /// <summary>
-        /// Online nota indirme formu aç
-        /// </summary>
-        private void btnOnlineNotes_Click(object sender, EventArgs e)
-        {
-            using (FrmOnlineNotes frm = new FrmOnlineNotes())
-            {
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    // Yeni notalar eklendiyse listeyi yenile
-                    ListItems(lstNotes, SFile.GetFiles(SFile.notesDir));
-                    txtNoteSearch.Text = ""; // Aramayı temizle
-                }
-            }
-        }
 
-        /// <summary>
-        /// Online SoundFont indirme formu aç
-        /// </summary>
-        private void btnOnlineSounds_Click(object sender, EventArgs e)
-        {
-            using (FrmOnlineSoundFonts frm = new FrmOnlineSoundFonts())
-            {
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    // Yeni soundfont'lar eklendiyse listeyi yenile
-                    ListItems(lstSounds, SFile.GetFiles(SFile.soundsDir));
-                    txtSoundSearch.Text = ""; // Aramayı temizle
-                }
-            }
-        }
 
-        // === PDF Processing Methods ===
-
-        /// <summary>
-        /// PDF dosyasının sayfalarını yükler ve UI'da gösterir
-        /// </summary>
-        private void LoadPdfPages()
-        {
-            try
-            {
-                pdfPages.Clear();
-                lstPdfPages.Items.Clear();
-
-                int pageCount = _pdfProcessor.GetPageCount(currentPdfPath);
-                
-                for (int i = 1; i <= pageCount; i++)
-                {
-                    var pageInfo = new Entities.PdfPageInfo
-                    {
-                        PdfFilePath = currentPdfPath,
-                        PageNumber = i
-                    };
-                    pdfPages.Add(pageInfo);
-                    lstPdfPages.Items.Add($"Sayfa {i}", true); // Varsayılan olarak seçili
-                }
-
-                lblPageCount.Text = $"Sayfa: {pageCount} / {pageCount}";
-                grpPdfPages.Visible = true;
-                
-                // İlk sayfanın önizlemesini göster (opsiyonel)
-                this.Text = $"PDF yüklendi: {pageCount} sayfa";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"PDF sayfaları yüklenirken hata oluştu: {ex.Message}", "PDF Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                grpPdfPages.Visible = false;
-            }
-        }
-
-        /// <summary>
-        /// Seçili PDF sayfalarını işler
-        /// </summary>
-        private async void btnProcessSelectedPages_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var selectedPages = new List<int>();
-                for (int i = 0; i < lstPdfPages.Items.Count; i++)
-                {
-                    if (lstPdfPages.GetItemChecked(i))
-                    {
-                        selectedPages.Add(i + 1); // 1-indexed
-                    }
-                }
-
-                if (selectedPages.Count == 0)
-                {
-                    MessageBox.Show("Lütfen en az bir sayfa seçin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                await ProcessPdfPages(selectedPages);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Sayfa işleme hatası: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// Tüm PDF sayfalarını işler
-        /// </summary>
-        private async void btnProcessAllPages_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var allPages = new List<int>();
-                for (int i  = 1; i <= pdfPages.Count; i++)
-                {
-                    allPages.Add(i);
-                }
-
-                await ProcessPdfPages(allPages);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Tüm sayfalar işlenirken hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// PDF sayfalarını PNG'ye dönüştürür ve MusicXML oluşturur
-        /// </summary>
-        private async Task ProcessPdfPages(List<int> pageNumbers)
-        {
-            btnProcessSelectedPages.Enabled = false;
-            btnProcessAllPages.Enabled = false;
-            btnConvert.Enabled = false;
-
-            progressMultiPage.Value = 0;
-            progressMultiPage.Maximum = pageNumbers.Count;
-
-            try
-            {
-                this.Text = "PDF sayfaları PNG'ye dönüştürülüyor...";
-                
-                // PDF sayfalarını PNG'ye çevir
-                var imagePaths = await _pdfProcessor.ConvertSelectedPagesToImagesAsync(currentPdfPath, pageNumbers);
-
-                this.Text = $"{imagePaths.Count} sayfa PNG'ye dönüştürüldü. MusicXML oluşturuluyor...";
-
-                // Her görsel için MusicXML oluştur
-                var progress = new Progress<int>(value =>
-                {
-                    progressMultiPage.Value = value;
-                    this.Text = $"İşleniyor: {value}/{imagePaths.Count} sayfa";
-                });
-
-                var xmlPaths = await _audiverisService.ConvertMultipleImagesToMusicXmlAsync(imagePaths, progress);
-
-                this.Text = $"Başarılı! {xmlPaths.Count} sayfa işlendi.";
-                MessageBox.Show($"{xmlPaths.Count} sayfa başarıyla MusicXML'e dönüştürüldü!\n\nNow you can convert them to MIDI/WAV using the normal Convert button.", 
-                    "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                this.Text = $"PDF işleme hatası: {ex.Message}";
-                MessageBox.Show($"PDF sayfaları işlenirken hata oluştu:\n{ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                btnProcessSelectedPages.Enabled = true;
-                btnProcessAllPages.Enabled = true;
-                btnConvert.Enabled = true;
-                progressMultiPage.Value = 0;
-            }
-        }
 
         // ==================== MEDIA CONTROL BUTTONS ====================
 

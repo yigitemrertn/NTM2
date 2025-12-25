@@ -61,39 +61,7 @@ namespace NoteToMusic.Services
             return fileList;
         }
 
-        /// <summary>
-        /// Dosyanın PDF olup olmadığını kontrol eder
-        /// </summary>
-        /// <param name="filePath">Dosya yolu</param>
-        /// <returns>PDF ise true, değilse false</returns>
-        public static bool IsPdfFile(string filePath)
-        {
-            if (string.IsNullOrEmpty(filePath)) return false;
-            
-            string extension = Path.GetExtension(filePath).ToLower();
-            return extension == ".pdf";
-        }
 
-        /// <summary>
-        /// Belirtilen dizindeki PDF dosyalarını listeler
-        /// </summary>
-        /// <param name="directory">Aranacak dizin</param>
-        /// <returns>PDF dosya isimleri listesi</returns>
-        public static List<string> GetPdfFiles(string directory)
-        {
-            var pdfList = new List<string>();
-
-            if (!Directory.Exists(directory)) return pdfList;
-
-            var files = Directory.GetFiles(directory, "*.pdf");
-
-            foreach (var item in files)
-            {
-                pdfList.Add(Path.GetFileName(item));
-            }
-
-            return pdfList;
-        }
 
         /// <summary>
         /// Temp dizinindeki geçici dosyaları temizler
