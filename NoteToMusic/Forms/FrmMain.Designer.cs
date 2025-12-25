@@ -3,14 +3,14 @@ namespace NoteToMusic.Forms
     partial class FrmMain
     {
         /// <summary>
-        ///Gerekli tasar�mc� de�i�keni.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///Kullan�lan t�m kaynaklar� temizleyin.
+        /// Clean up any resources being used.
         /// </summary>
-        ///<param name="disposing">y�netilen kaynaklar dispose edilmeliyse do�ru; aksi halde yanl��.</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,285 +20,504 @@ namespace NoteToMusic.Forms
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer �retilen kod
+        #region Windows Form Designer generated code
 
         /// <summary>
-        /// Tasar�mc� deste�i i�in gerekli metot - bu metodun 
-        ///i�eri�ini kod d�zenleyici ile de�i�tirmeyin.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             picNote = new PictureBox();
             lstNotes = new ListBox();
             lblNotes = new Label();
-            txtNoteSearch = new TextBox();
-            btnOnlineNotes = new Button();
             trackTime = new TrackBar();
             lblTime = new Label();
             btnPlayStop = new Button();
             btnFeedback = new Button();
             lblSounds = new Label();
             lstSounds = new ListBox();
-            txtSoundSearch = new TextBox();
-            btnOnlineSounds = new Button();
             lblMusics = new Label();
             lstMusics = new ListBox();
             btnNotes = new Button();
             btnSounds = new Button();
             trackVolume = new TrackBar();
             btnConvert = new Button();
+            txtNoteSearch = new TextBox();
+            btnOnlineNotes = new Button();
+            txtSoundSearch = new TextBox();
+            btnOnlineSounds = new Button();
+            grpPdfPages = new GroupBox();
+            lstPdfPages = new CheckedListBox();
+            lblPageCount = new Label();
+            btnProcessSelectedPages = new Button();
+            btnProcessAllPages = new Button();
+            progressMultiPage = new ProgressBar();
+            btnPrevious = new Button();
+            btnRewind = new Button();
+            btnForward = new Button();
+            btnNext = new Button();
             ((System.ComponentModel.ISupportInitialize)picNote).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trackTime).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trackVolume).BeginInit();
+            grpPdfPages.SuspendLayout();
             SuspendLayout();
             // 
             // picNote
             // 
+            picNote.BackColor = Color.FromArgb(45, 45, 48);
             picNote.BorderStyle = BorderStyle.FixedSingle;
-            picNote.Location = new Point(14, 14);
+            picNote.Location = new Point(340, 20);
             picNote.Margin = new Padding(4, 3, 4, 3);
             picNote.Name = "picNote";
-            picNote.Size = new Size(623, 797);
-            picNote.SizeMode = PictureBoxSizeMode.StretchImage;
+            picNote.Size = new Size(900, 800);
+            picNote.SizeMode = PictureBoxSizeMode.Zoom;
             picNote.TabIndex = 0;
             picNote.TabStop = false;
             // 
             // lstNotes
             // 
-            lstNotes.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lstNotes.BackColor = Color.FromArgb(37, 37, 38);
+            lstNotes.BorderStyle = BorderStyle.FixedSingle;
+            lstNotes.Font = new Font("Segoe UI", 10F);
+            lstNotes.ForeColor = Color.White;
             lstNotes.FormattingEnabled = true;
-            lstNotes.ItemHeight = 20;
-            lstNotes.Location = new Point(658, 81);
+            lstNotes.ItemHeight = 23;
+            lstNotes.Location = new Point(20, 90);
             lstNotes.Margin = new Padding(4, 3, 4, 3);
             lstNotes.Name = "lstNotes";
-            lstNotes.Size = new Size(275, 204);
+            lstNotes.Size = new Size(300, 208);
             lstNotes.TabIndex = 1;
-            lstNotes.SelectedIndexChanged += lstNotes_SelectedIndexChanged;
             // 
             // lblNotes
             // 
             lblNotes.AutoSize = true;
-            lblNotes.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            lblNotes.Location = new Point(653, 54);
+            lblNotes.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            lblNotes.ForeColor = Color.White;
+            lblNotes.Location = new Point(20, 20);
             lblNotes.Margin = new Padding(4, 0, 4, 0);
             lblNotes.Name = "lblNotes";
-            lblNotes.Size = new Size(54, 20);
+            lblNotes.Size = new Size(73, 25);
             lblNotes.TabIndex = 5;
-            lblNotes.Text = "Notalar";
+            lblNotes.Text = "📄 Notalar";
             // 
             // txtNoteSearch
             // 
-            txtNoteSearch.Location = new Point(658, 24);
-            txtNoteSearch.Name = "txtNoteSearch";
-            txtNoteSearch.PlaceholderText = "Ara...";
-            txtNoteSearch.Size = new Size(195, 23);
+            txtNoteSearch.BackColor = Color.FromArgb(37, 37, 38);
+            txtNoteSearch.BorderStyle = BorderStyle.FixedSingle;
+            txtNoteSearch.Font = new Font("Segoe UI", 10F);
+            txtNoteSearch.ForeColor = Color.White;
+            txtNoteSearch.Location = new Point(20, 50);
+           txtNoteSearch.Name = "txtNoteSearch";
+            txtNoteSearch.PlaceholderText = "🔍 Ara...";
+            txtNoteSearch.Size = new Size(220, 30);
             txtNoteSearch.TabIndex = 18;
             txtNoteSearch.TextChanged += txtNoteSearch_TextChanged;
             // 
             // btnOnlineNotes
             // 
-            btnOnlineNotes.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            btnOnlineNotes.Location = new Point(858, 24);
+            btnOnlineNotes.BackColor = Color.FromArgb(0, 122, 204);
+            btnOnlineNotes.FlatAppearance.BorderSize = 0;
+            btnOnlineNotes.FlatStyle = FlatStyle.Flat;
+            btnOnlineNotes.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnOnlineNotes.ForeColor = Color.White;
+            btnOnlineNotes.Location = new Point(245, 50);
             btnOnlineNotes.Name = "btnOnlineNotes";
-            btnOnlineNotes.Size = new Size(75, 23);
-            btnOnlineNotes.TabIndex = 19;
-            btnOnlineNotes.Text = "🌐 Online";
-            btnOnlineNotes.UseVisualStyleBackColor = true;
+            btnOnlineNotes.Size = new Size(75, 30);
+            btnOnlineNotes.TabIndex = 21;
+            btnOnlineNotes.Text = "🌐";
+            btnOnlineNotes.UseVisualStyleBackColor = false;
             btnOnlineNotes.Click += btnOnlineNotes_Click;
             // 
-            // trackTime
+            // btnNotes
             // 
-            trackTime.LargeChange = 1;
-            trackTime.Location = new Point(28, 909);
-            trackTime.Margin = new Padding(4, 3, 4, 3);
-            trackTime.Maximum = 100;
-            trackTime.Name = "trackTime";
-            trackTime.Size = new Size(511, 45);
-            trackTime.TabIndex = 8;
-            trackTime.TickFrequency = 100;
-            trackTime.TickStyle = TickStyle.Both;
-            trackTime.Scroll += trackTime_Scroll;
-            // 
-            // lblTime
-            // 
-            lblTime.AutoSize = true;
-            lblTime.Location = new Point(546, 909);
-            lblTime.Margin = new Padding(4, 0, 4, 0);
-            lblTime.Name = "lblTime";
-            lblTime.Size = new Size(66, 15);
-            lblTime.TabIndex = 9;
-            lblTime.Text = "00:00/00:00";
-            // 
-            // btnPlayStop
-            // 
-            btnPlayStop.Location = new Point(285, 822);
-            btnPlayStop.Margin = new Padding(4, 3, 4, 3);
-            btnPlayStop.Name = "btnPlayStop";
-            btnPlayStop.Size = new Size(86, 81);
-            btnPlayStop.TabIndex = 10;
-            btnPlayStop.Text = "Oynat";
-            btnPlayStop.UseVisualStyleBackColor = true;
-            btnPlayStop.Click += btnPlayStop_Click;
-            // 
-            // btnFeedback
-            // 
-            btnFeedback.Enabled = false;
-            btnFeedback.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnFeedback.Location = new Point(658, 939);
-            btnFeedback.Margin = new Padding(4, 3, 4, 3);
-            btnFeedback.Name = "btnFeedback";
-            btnFeedback.Size = new Size(275, 40);
-            btnFeedback.TabIndex = 17;
-            btnFeedback.Text = "Geri Bildirim Ver";
-            btnFeedback.UseVisualStyleBackColor = true;
-            btnFeedback.Click += btnFeedback_Click;
+            btnNotes.BackColor = Color.FromArgb(28, 151, 234);
+            btnNotes.FlatAppearance.BorderSize = 0;
+            btnNotes.FlatStyle = FlatStyle.Flat;
+            btnNotes.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            btnNotes.ForeColor = Color.White;
+            btnNotes.Location = new Point(20, 304);
+            btnNotes.Margin = new Padding(4, 3, 4, 3);
+            btnNotes.Name = "btnNotes";
+            btnNotes.Size = new Size(300, 35);
+            btnNotes.TabIndex = 15;
+            btnNotes.Text = "➕ Nota Ekle";
+            btnNotes.UseVisualStyleBackColor = false;
+            btnNotes.Click += btnNotes_Click;
             // 
             // lblSounds
             // 
             lblSounds.AutoSize = true;
-            lblSounds.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            lblSounds.Location = new Point(654, 340);
+            lblSounds.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            lblSounds.ForeColor = Color.White;
+            lblSounds.Location = new Point(20, 360);
             lblSounds.Margin = new Padding(4, 0, 4, 0);
             lblSounds.Name = "lblSounds";
-            lblSounds.Size = new Size(76, 20);
+            lblSounds.Size = new Size(112, 25);
             lblSounds.TabIndex = 12;
-            lblSounds.Text = "SoundFont";
+            lblSounds.Text = "🎹 SoundFont";
             // 
             // txtSoundSearch
             // 
-            txtSoundSearch.Location = new Point(658, 310);
+            txtSoundSearch.BackColor = Color.FromArgb(37, 37, 38);
+            txtSoundSearch.BorderStyle = BorderStyle.FixedSingle;
+            txtSoundSearch.Font = new Font("Segoe UI", 10F);
+            txtSoundSearch.ForeColor = Color.White;
+            txtSoundSearch.Location = new Point(20, 390);
             txtSoundSearch.Name = "txtSoundSearch";
-            txtSoundSearch.PlaceholderText = "Ara...";
-            txtSoundSearch.Size = new Size(195, 23);
+            txtSoundSearch.PlaceholderText = "🔍 Ara...";
+            txtSoundSearch.Size = new Size(220, 30);
             txtSoundSearch.TabIndex = 20;
             txtSoundSearch.TextChanged += txtSoundSearch_TextChanged;
             // 
             // btnOnlineSounds
             // 
-            btnOnlineSounds.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            btnOnlineSounds.Location = new Point(858, 310);
+            btnOnlineSounds.BackColor = Color.FromArgb(0, 122, 204);
+            btnOnlineSounds.FlatAppearance.BorderSize = 0;
+            btnOnlineSounds.FlatStyle = FlatStyle.Flat;
+            btnOnlineSounds.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnOnlineSounds.ForeColor = Color.White;
+            btnOnlineSounds.Location = new Point(245, 390);
             btnOnlineSounds.Name = "btnOnlineSounds";
-            btnOnlineSounds.Size = new Size(75, 23);
+            btnOnlineSounds.Size = new Size(75, 30);
             btnOnlineSounds.TabIndex = 21;
-            btnOnlineSounds.Text = "🌐 Online";
-            btnOnlineSounds.UseVisualStyleBackColor = true;
+            btnOnlineSounds.Text = "🌐";
+            btnOnlineSounds.UseVisualStyleBackColor = false;
             btnOnlineSounds.Click += btnOnlineSounds_Click;
             // 
             // lstSounds
             // 
-            lstSounds.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lstSounds.BackColor = Color.FromArgb(37, 37, 38);
+            lstSounds.BorderStyle = BorderStyle.FixedSingle;
+            lstSounds.Font = new Font("Segoe UI", 10F);
+            lstSounds.ForeColor = Color.White;
             lstSounds.FormattingEnabled = true;
-            lstSounds.ItemHeight = 20;
-            lstSounds.Location = new Point(658, 368);
+            lstSounds.ItemHeight = 23;
+            lstSounds.Location = new Point(20, 430);
             lstSounds.Margin = new Padding(4, 3, 4, 3);
             lstSounds.Name = "lstSounds";
-            lstSounds.Size = new Size(275, 204);
+            lstSounds.Size = new Size(300, 208);
             lstSounds.TabIndex = 11;
             lstSounds.SelectedIndexChanged += lstSounds_SelectedIndexChanged;
+            // 
+            // btnSounds
+            // 
+            btnSounds.BackColor = Color.FromArgb(28, 151, 234);
+            btnSounds.FlatAppearance.BorderSize = 0;
+            btnSounds.FlatStyle = FlatStyle.Flat;
+            btnSounds.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            btnSounds.ForeColor = Color.White;
+            btnSounds.Location = new Point(20, 644);
+            btnSounds.Margin = new Padding(4, 3, 4, 3);
+            btnSounds.Name = "btnSounds";
+            btnSounds.Size = new Size(300, 35);
+            btnSounds.TabIndex = 16;
+            btnSounds.Text = "➕ SoundFont Ekle";
+            btnSounds.UseVisualStyleBackColor = false;
+            btnSounds.Click += btnSounds_Click;
+            // 
+            // grpPdfPages
+            // 
+            grpPdfPages.BackColor = Color.FromArgb(37, 37, 38);
+            grpPdfPages.Controls.Add(progressMultiPage);
+            grpPdfPages.Controls.Add(btnProcessAllPages);
+            grpPdfPages.Controls.Add(btnProcessSelectedPages);
+            grpPdfPages.Controls.Add(lblPageCount);
+            grpPdfPages.Controls.Add(lstPdfPages);
+            grpPdfPages.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            grpPdfPages.ForeColor = Color.FromArgb(0, 122, 204);
+            grpPdfPages.Location = new Point(1260, 20);
+            grpPdfPages.Name = "grpPdfPages";
+            grpPdfPages.Size = new Size(310, 360);
+            grpPdfPages.TabIndex = 22;
+            grpPdfPages.TabStop = false;
+            grpPdfPages.Text = "📄 PDF Sayfaları";
+            grpPdfPages.Visible = false;
+            // 
+            // lstPdfPages
+            // 
+            lstPdfPages.BackColor = Color.FromArgb(45, 45, 48);
+            lstPdfPages.BorderStyle = BorderStyle.FixedSingle;
+            lstPdfPages.CheckOnClick = true;
+            lstPdfPages.Font = new Font("Segoe UI", 9F);
+            lstPdfPages.ForeColor = Color.White;
+            lstPdfPages.FormattingEnabled = true;
+            lstPdfPages.Location = new Point(10, 60);
+            lstPdfPages.Name = "lstPdfPages";
+            lstPdfPages.Size = new Size(250, 170);
+            lstPdfPages.TabIndex = 0;
+            // 
+            // lblPageCount
+            // 
+            lblPageCount.AutoSize = true;
+            lblPageCount.Font = new Font("Segoe UI", 9F);
+            lblPageCount.ForeColor = Color.LightGray;
+            lblPageCount.Location = new Point(10, 35);
+            lblPageCount.Name = "lblPageCount";
+            lblPageCount.Size = new Size(82, 20);
+            lblPageCount.TabIndex = 1;
+            lblPageCount.Text = "Sayfa: 0 / 0";
+            // 
+            // btnProcessSelectedPages
+            // 
+            btnProcessSelectedPages.BackColor = Color.FromArgb(28, 151, 234);
+            btnProcessSelectedPages.FlatAppearance.BorderSize = 0;
+            btnProcessSelectedPages.FlatStyle = FlatStyle.Flat;
+            btnProcessSelectedPages.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnProcessSelectedPages.ForeColor = Color.White;
+            btnProcessSelectedPages.Location = new Point(10, 240);
+            btnProcessSelectedPages.Name = "btnProcessSelectedPages";
+            btnProcessSelectedPages.Size = new Size(120, 32);
+            btnProcessSelectedPages.TabIndex = 2;
+            btnProcessSelectedPages.Text = "Seçilenleri";
+            btnProcessSelectedPages.UseVisualStyleBackColor = false;
+            btnProcessSelectedPages.Click += btnProcessSelectedPages_Click;
+            // 
+            // btnProcessAllPages
+            // 
+            btnProcessAllPages.BackColor = Color.FromArgb(106, 176, 76);
+            btnProcessAllPages.FlatAppearance.BorderSize = 0;
+            btnProcessAllPages.FlatStyle = FlatStyle.Flat;
+            btnProcessAllPages.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnProcessAllPages.ForeColor = Color.White;
+            btnProcessAllPages.Location = new Point(140, 240);
+            btnProcessAllPages.Name = "btnProcessAllPages";
+            btnProcessAllPages.Size = new Size(120, 32);
+            btnProcessAllPages.TabIndex = 3;
+            btnProcessAllPages.Text = "Tümünü İşle";
+            btnProcessAllPages.UseVisualStyleBackColor = false;
+            btnProcessAllPages.Click += btnProcessAllPages_Click;
+            // 
+            // progressMultiPage
+            // 
+            progressMultiPage.Location = new Point(10, 280);
+            progressMultiPage.Name = "progressMultiPage";
+            progressMultiPage.Size = new Size(250, 20);
+            progressMultiPage.TabIndex = 4;
             // 
             // lblMusics
             // 
             lblMusics.AutoSize = true;
-            lblMusics.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            lblMusics.Location = new Point(654, 703);
+            lblMusics.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            lblMusics.ForeColor = Color.White;
+            lblMusics.Location = new Point(1260, 400);
             lblMusics.Margin = new Padding(4, 0, 4, 0);
             lblMusics.Name = "lblMusics";
-            lblMusics.Size = new Size(60, 20);
+            lblMusics.Size = new Size(96, 25);
             lblMusics.TabIndex = 14;
-            lblMusics.Text = "Müzikler";
+            lblMusics.Text = "🎵 Müzikler";
             // 
             // lstMusics
             // 
-            lstMusics.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lstMusics.BackColor = Color.FromArgb(37, 37, 38);
+            lstMusics.BorderStyle = BorderStyle.FixedSingle;
+            lstMusics.Font = new Font("Segoe UI", 10F);
+            lstMusics.ForeColor = Color.White;
             lstMusics.FormattingEnabled = true;
-            lstMusics.ItemHeight = 20;
-            lstMusics.Location = new Point(658, 729);
+            lstMusics.ItemHeight = 23;
+            lstMusics.Location = new Point(1260, 435);
             lstMusics.Margin = new Padding(4, 3, 4, 3);
             lstMusics.Name = "lstMusics";
-            lstMusics.Size = new Size(275, 204);
+            lstMusics.Size = new Size(310, 140);
             lstMusics.TabIndex = 13;
             lstMusics.SelectedIndexChanged += lstMusics_SelectedIndexChanged;
             // 
-            // btnNotes
+            // btnPlayStop
             // 
-            btnNotes.Location = new Point(757, 54);
-            btnNotes.Margin = new Padding(4, 3, 4, 3);
-            btnNotes.Name = "btnNotes";
-            btnNotes.Size = new Size(176, 23);
-            btnNotes.TabIndex = 15;
-            btnNotes.Text = "Ekle!";
-            btnNotes.UseVisualStyleBackColor = true;
-            btnNotes.Click += btnNotes_Click;
+            btnPlayStop.BackColor = Color.FromArgb(106, 176, 76);
+            btnPlayStop.FlatAppearance.BorderSize = 0;
+            btnPlayStop.FlatStyle = FlatStyle.Flat;
+            btnPlayStop.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
+            btnPlayStop.ForeColor = Color.White;
+            btnPlayStop.Location = new Point(1260, 590);
+            btnPlayStop.Margin = new Padding(4, 3, 4, 3);
+            btnPlayStop.Name = "btnPlayStop";
+            btnPlayStop.Size = new Size(310, 50);
+            btnPlayStop.TabIndex = 3;
+            btnPlayStop.Text = "▶ Oynat";
+            btnPlayStop.UseVisualStyleBackColor = false;
+            btnPlayStop.Click += btnPlayStop_Click;
             // 
-            // btnSounds
+            // btnPrevious
             // 
-            btnSounds.Location = new Point(757, 340);
-            btnSounds.Margin = new Padding(4, 3, 4, 3);
-            btnSounds.Name = "btnSounds";
-            btnSounds.Size = new Size(176, 23);
-            btnSounds.TabIndex = 16;
-            btnSounds.Text = "Ekle!";
-            btnSounds.UseVisualStyleBackColor = true;
-            btnSounds.Click += btnSounds_Click;
+            btnPrevious.BackColor = Color.FromArgb(0, 122, 204);
+            btnPrevious.FlatAppearance.BorderSize = 0;
+            btnPrevious.FlatStyle = FlatStyle.Flat;
+            btnPrevious.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            btnPrevious.ForeColor = Color.White;
+            btnPrevious.Location = new Point(1260, 655);
+            btnPrevious.Margin = new Padding(4, 3, 4, 3);
+            btnPrevious.Name = "btnPrevious";
+            btnPrevious.Size = new Size(60, 45);
+            btnPrevious.TabIndex = 23;
+            btnPrevious.Text = "⏮";
+            btnPrevious.UseVisualStyleBackColor = false;
+            btnPrevious.Click += btnPrevious_Click;
+            // 
+            // btnRewind
+            // 
+            btnRewind.BackColor = Color.FromArgb(60, 60, 60);
+            btnRewind.FlatAppearance.BorderSize = 0;
+            btnRewind.FlatStyle = FlatStyle.Flat;
+            btnRewind.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            btnRewind.ForeColor = Color.White;
+            btnRewind.Location = new Point(1330, 655);
+            btnRewind.Margin = new Padding(4, 3, 4, 3);
+            btnRewind.Name = "btnRewind";
+            btnRewind.Size = new Size(60, 45);
+            btnRewind.TabIndex = 24;
+            btnRewind.Text = "-5s";
+            btnRewind.UseVisualStyleBackColor = false;
+            btnRewind.Click += btnRewind_Click;
+            // 
+            // btnForward
+            // 
+            btnForward.BackColor = Color.FromArgb(60, 60, 60);
+            btnForward.FlatAppearance.BorderSize = 0;
+            btnForward.FlatStyle = FlatStyle.Flat;
+            btnForward.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            btnForward.ForeColor = Color.White;
+            btnForward.Location = new Point(1400, 655);
+            btnForward.Margin = new Padding(4, 3, 4, 3);
+            btnForward.Name = "btnForward";
+            btnForward.Size = new Size(60, 45);
+            btnForward.TabIndex = 25;
+            btnForward.Text = "+5s";
+            btnForward.UseVisualStyleBackColor = false;
+            btnForward.Click += btnForward_Click;
+            // 
+            // btnNext
+            // 
+            btnNext.BackColor = Color.FromArgb(0, 122, 204);
+            btnNext.FlatAppearance.BorderSize = 0;
+            btnNext.FlatStyle = FlatStyle.Flat;
+            btnNext.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            btnNext.ForeColor = Color.White;
+            btnNext.Location = new Point(1470, 655);
+            btnNext.Margin = new Padding(4, 3, 4, 3);
+            btnNext.Name = "btnNext";
+            btnNext.Size = new Size(60, 45);
+            btnNext.TabIndex = 26;
+            btnNext.Text = "⏭";
+            btnNext.UseVisualStyleBackColor = false;
+            btnNext.Click += btnNext_Click;
+            // 
+            // trackTime
+            // 
+            trackTime.BackColor = Color.FromArgb(45, 45, 48);
+            trackTime.Location = new Point(1260, 715);
+            trackTime.Margin = new Padding(4, 3, 4, 3);
+            trackTime.Maximum = 100;
+            trackTime.Name = "trackTime";
+            trackTime.Size = new Size(310, 56);
+            trackTime.TabIndex = 4;
+            trackTime.TickStyle = TickStyle.None;
+            trackTime.Scroll += trackTime_Scroll;
+            trackTime.MouseDown += trackTime_MouseDown;
+            // 
+            // lblTime
+            // 
+            lblTime.Font = new Font("Segoe UI", 10F);
+            lblTime.ForeColor = Color.LightGray;
+            lblTime.Location = new Point(1260, 775);
+            lblTime.Margin = new Padding(4, 0, 4, 0);
+            lblTime.Name = "lblTime";
+            lblTime.Size = new Size(310, 25);
+            lblTime.TabIndex = 9;
+            lblTime.Text = "00:00 / 00:00";
+            lblTime.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // trackVolume
             // 
-            trackVolume.LargeChange = 20;
-            trackVolume.Location = new Point(378, 850);
+            trackVolume.BackColor = Color.FromArgb(45, 45, 48);
+            trackVolume.Location = new Point(1480, 810);
             trackVolume.Margin = new Padding(4, 3, 4, 3);
             trackVolume.Maximum = 100;
             trackVolume.Name = "trackVolume";
-            trackVolume.Size = new Size(161, 45);
+            trackVolume.Orientation = Orientation.Vertical;
+            trackVolume.Size = new Size(60, 80);
             trackVolume.TabIndex = 18;
-            trackVolume.TickFrequency = 100;
-            trackVolume.TickStyle = TickStyle.Both;
+            trackVolume.TickFrequency = 10;
+            trackVolume.TickStyle = TickStyle.None;
             trackVolume.Value = 100;
             trackVolume.Scroll += trackVolume_Scroll;
             // 
             // btnConvert
             // 
-            btnConvert.Location = new Point(659, 617);
+            btnConvert.BackColor = Color.FromArgb(204, 78, 92);
+            btnConvert.FlatAppearance.BorderSize = 0;
+            btnConvert.FlatStyle = FlatStyle.Flat;
+            btnConvert.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
+            btnConvert.ForeColor = Color.White;
+            btnConvert.Location = new Point(340, 835);
             btnConvert.Margin = new Padding(4, 3, 4, 3);
             btnConvert.Name = "btnConvert";
-            btnConvert.Size = new Size(275, 33);
-            btnConvert.TabIndex = 19;
-            btnConvert.Text = "Dönüştür!";
-            btnConvert.UseVisualStyleBackColor = true;
+            btnConvert.Size = new Size(900, 55);
+            btnConvert.TabIndex = 10;
+            btnConvert.Text = "🎼 Dönüştür!";
+            btnConvert.UseVisualStyleBackColor = false;
             btnConvert.Click += btnConvert_Click;
             // 
-            // MainForm
+            // btnFeedback
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            btnFeedback.BackColor = Color.FromArgb(0, 122, 204);
+            btnFeedback.Enabled = false;
+            btnFeedback.FlatAppearance.BorderSize = 0;
+            btnFeedback.FlatStyle = FlatStyle.Flat;
+            btnFeedback.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            btnFeedback.ForeColor = Color.White;
+            btnFeedback.Location = new Point(20, 835);
+            btnFeedback.Margin = new Padding(4, 3, 4, 3);
+            btnFeedback.Name = "btnFeedback";
+            btnFeedback.Size = new Size(300, 55);
+            btnFeedback.TabIndex = 17;
+            btnFeedback.Text = "💬 Geri Bildirim Ver";
+            btnFeedback.UseVisualStyleBackColor = false;
+            btnFeedback.Click += btnFeedback_Click;
+            // 
+            // FrmMain
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(953, 965);
-            Controls.Add(btnConvert);
+            BackColor = Color.FromArgb(30, 30, 30);
+            ClientSize = new Size(1600, 920);
+            Controls.Add(btnNext);
+            Controls.Add(btnForward);
+            Controls.Add(btnRewind);
+            Controls.Add(btnPrevious);
+            Controls.Add(grpPdfPages);
+            Controls.Add(btnOnlineSounds);
+            Controls.Add(btnOnlineNotes);
+            Controls.Add(txtSoundSearch);
+            Controls.Add(txtNoteSearch);
             Controls.Add(trackVolume);
+            Controls.Add(btnFeedback);
             Controls.Add(btnSounds);
             Controls.Add(btnNotes);
             Controls.Add(lblMusics);
             Controls.Add(lstMusics);
             Controls.Add(lblSounds);
             Controls.Add(lstSounds);
-            Controls.Add(btnPlayStop);
-            Controls.Add(btnFeedback);
+            Controls.Add(btnConvert);
             Controls.Add(lblTime);
             Controls.Add(trackTime);
+            Controls.Add(btnPlayStop);
             Controls.Add(lblNotes);
             Controls.Add(lstNotes);
-            Controls.Add(txtNoteSearch);
-            Controls.Add(btnOnlineNotes);
-            Controls.Add(txtSoundSearch);
-            Controls.Add(btnOnlineSounds);
             Controls.Add(picNote);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4, 3, 4, 3);
-            Name = "MainForm";
+            MaximizeBox = true;
+            Name = "FrmMain";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "NoteToMusic";
+            Text = "🎵 Note To Music - PDF Multi-Page Support";
             FormClosing += MainForm_FormClosing;
             Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)picNote).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackTime).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackVolume).EndInit();
+            grpPdfPages.ResumeLayout(false);
+            grpPdfPages.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
 
@@ -325,6 +544,16 @@ namespace NoteToMusic.Forms
         private System.Windows.Forms.Button btnOnlineNotes;
         private System.Windows.Forms.TextBox txtSoundSearch;
         private System.Windows.Forms.Button btnOnlineSounds;
+        private System.Windows.Forms.GroupBox grpPdfPages;
+        private System.Windows.Forms.CheckedListBox lstPdfPages;
+        private System.Windows.Forms.Label lblPageCount;
+        private System.Windows.Forms.Button btnProcessSelectedPages;
+        private System.Windows.Forms.Button btnProcessAllPages;
+        private System.Windows.Forms.ProgressBar progressMultiPage;
+        private System.Windows.Forms.Button btnPrevious;
+        private System.Windows.Forms.Button btnRewind;
+        private System.Windows.Forms.Button btnForward;
+        private System.Windows.Forms.Button btnNext;
     }
 }
 

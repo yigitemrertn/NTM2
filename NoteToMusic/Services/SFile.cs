@@ -60,5 +60,74 @@ namespace NoteToMusic.Services
 
             return fileList;
         }
+
+        /// <summary>
+        /// Dosyanın PDF olup olmadığını kontrol eder
+        /// </summary>
+        /// <param name="filePath">Dosya yolu</param>
+        /// <returns>PDF ise true, değilse false</returns>
+        public static bool IsPdfFile(string filePath)
+        {
+            if (string.IsNullOrEmpty(filePath)) return false;
+            
+            string extension = Path.GetExtension(filePath).ToLower();
+            return extension == ".pdf";
+        }
+
+        /// <summary>
+        /// Belirtilen dizindeki PDF dosyalarını listeler
+        /// </summary>
+        /// <param name="directory">Aranacak dizin</param>
+        /// <returns>PDF dosya isimleri listesi</returns>
+        public static List<string> GetPdfFiles(string directory)
+        {
+            var pdfList = new List<string>();
+
+            if (!Directory.Exists(directory)) return pdfList;
+
+            var files = Directory.GetFiles(directory, "*.pdf");
+
+            foreach (var item in files)
+            {
+                pdfList.Add(Path.GetFileName(item));
+            }
+
+            return pdfList;
+        }
+
+        /// <summary>
+        /// Temp dizinindeki geçici dosyaları temizler
+        /// </summary>
+        /// <param name="olderThanHours">Belirtilen saatten eski dosyalar silinir (varsayılan: 24 saat)</param>
+        public static void CleanupTempFiles(int olderThanHours = 24)
+        {
+            try
+            {
+                if (!Directory.Exists(tempDir)) return;
+
+                var files = Directory.GetFiles(tempDir);
+                var cutoffTime = DateTime.Now.AddHours(-olderThanHours);
+
+                foreach (var file in files)
+                {
+                    try
+                    {
+                        var fileInfo = new FileInfo(file);
+                        if (fileInfo.LastWriteTime < cutoffTime)
+                        {
+                            File.Delete(file);
+                        }
+                    }
+                    catch
+                    {
+                        // Dosya silinemezse devam et
+                    }
+                }
+            }
+            catch
+            {
+                // Temizlik başarısız olursa sessizce devam et
+            }
+        }
     }
 }
