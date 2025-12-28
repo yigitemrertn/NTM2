@@ -585,6 +585,26 @@ namespace NoteToMusic.Forms
             audioFileReader.CurrentTime = TimeSpan.FromSeconds(newSeconds);
             trackTime.Value = (int)newSeconds;
         }
+
+        /// <summary>
+        /// Müzik arama kutucuğu - Canlı filtreleme
+        /// </summary>
+        private void txtMusicSearch_TextChanged(object sender, EventArgs e)
+        {
+            string filter = txtMusicSearch.Text.ToLower();
+            var allMusics = SFile.GetFiles(SFile.musicDir);
+
+            if (string.IsNullOrWhiteSpace(filter))
+            {
+                ListItems(lstMusics, allMusics);
+            }
+            else
+            {
+                var filtered = allMusics.FindAll(music => 
+                    Path.GetFileName(music).ToLower().Contains(filter));
+                ListItems(lstMusics, filtered);
+            }
+        }
     }
 }
 
