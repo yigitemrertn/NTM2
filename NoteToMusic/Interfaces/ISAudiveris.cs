@@ -15,13 +15,5 @@ namespace NoteToMusic.Interfaces
         /// <param name="imagePath">Görüntü dosyasının yolu</param>
         /// <returns>Oluşturulan XML dosyasının yolu veya hata mesajı</returns>
         Task<string> ConvertImageToMusicXmlAsync(string imagePath);
-
-        /// <summary>
-        /// Birden fazla görüntü dosyasını sırayla MusicXML formatına dönüştürür
-        /// </summary>
-        /// <param name="imagePaths">Görüntü dosyalarının yol listesi</param>
-        /// <param name="progress">İlerleme raporlama için (opsiyonel)</param>
-        /// <returns>Oluşturulan XML dosyalarının yol listesi</returns>
-        Task<List<string>> ConvertMultipleImagesToMusicXmlAsync(List<string> imagePaths, IProgress<int> progress = null);
     }
 }

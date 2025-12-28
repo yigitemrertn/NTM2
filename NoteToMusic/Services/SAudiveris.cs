@@ -94,45 +94,6 @@ namespace NoteToMusic.Services
             }
         }
 
-        /// <summary>
-        /// Birden fazla görüntü dosyasını sırayla MusicXML formatına dönüştürür
-        /// </summary>
-        /// <param name="imagePaths">Görüntü dosyalarının yol listesi</param>
-        /// <param name="progress">İlerleme raporlama için (opsiyonel)</param>
-        /// <returns>Oluşturulan XML dosyalarının yol listesi</returns>
-        public async Task<List<string>> ConvertMultipleImagesToMusicXmlAsync(List<string> imagePaths, IProgress<int> progress = null)
-        {
-            var xmlPaths = new List<string>();
-
-            try
-            {
-                if (imagePaths == null || imagePaths.Count == 0)
-                {
-                    return xmlPaths;
-                }
-
-                for (int i = 0; i < imagePaths.Count; i++)
-                {
-                    string imagePath = imagePaths[i];
-                    string xmlPath = await ConvertImageToMusicXmlAsync(imagePath);
-
-                    if (!xmlPath.StartsWith("HATA:"))
-                    {
-                        xmlPaths.Add(xmlPath);
-                    }
-
-                    // İlerlemeyi raporla
-                    progress?.Report(i + 1);
-                }
-
-                return xmlPaths;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Çoklu görüntü dönüştürme hatası: {ex.Message}", ex);
-            }
-        }
-
 
         /// <summary>
         /// Programın bağımlılıklarını kontrol eder (Audiveris.exe var mı?)
