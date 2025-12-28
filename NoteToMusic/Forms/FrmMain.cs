@@ -36,12 +36,18 @@ namespace NoteToMusic.Forms
         private void MainForm_Load(object sender, EventArgs e)
         {
             SFile.CheckAndCreateDirectories();
+            SFile.CleanupTempFiles(); // Eski temp dosyaları temizle
 
             ListItems(lstNotes, SFile.GetFiles(SFile.notesDir));
             ListItems(lstSounds, SFile.GetFiles(SFile.soundsDir));
             ListItems(lstMusics, SFile.GetFiles(SFile.musicDir));
         }
-
+        
+        /// <summary>
+        /// Listbox'ı günceller
+        /// </summary>
+        /// <param name="target">Listbox</param>
+        /// <param name="list">Liste</param>
         private void ListItems(ListBox target, List<string> list)
         {
             target.Items.Clear();
@@ -146,7 +152,6 @@ namespace NoteToMusic.Forms
                 if (string.IsNullOrEmpty(fileName)) return;
 
                 currentNote = Path.Combine(SFile.notesDir, fileName);
-
                 // Görsel dosyası için önizleme göster
                 if (picNote.Image != null)
                 {

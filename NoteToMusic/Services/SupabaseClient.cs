@@ -13,8 +13,8 @@ namespace NoteToMusic.Services
     /// </summary>
     public static class SupabaseClient
     {
-        private const string PROJECT_URL = "https://lockykgihtskuwktzefm.supabase.co";
-        private const string API_KEY = "sb_secret_1pp4y9KWXVQ9Qdx4JEes8A_wB4mXG_D";
+        private static readonly string PROJECT_URL = System.Configuration.ConfigurationManager.AppSettings["SupabaseUrl"];
+        private static readonly string API_KEY = System.Configuration.ConfigurationManager.AppSettings["SupabaseApiKey"];
         private const string TABLE_NAME = "feedback";
 
         private static HttpClient GetClient()

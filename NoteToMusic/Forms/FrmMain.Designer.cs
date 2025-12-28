@@ -79,6 +79,7 @@ namespace NoteToMusic.Forms
             lstNotes.Name = "lstNotes";
             lstNotes.Size = new Size(300, 208);
             lstNotes.TabIndex = 1;
+            lstNotes.SelectedIndexChanged += lstNotes_SelectedIndexChanged;
             // 
             // lblNotes
             // 
@@ -99,7 +100,7 @@ namespace NoteToMusic.Forms
             txtNoteSearch.Font = new Font("Segoe UI", 10F);
             txtNoteSearch.ForeColor = Color.White;
             txtNoteSearch.Location = new Point(20, 50);
-           txtNoteSearch.Name = "txtNoteSearch";
+            txtNoteSearch.Name = "txtNoteSearch";
             txtNoteSearch.PlaceholderText = "🔍 Ara...";
             txtNoteSearch.Size = new Size(220, 30);
             txtNoteSearch.TabIndex = 18;
