@@ -116,6 +116,8 @@ namespace NoteToMusic.Services
                 {
                     Properties.Settings.Default.AudiverisPath = ofd.FileName;
                     Properties.Settings.Default.Save();
+                    MessageBox.Show("Audiveris path'i başarıyla güncellendi. Lütfen uygulamayı yeniden başlatın.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Application.Restart();
                 }
                 else
                 {
