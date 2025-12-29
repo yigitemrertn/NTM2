@@ -3,7 +3,7 @@
 ; Created: 2025-12-24
 
 #define MyAppName "Note To Music"
-#define MyAppVersion "1.0.0"
+#define MyAppVersion "1.0.1"
 #define MyAppPublisher "Yiğit Emre Erten"
 #define MyAppURL "https://github.com/yigitemrertn/NTM2"
 #define MyAppExeName "NoteToMusic.exe"
