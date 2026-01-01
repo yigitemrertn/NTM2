@@ -12,6 +12,10 @@ namespace NoteToMusic.Forms
 {
     public partial class FrmMain : Form
     {
+        private bool isDragging = false;
+        private Point dragCursorPoint;
+        private Point dragFormPoint;
+
         public FrmMain()
         {
             InitializeComponent();
@@ -605,6 +609,59 @@ namespace NoteToMusic.Forms
                 ListItems(lstMusics, filtered);
             }
         }
+
+        #region Custom Title Bar Events
+
+        /// <summary>
+        /// Title bar mouse down - Start dragging
+        /// </summary>
+        private void pnlTitleBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                isDragging = true;
+                dragCursorPoint = Cursor.Position;
+                dragFormPoint = this.Location;
+            }
+        }
+
+        /// <summary>
+        /// Title bar mouse move - Drag form
+        /// </summary>
+        private void pnlTitleBar_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDragging)
+            {
+                Point diff = Point.Subtract(Cursor.Position, new Size(dragCursorPoint));
+                this.Location = Point.Add(dragFormPoint, new Size(diff));
+            }
+        }
+
+        /// <summary>
+        /// Title bar mouse up - Stop dragging
+        /// </summary>
+        private void pnlTitleBar_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDragging = false;
+        }
+
+        /// <summary>
+        /// Minimize button click
+        /// </summary>
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        /// <summary>
+        /// Close button click
+        /// </summary>
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        #endregion
     }
 }
 

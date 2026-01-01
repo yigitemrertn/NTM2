@@ -28,6 +28,12 @@ namespace NoteToMusic.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            // Custom Title Bar
+            pnlTitleBar = new Panel();
+            lblTitle = new Label();
+            btnMinimize = new Button();
+            btnClose = new Button();
+            
             // Sol Panel (Dosyalar)
             pnlLeftSidebar = new Panel();
             lblDosyalar = new Label();
@@ -66,6 +72,7 @@ namespace NoteToMusic.Forms
             trackVolume = new TrackBar();
             btnFeedback = new Button();
             
+            pnlTitleBar.SuspendLayout();
             pnlLeftSidebar.SuspendLayout();
             pnlMainContent.SuspendLayout();
             pnlRightSidebar.SuspendLayout();
@@ -73,6 +80,73 @@ namespace NoteToMusic.Forms
             ((System.ComponentModel.ISupportInitialize)trackTime).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trackVolume).BeginInit();
             SuspendLayout();
+            
+            // 
+            // pnlTitleBar (Custom Title Bar)
+            // 
+            pnlTitleBar.BackColor = Color.FromArgb(20, 20, 30);
+            pnlTitleBar.Controls.Add(btnClose);
+            pnlTitleBar.Controls.Add(btnMinimize);
+            pnlTitleBar.Controls.Add(lblTitle);
+            pnlTitleBar.Dock = DockStyle.Top;
+            pnlTitleBar.Location = new Point(0, 0);
+            pnlTitleBar.Name = "pnlTitleBar";
+            pnlTitleBar.Size = new Size(1600, 40);
+            pnlTitleBar.TabIndex = 0;
+            pnlTitleBar.MouseDown += pnlTitleBar_MouseDown;
+            pnlTitleBar.MouseMove += pnlTitleBar_MouseMove;
+            pnlTitleBar.MouseUp += pnlTitleBar_MouseUp;
+            
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(15, 10);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(150, 25);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "🎵 Note To Music";
+            lblTitle.MouseDown += pnlTitleBar_MouseDown;
+            lblTitle.MouseMove += pnlTitleBar_MouseMove;
+            lblTitle.MouseUp += pnlTitleBar_MouseUp;
+            
+            // 
+            // btnMinimize
+            // 
+            btnMinimize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMinimize.BackColor = Color.FromArgb(30, 30, 46);
+            btnMinimize.Cursor = Cursors.Hand;
+            btnMinimize.FlatAppearance.BorderSize = 0;
+            btnMinimize.FlatStyle = FlatStyle.Flat;
+            btnMinimize.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            btnMinimize.ForeColor = Color.White;
+            btnMinimize.Location = new Point(1500, 0);
+            btnMinimize.Name = "btnMinimize";
+            btnMinimize.Size = new Size(50, 40);
+            btnMinimize.TabIndex = 1;
+            btnMinimize.Text = "─";
+            btnMinimize.UseVisualStyleBackColor = false;
+            btnMinimize.Click += btnMinimize_Click;
+            
+            // 
+            // btnClose
+            // 
+            btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnClose.BackColor = Color.FromArgb(220, 38, 38);
+            btnClose.Cursor = Cursors.Hand;
+            btnClose.FlatAppearance.BorderSize = 0;
+            btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnClose.ForeColor = Color.White;
+            btnClose.Location = new Point(1550, 0);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(50, 40);
+            btnClose.TabIndex = 2;
+            btnClose.Text = "✕";
+            btnClose.UseVisualStyleBackColor = false;
+            btnClose.Click += btnClose_Click;
             
             // 
             // pnlLeftSidebar (Dosyalar - Sol Panel)
@@ -92,9 +166,10 @@ namespace NoteToMusic.Forms
             pnlLeftSidebar.Controls.Add(pnlDosyalarUnderline);
             pnlLeftSidebar.Controls.Add(lblDosyalar);
             pnlLeftSidebar.Dock = DockStyle.Left;
-            pnlLeftSidebar.Location = new Point(0, 0);
+            pnlLeftSidebar.Location = new Point(0, 40);
             pnlLeftSidebar.Name = "pnlLeftSidebar";
-            pnlLeftSidebar.Size = new Size(440, 1000);
+            pnlLeftSidebar.Padding = new Padding(0, 20, 0, 0);
+            pnlLeftSidebar.Size = new Size(440, 1010);
             pnlLeftSidebar.TabIndex = 0;
             
             // 
@@ -329,7 +404,7 @@ namespace NoteToMusic.Forms
             lblMuzikler.Name = "lblMuzikler";
             lblMuzikler.Size = new Size(131, 32);
             lblMuzikler.TabIndex = 0;
-            lblMuzikler.Text = "🎵 Müzikler";
+            lblMuzikler.Text = "Müzikler";
             
             // 
             // pnlMuziklerUnderline
@@ -536,18 +611,21 @@ namespace NoteToMusic.Forms
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(24, 24, 37);
-            ClientSize = new Size(1600, 1000);
+            ClientSize = new Size(1600, 1050);
             Controls.Add(pnlMainContent);
             Controls.Add(pnlRightSidebar);
             Controls.Add(pnlLeftSidebar);
-            FormBorderStyle = FormBorderStyle.Sizable;
-            MaximizeBox = true;
+            Controls.Add(pnlTitleBar);
+            FormBorderStyle = FormBorderStyle.None;
+            MaximizeBox = false;
             Name = "FrmMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "🎵 Note To Music";
             WindowState = FormWindowState.Maximized;
             FormClosing += MainForm_FormClosing;
             Load += MainForm_Load;
+            pnlTitleBar.ResumeLayout(false);
+            pnlTitleBar.PerformLayout();
             pnlLeftSidebar.ResumeLayout(false);
             pnlLeftSidebar.PerformLayout();
             pnlMainContent.ResumeLayout(false);
@@ -561,6 +639,12 @@ namespace NoteToMusic.Forms
 
         #endregion
 
+        // Custom Title Bar
+        private System.Windows.Forms.Panel pnlTitleBar;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Button btnMinimize;
+        private System.Windows.Forms.Button btnClose;
+        
         // Sol Panel (Dosyalar)
         private System.Windows.Forms.Panel pnlLeftSidebar;
         private System.Windows.Forms.Label lblDosyalar;
