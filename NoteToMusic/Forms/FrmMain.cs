@@ -661,6 +661,17 @@ namespace NoteToMusic.Forms
             this.Close();
         }
 
+        /// <summary>
+        /// Help button click - Show tutorial
+        /// </summary>
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            using (FrmTutorial tutorial = new FrmTutorial())
+            {
+                tutorial.ShowDialog(this);
+            }
+        }
+
         #endregion
     }
 }

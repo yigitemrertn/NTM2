@@ -31,6 +31,7 @@ namespace NoteToMusic.Forms
             // Custom Title Bar
             pnlTitleBar = new Panel();
             lblTitle = new Label();
+            btnHelp = new Button();
             btnMinimize = new Button();
             btnClose = new Button();
             
@@ -87,6 +88,7 @@ namespace NoteToMusic.Forms
             pnlTitleBar.BackColor = Color.FromArgb(20, 20, 30);
             pnlTitleBar.Controls.Add(btnClose);
             pnlTitleBar.Controls.Add(btnMinimize);
+            pnlTitleBar.Controls.Add(btnHelp);
             pnlTitleBar.Controls.Add(lblTitle);
             pnlTitleBar.Dock = DockStyle.Top;
             pnlTitleBar.Location = new Point(0, 0);
@@ -111,6 +113,24 @@ namespace NoteToMusic.Forms
             lblTitle.MouseDown += pnlTitleBar_MouseDown;
             lblTitle.MouseMove += pnlTitleBar_MouseMove;
             lblTitle.MouseUp += pnlTitleBar_MouseUp;
+            
+            // 
+            // btnHelp
+            // 
+            btnHelp.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnHelp.BackColor = Color.FromArgb(59, 130, 246);
+            btnHelp.Cursor = Cursors.Hand;
+            btnHelp.FlatAppearance.BorderSize = 0;
+            btnHelp.FlatStyle = FlatStyle.Flat;
+            btnHelp.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            btnHelp.ForeColor = Color.White;
+            btnHelp.Location = new Point(1450, 0);
+            btnHelp.Name = "btnHelp";
+            btnHelp.Size = new Size(50, 40);
+            btnHelp.TabIndex = 1;
+            btnHelp.Text = "?";
+            btnHelp.UseVisualStyleBackColor = false;
+            btnHelp.Click += btnHelp_Click;
             
             // 
             // btnMinimize
@@ -642,6 +662,7 @@ namespace NoteToMusic.Forms
         // Custom Title Bar
         private System.Windows.Forms.Panel pnlTitleBar;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnClose;
         
