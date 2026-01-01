@@ -44,14 +44,14 @@ Note To Music, nota şemalarını (PDF, resim vb.) otomatik olarak tanıyıp MID
 ### 🚀 Son Kullanıcılar İçin (Önerilen)
 
 1. [**Releases sayfasından**](https://github.com/yigitemrertn/NTM2/releases/latest) en son sürümü indirin
-2. `NoteToMusic-Setup-v1.0.0.exe` dosyasını çalıştırın
+2. `NoteToMusic-Setup-v1.0.2.exe` dosyasını çalıştırın (~185 MB)
 3. Kurulum sihirbazını takip edin
 4. Masaüstü veya Başlat menüsünden uygulamayı başlatın
 
 **Sistem Gereksinimleri:**
 - Windows 10/11 (64-bit)
-- [.NET 8.0 Runtime](https://dotnet.microsoft.com/download/dotnet/8.0) (otomatik kurulum önerilir)
-- [Audiveris](https://github.com/Audiveris/audiveris/releases) (nota tanıma için - ilk çalıştırmada yol sorulur)
+- ~~.NET 8.0 Runtime~~ **Dahil! Ek kurulum gerekmez**
+- ~~Audiveris~~ **Dahil! Otomatik kullanıma hazır**
 - En az 4 GB RAM
 - 500 MB boş disk alanı
 
@@ -110,11 +110,11 @@ NoteToMusic/
 Proje aşağıdaki NuGet paketlerini kullanır:
 
 - **NAudio** `2.2.1` - Ses işleme ve MIDI operasyonları
-- **MeltySynth** `2.4.1` - SoundFont tabanlı MIDI sentezleme
+- **MeltySynth** `2.4.1` - SoundFont tabanlı MIDI sentezleme (SF2 desteği)
 - **Newtonsoft.Json** `13.0.3` - JSON işleme
-- **EPPlus** `7.0.5` - Excel operasyonları
-- **System.Data.SqlClient** `4.8.6` - Veritabanı bağlantısı
+- **EPPlus** `7.0.5` - Excel operasyonları (Admin paneli)
 - **System.Configuration.ConfigurationManager** `8.0.0` - Ayarlar yönetimi
+- **Supabase** - Backend (feedback sistemi için)
 
 ### Ayarlar (app.config)
 

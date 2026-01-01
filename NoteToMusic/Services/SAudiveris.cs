@@ -21,10 +21,20 @@ namespace NoteToMusic.Services
 
         public SAudiveris()
         {
-            _audiverisPath = Properties.Settings.Default.AudiverisPath;
+            // Check bundled Audiveris first, then user settings
+            string bundledPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Dependencies", "Audiveris.exe");
+            
+            if (File.Exists(bundledPath))
+            {
+                _audiverisPath = bundledPath;
+            }
+            else
+            {
+                _audiverisPath = Properties.Settings.Default.AudiverisPath ?? "";
+            }
+            
             CheckDepens();
         }
-
         /// <summary>
         /// Görüntü dosyasını MusicXML formatına dönüştürür.
         /// </summary>
