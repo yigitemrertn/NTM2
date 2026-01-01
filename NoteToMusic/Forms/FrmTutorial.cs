@@ -18,7 +18,7 @@ namespace NoteToMusic.Forms
             
             $"📄 ADIM 1: Nota Ekleme{Environment.NewLine}{Environment.NewLine}Sol panelde 'Notalar' bölümünde '➕ Nota Ekle' butonuna tıklayın.{Environment.NewLine}{Environment.NewLine}PNG, JPG veya PDF formatında nota dosyalarını seçebilirsiniz.",
             
-            $"🎹 ADIM 2: SoundFont Seçimi{Environment.NewLine}{Environment.NewLine}Sol panelde 'Soundfont' bölümünde '➕ SoundFont Ekle' butonuna tıklayın.{Environment.NewLine}{Environment.NewLine}.sf2 veya .sf3 formatında soundfont dosyaları ekleyebilirsiniz.",
+            $"🎹 ADIM 2: SoundFont Seçimi{Environment.NewLine}{Environment.NewLine}Sol panelde 'Soundfont' bölümünde '➕ SoundFont Ekle' butonuna tıklayın.{Environment.NewLine}{Environment.NewLine}.sf2 formatında soundfont dosyaları ekleyebilirsiniz.",
             
             $"🔄 ADIM 3: Dönüştürme{Environment.NewLine}{Environment.NewLine}Sol panelin en altındaki pembe 'DÖNÜŞTÜR' butonuna tıklayın.{Environment.NewLine}{Environment.NewLine}Audiveris, notayı MusicXML formatına dönüştürecektir.{Environment.NewLine}{Environment.NewLine}Bu işlem birkaç saniye sürebilir.",
             

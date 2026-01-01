@@ -1,16 +1,9 @@
-namespace NoteToMusic.Forms
+ï»¿namespace NoteToMusic.Forms
 {
     partial class FrmBpm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,92 +13,72 @@ namespace NoteToMusic.Forms
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            txtBpm = new TextBox();
-            lblBpm = new Label();
-            btnStart = new Button();
             lblInfo = new Label();
+            txtBpm = new TextBox();
+            btnStart = new Button();
             SuspendLayout();
-            // 
-            // txtBpm
-            // 
-            txtBpm.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            txtBpm.Location = new Point(187, 47);
-            txtBpm.Margin = new Padding(4, 3, 4, 3);
-            txtBpm.Name = "txtBpm";
-            txtBpm.Size = new Size(204, 29);
-            txtBpm.TabIndex = 0;
-            // 
-            // lblBpm
-            // 
-            lblBpm.AutoSize = true;
-            lblBpm.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblBpm.Location = new Point(40, 51);
-            lblBpm.Margin = new Padding(4, 0, 4, 0);
-            lblBpm.Name = "lblBpm";
-            lblBpm.Size = new Size(139, 20);
-            lblBpm.TabIndex = 1;
-            lblBpm.Text = "Lütfen Bpm Giriniz:";
-            // 
-            // btnStart
-            // 
-            btnStart.Location = new Point(40, 91);
-            btnStart.Margin = new Padding(4, 3, 4, 3);
-            btnStart.Name = "btnStart";
-            btnStart.Size = new Size(351, 37);
-            btnStart.TabIndex = 2;
-            btnStart.Text = "Baþla";
-            btnStart.UseVisualStyleBackColor = true;
-            btnStart.Click += btnStart_Click;
-            // 
+            
             // lblInfo
-            // 
             lblInfo.AutoSize = true;
             lblInfo.BackColor = Color.Transparent;
-            lblInfo.Font = new Font("Segoe UI Emoji", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblInfo.ForeColor = SystemColors.GrayText;
-            lblInfo.Location = new Point(17, 198);
+            lblInfo.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            lblInfo.ForeColor = Color.White;
+            lblInfo.Location = new Point(30, 30);
             lblInfo.Name = "lblInfo";
-            lblInfo.Size = new Size(404, 40);
-            lblInfo.TabIndex = 3;
-            lblInfo.Text = "Þarkýnýn BPM(Tempo) deðerini metin kutusuna girip.\r\nEnter tuþuna basarak keyfinize göre ayarlayýnýz.";
-            // 
-            // BpmForm
-            // 
+            lblInfo.Size = new Size(340, 28);
+            lblInfo.TabIndex = 0;
+            lblInfo.Text = "LÃ¼tfen BPM deÄŸerini giriniz (Ã¶rn. 120):";
+            
+            // txtBpm
+            txtBpm.BackColor = Color.FromArgb(39, 39, 58);
+            txtBpm.BorderStyle = BorderStyle.FixedSingle;
+            txtBpm.Font = new Font("Segoe UI", 11F);
+            txtBpm.ForeColor = Color.White;
+            txtBpm.Location = new Point(30, 70);
+            txtBpm.Name = "txtBpm";
+            txtBpm.Size = new Size(340, 32);
+            txtBpm.TabIndex = 1;
+            txtBpm.Text = "120";
+            txtBpm.TextAlign = HorizontalAlignment.Center;
+            
+            // btnStart
+            btnStart.BackColor = Color.FromArgb(59, 130, 246);
+            btnStart.Cursor = Cursors.Hand;
+            btnStart.FlatAppearance.BorderSize = 0;
+            btnStart.FlatStyle = FlatStyle.Flat;
+            btnStart.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            btnStart.ForeColor = Color.White;
+            btnStart.Location = new Point(30, 120);
+            btnStart.Name = "btnStart";
+            btnStart.Size = new Size(340, 45);
+            btnStart.TabIndex = 2;
+            btnStart.Text = "Devam Et";
+            btnStart.UseVisualStyleBackColor = false;
+            btnStart.Click += btnStart_Click;
+            
+            // FrmBpm
             AcceptButton = btnStart;
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(433, 247);
-            Controls.Add(lblInfo);
+            BackColor = Color.FromArgb(24, 24, 37);
+            ClientSize = new Size(400, 195);
             Controls.Add(btnStart);
-            Controls.Add(lblBpm);
             Controls.Add(txtBpm);
+            Controls.Add(lblInfo);
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            Margin = new Padding(4, 3, 4, 3);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "BpmForm";
+            Name = "FrmBpm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "BpmForm";
-            FormClosing += BpmForm_FormClosing;
-            Load += BpmForm_Load;
+            Text = "BPM AyarÄ±";
             ResumeLayout(false);
             PerformLayout();
-
         }
 
-        #endregion
-
-        private System.Windows.Forms.TextBox txtBpm;
-        private System.Windows.Forms.Label lblBpm;
-        private System.Windows.Forms.Button btnStart;
         private Label lblInfo;
+        private TextBox txtBpm;
+        private Button btnStart;
     }
 }

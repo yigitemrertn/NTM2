@@ -1,16 +1,9 @@
-namespace NoteToMusic.Forms
+﻿namespace NoteToMusic.Forms
 {
     partial class FrmFeedback
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,216 +13,269 @@ namespace NoteToMusic.Forms
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            lblTitle = new System.Windows.Forms.Label();
-            lblUsername = new System.Windows.Forms.Label();
-            lblPerformance = new System.Windows.Forms.Label();
-            cmbPerformance = new System.Windows.Forms.ComboBox();
-            lblAccuracy = new System.Windows.Forms.Label();
-            cmbAccuracy = new System.Windows.Forms.ComboBox();
-            lblFunctionality = new System.Windows.Forms.Label();
-            cmbFunctionality = new System.Windows.Forms.ComboBox();
-            lblOverall = new System.Windows.Forms.Label();
-            cmbOverall = new System.Windows.Forms.ComboBox();
-            lblComments = new System.Windows.Forms.Label();
-            rtbComments = new System.Windows.Forms.RichTextBox();
-            btnSave = new System.Windows.Forms.Button();
-            btnCancel = new System.Windows.Forms.Button();
+            pnlTitleBar = new Panel();
+            lblTitle = new Label();
+            pnlContent = new Panel();
+            lblUsername = new Label();
+            lblPerformance = new Label();
+            cmbPerformance = new ComboBox();
+            lblAccuracy = new Label();
+            cmbAccuracy = new ComboBox();
+            lblFunctionality = new Label();
+            cmbFunctionality = new ComboBox();
+            lblOverall = new Label();
+            cmbOverall = new ComboBox();
+            lblComments = new Label();
+            rtbComments = new RichTextBox();
+            pnlButtons = new Panel();
+            btnSave = new Button();
+            btnCancel = new Button();
+            pnlTitleBar.SuspendLayout();
+            pnlContent.SuspendLayout();
+            pnlButtons.SuspendLayout();
             SuspendLayout();
-            // 
+            
+            // pnlTitleBar
+            pnlTitleBar.BackColor = Color.FromArgb(20, 20, 30);
+            pnlTitleBar.Controls.Add(lblTitle);
+            pnlTitleBar.Dock = DockStyle.Top;
+            pnlTitleBar.Location = new Point(0, 0);
+            pnlTitleBar.Name = "pnlTitleBar";
+            pnlTitleBar.Size = new Size(550, 50);
+            pnlTitleBar.TabIndex = 0;
+            
             // lblTitle
-            // 
             lblTitle.AutoSize = true;
-            lblTitle.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            lblTitle.Location = new System.Drawing.Point(120, 15);
+            lblTitle.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(20, 12);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new System.Drawing.Size(260, 25);
+            lblTitle.Size = new Size(200, 32);
             lblTitle.TabIndex = 0;
-            lblTitle.Text = "Geri Bildirim Formu";
-            // 
+            lblTitle.Text = "💬 Geri Bildirim";
+            
+            // pnlContent
+            pnlContent.BackColor = Color.FromArgb(24, 24, 37);
+            pnlContent.Controls.Add(rtbComments);
+            pnlContent.Controls.Add(lblComments);
+            pnlContent.Controls.Add(cmbOverall);
+            pnlContent.Controls.Add(lblOverall);
+            pnlContent.Controls.Add(cmbFunctionality);
+            pnlContent.Controls.Add(lblFunctionality);
+            pnlContent.Controls.Add(cmbAccuracy);
+            pnlContent.Controls.Add(lblAccuracy);
+            pnlContent.Controls.Add(cmbPerformance);
+            pnlContent.Controls.Add(lblPerformance);
+            pnlContent.Controls.Add(lblUsername);
+            pnlContent.Dock = DockStyle.Fill;
+            pnlContent.Location = new Point(0, 50);
+            pnlContent.Name = "pnlContent";
+            pnlContent.Padding = new Padding(20);
+            pnlContent.Size = new Size(550, 470);
+            pnlContent.TabIndex = 1;
+            
             // lblUsername
-            // 
             lblUsername.AutoSize = true;
-            lblUsername.Font = new System.Drawing.Font("Segoe UI", 9F);
-            lblUsername.Location = new System.Drawing.Point(20, 50);
+            lblUsername.Font = new Font("Segoe UI", 10F);
+            lblUsername.ForeColor = Color.FromArgb(161, 161, 170);
+            lblUsername.Location = new Point(20, 20);
             lblUsername.Name = "lblUsername";
-            lblUsername.Size = new System.Drawing.Size(100, 15);
-            lblUsername.TabIndex = 1;
-            lblUsername.Text = "Kullanıcı: ";
-            // 
+            lblUsername.Size = new Size(130, 23);
+            lblUsername.TabIndex = 0;
+            lblUsername.Text = "Kullanıcı: USER";
+            
             // lblPerformance
-            // 
             lblPerformance.AutoSize = true;
-            lblPerformance.Font = new System.Drawing.Font("Segoe UI", 9F);
-            lblPerformance.Location = new System.Drawing.Point(20, 85);
+            lblPerformance.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            lblPerformance.ForeColor = Color.White;
+            lblPerformance.Location = new Point(20, 60);
             lblPerformance.Name = "lblPerformance";
-            lblPerformance.Size = new System.Drawing.Size(240, 15);
-            lblPerformance.TabIndex = 2;
-            lblPerformance.Text = "Programın çalışma hızına puanınız (0-5):";
-            // 
+            lblPerformance.Size = new Size(150, 25);
+            lblPerformance.TabIndex = 1;
+            lblPerformance.Text = "Hız Performansı:";
+            
             // cmbPerformance
-            // 
-            cmbPerformance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            cmbPerformance.Font = new System.Drawing.Font("Segoe UI", 9F);
+            cmbPerformance.BackColor = Color.FromArgb(39, 39, 58);
+            cmbPerformance.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbPerformance.FlatStyle = FlatStyle.Flat;
+            cmbPerformance.Font = new Font("Segoe UI", 11F);
+            cmbPerformance.ForeColor = Color.White;
             cmbPerformance.FormattingEnabled = true;
-            cmbPerformance.Location = new System.Drawing.Point(280, 82);
+            cmbPerformance.Location = new Point(250, 57);
             cmbPerformance.Name = "cmbPerformance";
-            cmbPerformance.Size = new System.Drawing.Size(180, 23);
-            cmbPerformance.TabIndex = 3;
-            // 
+            cmbPerformance.Size = new Size(280, 33);
+            cmbPerformance.TabIndex = 2;
+            
             // lblAccuracy
-            // 
             lblAccuracy.AutoSize = true;
-            lblAccuracy.Font = new System.Drawing.Font("Segoe UI", 9F);
-            lblAccuracy.Location = new System.Drawing.Point(20, 120);
+            lblAccuracy.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            lblAccuracy.ForeColor = Color.White;
+            lblAccuracy.Location = new Point(20, 110);
             lblAccuracy.Name = "lblAccuracy";
-            lblAccuracy.Size = new System.Drawing.Size(260, 15);
-            lblAccuracy.TabIndex = 4;
-            lblAccuracy.Text = "Programın çalışma doğruluğuna puanınız (0-5):";
-            // 
+            lblAccuracy.Size = new Size(190, 25);
+            lblAccuracy.TabIndex = 3;
+            lblAccuracy.Text = "Doğruluk Performansı:";
+            
             // cmbAccuracy
-            // 
-            cmbAccuracy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            cmbAccuracy.Font = new System.Drawing.Font("Segoe UI", 9F);
+            cmbAccuracy.BackColor = Color.FromArgb(39, 39, 58);
+            cmbAccuracy.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbAccuracy.FlatStyle = FlatStyle.Flat;
+            cmbAccuracy.Font = new Font("Segoe UI", 11F);
+            cmbAccuracy.ForeColor = Color.White;
             cmbAccuracy.FormattingEnabled = true;
-            cmbAccuracy.Location = new System.Drawing.Point(280, 117);
+            cmbAccuracy.Location = new Point(250, 107);
             cmbAccuracy.Name = "cmbAccuracy";
-            cmbAccuracy.Size = new System.Drawing.Size(180, 23);
-            cmbAccuracy.TabIndex = 5;
-            // 
+            cmbAccuracy.Size = new Size(280, 33);
+            cmbAccuracy.TabIndex = 4;
+            
             // lblFunctionality
-            // 
             lblFunctionality.AutoSize = true;
-            lblFunctionality.Font = new System.Drawing.Font("Segoe UI", 9F);
-            lblFunctionality.Location = new System.Drawing.Point(20, 155);
+            lblFunctionality.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            lblFunctionality.ForeColor = Color.White;
+            lblFunctionality.Location = new Point(20, 160);
             lblFunctionality.Name = "lblFunctionality";
-            lblFunctionality.Size = new System.Drawing.Size(220, 15);
-            lblFunctionality.TabIndex = 6;
-            lblFunctionality.Text = "Programın işlevine puanınız (0-5):";
-            // 
+            lblFunctionality.Size = new Size(100, 25);
+            lblFunctionality.TabIndex = 5;
+            lblFunctionality.Text = "İşlevsellik:";
+            
             // cmbFunctionality
-            // 
-            cmbFunctionality.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            cmbFunctionality.Font = new System.Drawing.Font("Segoe UI", 9F);
+            cmbFunctionality.BackColor = Color.FromArgb(39, 39, 58);
+            cmbFunctionality.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbFunctionality.FlatStyle = FlatStyle.Flat;
+            cmbFunctionality.Font = new Font("Segoe UI", 11F);
+            cmbFunctionality.ForeColor = Color.White;
             cmbFunctionality.FormattingEnabled = true;
-            cmbFunctionality.Location = new System.Drawing.Point(280, 152);
+            cmbFunctionality.Location = new Point(250, 157);
             cmbFunctionality.Name = "cmbFunctionality";
-            cmbFunctionality.Size = new System.Drawing.Size(180, 23);
-            cmbFunctionality.TabIndex = 7;
-            // 
+            cmbFunctionality.Size = new Size(280, 33);
+            cmbFunctionality.TabIndex = 6;
+            
             // lblOverall
-            // 
             lblOverall.AutoSize = true;
-            lblOverall.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            lblOverall.Location = new System.Drawing.Point(20, 190);
+            lblOverall.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            lblOverall.ForeColor = Color.White;
+            lblOverall.Location = new Point(20, 210);
             lblOverall.Name = "lblOverall";
-            lblOverall.Size = new System.Drawing.Size(210, 15);
-            lblOverall.TabIndex = 8;
-            lblOverall.Text = "Programa genel puanınız (0-5):";
-            // 
+            lblOverall.Size = new Size(160, 25);
+            lblOverall.TabIndex = 7;
+            lblOverall.Text = "Genel Memnuniyet:";
+            
             // cmbOverall
-            // 
-            cmbOverall.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            cmbOverall.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            cmbOverall.BackColor = Color.FromArgb(39, 39, 58);
+            cmbOverall.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbOverall.FlatStyle = FlatStyle.Flat;
+            cmbOverall.Font = new Font("Segoe UI", 11F);
+            cmbOverall.ForeColor = Color.White;
             cmbOverall.FormattingEnabled = true;
-            cmbOverall.Location = new System.Drawing.Point(280, 187);
+            cmbOverall.Location = new Point(250, 207);
             cmbOverall.Name = "cmbOverall";
-            cmbOverall.Size = new System.Drawing.Size(180, 23);
-            cmbOverall.TabIndex = 9;
-            // 
+            cmbOverall.Size = new Size(280, 33);
+            cmbOverall.TabIndex = 8;
+            
             // lblComments
-            // 
             lblComments.AutoSize = true;
-            lblComments.Font = new System.Drawing.Font("Segoe UI", 9F);
-            lblComments.Location = new System.Drawing.Point(20, 230);
+            lblComments.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            lblComments.ForeColor = Color.White;
+            lblComments.Location = new Point(20, 260);
             lblComments.Name = "lblComments";
-            lblComments.Size = new System.Drawing.Size(150, 15);
-            lblComments.TabIndex = 10;
-            lblComments.Text = "Yorumlarınız (opsiyonel):";
-            // 
+            lblComments.Size = new Size(125, 25);
+            lblComments.TabIndex = 9;
+            lblComments.Text = "Yorumlarınız:";
+            
             // rtbComments
-            // 
-            rtbComments.Font = new System.Drawing.Font("Segoe UI", 9F);
-            rtbComments.Location = new System.Drawing.Point(20, 250);
+            rtbComments.BackColor = Color.FromArgb(39, 39, 58);
+            rtbComments.BorderStyle = BorderStyle.FixedSingle;
+            rtbComments.Font = new Font("Segoe UI", 11F);
+            rtbComments.ForeColor = Color.White;
+            rtbComments.Location = new Point(20, 290);
             rtbComments.Name = "rtbComments";
-            rtbComments.Size = new System.Drawing.Size(440, 100);
-            rtbComments.TabIndex = 11;
+            rtbComments.Size = new Size(510, 150);
+            rtbComments.TabIndex = 10;
             rtbComments.Text = "";
-            // 
+            
+            // pnlButtons
+            pnlButtons.BackColor = Color.FromArgb(20, 20, 30);
+            pnlButtons.Controls.Add(btnCancel);
+            pnlButtons.Controls.Add(btnSave);
+            pnlButtons.Dock = DockStyle.Bottom;
+            pnlButtons.Location = new Point(0, 520);
+            pnlButtons.Name = "pnlButtons";
+            pnlButtons.Size = new Size(550, 70);
+            pnlButtons.TabIndex = 2;
+            
             // btnSave
-            // 
-            btnSave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            btnSave.Location = new System.Drawing.Point(250, 370);
+            btnSave.BackColor = Color.FromArgb(59, 130, 246);
+            btnSave.Cursor = Cursors.Hand;
+            btnSave.FlatAppearance.BorderSize = 0;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            btnSave.ForeColor = Color.White;
+            btnSave.Location = new Point(160, 15);
             btnSave.Name = "btnSave";
-            btnSave.Size = new System.Drawing.Size(100, 35);
-            btnSave.TabIndex = 12;
-            btnSave.Text = "Kaydet";
-            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Size = new Size(200, 40);
+            btnSave.TabIndex = 0;
+            btnSave.Text = "Gönder";
+            btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
-            // 
+            
             // btnCancel
-            // 
-            btnCancel.Font = new System.Drawing.Font("Segoe UI", 9F);
-            btnCancel.Location = new System.Drawing.Point(360, 370);
+            btnCancel.BackColor = Color.FromArgb(39, 39, 58);
+            btnCancel.Cursor = Cursors.Hand;
+            btnCancel.FlatAppearance.BorderSize = 0;
+            btnCancel.FlatStyle = FlatStyle.Flat;
+            btnCancel.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            btnCancel.ForeColor = Color.White;
+            btnCancel.Location = new Point(370, 15);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new System.Drawing.Size(100, 35);
-            btnCancel.TabIndex = 13;
+            btnCancel.Size = new Size(160, 40);
+            btnCancel.TabIndex = 1;
             btnCancel.Text = "İptal";
-            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
-            // 
+            
             // FrmFeedback
-            // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(484, 421);
-            Controls.Add(btnCancel);
-            Controls.Add(btnSave);
-            Controls.Add(rtbComments);
-            Controls.Add(lblComments);
-            Controls.Add(cmbOverall);
-            Controls.Add(lblOverall);
-            Controls.Add(cmbFunctionality);
-            Controls.Add(lblFunctionality);
-            Controls.Add(cmbAccuracy);
-            Controls.Add(lblAccuracy);
-            Controls.Add(cmbPerformance);
-            Controls.Add(lblPerformance);
-            Controls.Add(lblUsername);
-            Controls.Add(lblTitle);
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            AcceptButton = btnSave;
+            CancelButton = btnCancel;
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(24, 24, 37);
+            ClientSize = new Size(550, 590);
+            Controls.Add(pnlContent);
+            Controls.Add(pnlButtons);
+            Controls.Add(pnlTitleBar);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FrmFeedback";
-            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Geri Bildirim";
             Load += FrmFeedback_Load;
+            pnlTitleBar.ResumeLayout(false);
+            pnlTitleBar.PerformLayout();
+            pnlContent.ResumeLayout(false);
+            pnlContent.PerformLayout();
+            pnlButtons.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
-        #endregion
-
-        private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Label lblUsername;
-        private System.Windows.Forms.Label lblPerformance;
-        private System.Windows.Forms.ComboBox cmbPerformance;
-        private System.Windows.Forms.Label lblAccuracy;
-        private System.Windows.Forms.ComboBox cmbAccuracy;
-        private System.Windows.Forms.Label lblFunctionality;
-        private System.Windows.Forms.ComboBox cmbFunctionality;
-        private System.Windows.Forms.Label lblOverall;
-        private System.Windows.Forms.ComboBox cmbOverall;
-        private System.Windows.Forms.Label lblComments;
-        private System.Windows.Forms.RichTextBox rtbComments;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnCancel;
+        private Panel pnlTitleBar;
+        private Label lblTitle;
+        private Panel pnlContent;
+        private Label lblUsername;
+        private Label lblPerformance;
+        private ComboBox cmbPerformance;
+        private Label lblAccuracy;
+        private ComboBox cmbAccuracy;
+        private Label lblFunctionality;
+        private ComboBox cmbFunctionality;
+        private Label lblOverall;
+        private ComboBox cmbOverall;
+        private Label lblComments;
+        private RichTextBox rtbComments;
+        private Panel pnlButtons;
+        private Button btnSave;
+        private Button btnCancel;
     }
 }

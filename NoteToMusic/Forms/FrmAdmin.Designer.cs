@@ -1,4 +1,4 @@
-namespace NoteToMusic.Forms
+﻿namespace NoteToMusic.Forms
 {
     partial class FrmAdmin
     {
@@ -13,330 +13,412 @@ namespace NoteToMusic.Forms
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
         private void InitializeComponent()
         {
-            lblTitle = new System.Windows.Forms.Label();
-            grpFilters = new System.Windows.Forms.GroupBox();
-            lblStartDate = new System.Windows.Forms.Label();
-            dtpStart = new System.Windows.Forms.DateTimePicker();
-            lblEndDate = new System.Windows.Forms.Label();
-            dtpEnd = new System.Windows.Forms.DateTimePicker();
-            lblUserFilter = new System.Windows.Forms.Label();
-            txtUserFilter = new System.Windows.Forms.TextBox();
-            lblMinRating = new System.Windows.Forms.Label();
-            nudMinRating = new System.Windows.Forms.NumericUpDown();
-            btnFilter = new System.Windows.Forms.Button();
-            btnClearFilter = new System.Windows.Forms.Button();
-            btnRefresh = new System.Windows.Forms.Button();
-            btnExportExcel = new System.Windows.Forms.Button();
-            dgvFeedback = new System.Windows.Forms.DataGridView();
-            grpStatistics = new System.Windows.Forms.GroupBox();
-            lblTotalFeedback = new System.Windows.Forms.Label();
-            lblAvgOverall = new System.Windows.Forms.Label();
-            lblAvgPerformance = new System.Windows.Forms.Label();
-            lblAvgAccuracy = new System.Windows.Forms.Label();
-            lblAvgFunctionality = new System.Windows.Forms.Label();
-            lblStatus = new System.Windows.Forms.Label();
-            grpFilters.SuspendLayout();
+            pnlTitleBar = new Panel();
+            lblTitle = new Label();
+            pnlStats = new Panel();
+            lblTotalFeedback = new Label();
+            lblAvgOverall = new Label();
+            lblAvgPerformance = new Label();
+            lblAvgAccuracy = new Label();
+            lblAvgFunctionality = new Label();
+            pnlFilters = new Panel();
+            lblFilterTitle = new Label();
+            lblStartDate = new Label();
+            dtpStart = new DateTimePicker();
+            lblEndDate = new Label();
+            dtpEnd = new DateTimePicker();
+            lblUserFilter = new Label();
+            txtUserFilter = new TextBox();
+            lblMinRating = new Label();
+            nudMinRating = new NumericUpDown();
+            btnFilter = new Button();
+            btnClearFilter = new Button();
+            pnlData = new Panel();
+            dgvFeedback = new DataGridView();
+            pnlActions = new Panel();
+            btnRefresh = new Button();
+            btnExportExcel = new Button();
+            lblStatus = new Label();
+            pnlTitleBar.SuspendLayout();
+            pnlStats.SuspendLayout();
+            pnlFilters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudMinRating).BeginInit();
+            pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvFeedback).BeginInit();
-            grpStatistics.SuspendLayout();
+            pnlActions.SuspendLayout();
             SuspendLayout();
-            // 
+            
+            // pnlTitleBar
+            pnlTitleBar.BackColor = Color.FromArgb(20, 20, 30);
+            pnlTitleBar.Controls.Add(lblTitle);
+            pnlTitleBar.Dock = DockStyle.Top;
+            pnlTitleBar.Location = new Point(0, 0);
+            pnlTitleBar.Name = "pnlTitleBar";
+            pnlTitleBar.Size = new Size(1400, 60);
+            pnlTitleBar.TabIndex = 0;
+            
             // lblTitle
-            // 
             lblTitle.AutoSize = true;
-            lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            lblTitle.Location = new System.Drawing.Point(320, 15);
+            lblTitle.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(20, 15);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new System.Drawing.Size(360, 30);
+            lblTitle.Size = new Size(220, 37);
             lblTitle.TabIndex = 0;
-            lblTitle.Text = "NTM2 Admin Panel - Feedback Yönetimi";
-            // 
-            // grpFilters
-            // 
-            grpFilters.Controls.Add(lblStartDate);
-            grpFilters.Controls.Add(dtpStart);
-            grpFilters.Controls.Add(lblEndDate);
-            grpFilters.Controls.Add(dtpEnd);
-            grpFilters.Controls.Add(lblUserFilter);
-            grpFilters.Controls.Add(txtUserFilter);
-            grpFilters.Controls.Add(lblMinRating);
-            grpFilters.Controls.Add(nudMinRating);
-            grpFilters.Controls.Add(btnFilter);
-            grpFilters.Controls.Add(btnClearFilter);
-            grpFilters.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            grpFilters.Location = new System.Drawing.Point(20, 60);
-            grpFilters.Name = "grpFilters";
-            grpFilters.Size = new System.Drawing.Size(960, 100);
-            grpFilters.TabIndex = 1;
-            grpFilters.TabStop = false;
-            grpFilters.Text = "Filtreler";
-            // 
-            // lblStartDate
-            // 
-            lblStartDate.AutoSize = true;
-            lblStartDate.Font = new System.Drawing.Font("Segoe UI", 9F);
-            lblStartDate.Location = new System.Drawing.Point(15, 30);
-            lblStartDate.Name = "lblStartDate";
-            lblStartDate.Size = new System.Drawing.Size(60, 15);
-            lblStartDate.TabIndex = 0;
-            lblStartDate.Text = "Başlangıç:";
-            // 
-            // dtpStart
-            // 
-            dtpStart.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dtpStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            dtpStart.Location = new System.Drawing.Point(15, 50);
-            dtpStart.Name = "dtpStart";
-            dtpStart.ShowCheckBox = true;
-            dtpStart.Size = new System.Drawing.Size(140, 23);
-            dtpStart.TabIndex = 1;
-            // 
-            // lblEndDate
-            // 
-            lblEndDate.AutoSize = true;
-            lblEndDate.Font = new System.Drawing.Font("Segoe UI", 9F);
-            lblEndDate.Location = new System.Drawing.Point(175, 30);
-            lblEndDate.Name = "lblEndDate";
-            lblEndDate.Size = new System.Drawing.Size(32, 15);
-            lblEndDate.TabIndex = 2;
-            lblEndDate.Text = "Bitiş:";
-            // 
-            // dtpEnd
-            // 
-            dtpEnd.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dtpEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            dtpEnd.Location = new System.Drawing.Point(175, 50);
-            dtpEnd.Name = "dtpEnd";
-            dtpEnd.ShowCheckBox = true;
-            dtpEnd.Size = new System.Drawing.Size(140, 23);
-            dtpEnd.TabIndex = 3;
-            // 
-            // lblUserFilter
-            // 
-            lblUserFilter.AutoSize = true;
-            lblUserFilter.Font = new System.Drawing.Font("Segoe UI", 9F);
-            lblUserFilter.Location = new System.Drawing.Point(335, 30);
-            lblUserFilter.Name = "lblUserFilter";
-            lblUserFilter.Size = new System.Drawing.Size(57, 15);
-            lblUserFilter.TabIndex = 4;
-            lblUserFilter.Text = "Kullanıcı:";
-            // 
-            // txtUserFilter
-            // 
-            txtUserFilter.Font = new System.Drawing.Font("Segoe UI", 9F);
-            txtUserFilter.Location = new System.Drawing.Point(335, 50);
-            txtUserFilter.Name = "txtUserFilter";
-            txtUserFilter.PlaceholderText = "Kullanıcı adı ara...";
-            txtUserFilter.Size = new System.Drawing.Size(150, 23);
-            txtUserFilter.TabIndex = 5;
-            // 
-            // lblMinRating
-            // 
-            lblMinRating.AutoSize = true;
-            lblMinRating.Font = new System.Drawing.Font("Segoe UI", 9F);
-            lblMinRating.Location = new System.Drawing.Point(505, 30);
-            lblMinRating.Name = "lblMinRating";
-            lblMinRating.Size = new System.Drawing.Size(100, 15);
-            lblMinRating.TabIndex = 6;
-            lblMinRating.Text = "Min Genel Puan:";
-            // 
-            // nudMinRating
-            // 
-            nudMinRating.Font = new System.Drawing.Font("Segoe UI", 9F);
-            nudMinRating.Location = new System.Drawing.Point(505, 50);
-            nudMinRating.Maximum = new decimal(new int[] { 5, 0, 0, 0 });
-            nudMinRating.Name = "nudMinRating";
-            nudMinRating.Size = new System.Drawing.Size(80, 23);
-            nudMinRating.TabIndex = 7;
-            // 
-            // btnFilter
-            // 
-            btnFilter.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            btnFilter.Location = new System.Drawing.Point(710, 45);
-            btnFilter.Name = "btnFilter";
-            btnFilter.Size = new System.Drawing.Size(110, 30);
-            btnFilter.TabIndex = 8;
-            btnFilter.Text = "Filtrele";
-            btnFilter.UseVisualStyleBackColor = true;
-            btnFilter.Click += btnFilter_Click;
-            // 
-            // btnClearFilter
-            // 
-            btnClearFilter.Font = new System.Drawing.Font("Segoe UI", 9F);
-            btnClearFilter.Location = new System.Drawing.Point(830, 45);
-            btnClearFilter.Name = "btnClearFilter";
-            btnClearFilter.Size = new System.Drawing.Size(110, 30);
-            btnClearFilter.TabIndex = 9;
-            btnClearFilter.Text = "Temizle";
-            btnClearFilter.UseVisualStyleBackColor = true;
-            btnClearFilter.Click += btnClearFilter_Click;
-            // 
-            // btnRefresh
-            // 
-            btnRefresh.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            btnRefresh.Location = new System.Drawing.Point(750, 170);
-            btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new System.Drawing.Size(110, 35);
-            btnRefresh.TabIndex = 2;
-            btnRefresh.Text = "🔄 Yenile";
-            btnRefresh.UseVisualStyleBackColor = true;
-            btnRefresh.Click += btnRefresh_Click;
-            // 
-            // btnExportExcel
-            // 
-            btnExportExcel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            btnExportExcel.Location = new System.Drawing.Point(870, 170);
-            btnExportExcel.Name = "btnExportExcel";
-            btnExportExcel.Size = new System.Drawing.Size(110, 35);
-            btnExportExcel.TabIndex = 3;
-            btnExportExcel.Text = "📊 Excel'e Aktar";
-            btnExportExcel.UseVisualStyleBackColor = true;
-            btnExportExcel.Click += btnExportExcel_Click;
-            // 
-            // dgvFeedback
-            // 
-            dgvFeedback.AllowUserToAddRows = false;
-            dgvFeedback.AllowUserToDeleteRows = false;
-            dgvFeedback.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dgvFeedback.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFeedback.Location = new System.Drawing.Point(20, 215);
-            dgvFeedback.Name = "dgvFeedback";
-            dgvFeedback.ReadOnly = true;
-            dgvFeedback.RowHeadersWidth = 25;
-            dgvFeedback.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            dgvFeedback.Size = new System.Drawing.Size(960, 350);
-            dgvFeedback.TabIndex = 4;
-            // 
-            // grpStatistics
-            // 
-            grpStatistics.Controls.Add(lblTotalFeedback);
-            grpStatistics.Controls.Add(lblAvgOverall);
-            grpStatistics.Controls.Add(lblAvgPerformance);
-            grpStatistics.Controls.Add(lblAvgAccuracy);
-            grpStatistics.Controls.Add(lblAvgFunctionality);
-            grpStatistics.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            grpStatistics.Location = new System.Drawing.Point(20, 575);
-            grpStatistics.Name = "grpStatistics";
-            grpStatistics.Size = new System.Drawing.Size(960, 70);
-            grpStatistics.TabIndex = 5;
-            grpStatistics.TabStop = false;
-            grpStatistics.Text = "İstatistikler";
-            // 
+            lblTitle.Text = "🔧 Admin Paneli";
+            
+            // pnlStats
+            pnlStats.BackColor = Color.FromArgb(30, 30, 46);
+            pnlStats.Controls.Add(lblAvgFunctionality);
+            pnlStats.Controls.Add(lblAvgAccuracy);
+            pnlStats.Controls.Add(lblAvgPerformance);
+            pnlStats.Controls.Add(lblAvgOverall);
+            pnlStats.Controls.Add(lblTotalFeedback);
+            pnlStats.Dock = DockStyle.Top;
+            pnlStats.Location = new Point(0, 60);
+            pnlStats.Name = "pnlStats";
+            pnlStats.Padding = new Padding(20, 15, 20, 15);
+            pnlStats.Size = new Size(1400, 80);
+            pnlStats.TabIndex = 1;
+            
             // lblTotalFeedback
-            // 
             lblTotalFeedback.AutoSize = true;
-            lblTotalFeedback.Font = new System.Drawing.Font("Segoe UI", 9F);
-            lblTotalFeedback.Location = new System.Drawing.Point(15, 30);
+            lblTotalFeedback.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            lblTotalFeedback.ForeColor = Color.White;
+            lblTotalFeedback.Location = new Point(20, 25);
             lblTotalFeedback.Name = "lblTotalFeedback";
-            lblTotalFeedback.Size = new System.Drawing.Size(110, 15);
+            lblTotalFeedback.Size = new Size(180, 28);
             lblTotalFeedback.TabIndex = 0;
             lblTotalFeedback.Text = "Toplam Feedback: 0";
-            // 
+            
             // lblAvgOverall
-            // 
             lblAvgOverall.AutoSize = true;
-            lblAvgOverall.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            lblAvgOverall.ForeColor = System.Drawing.Color.DarkGreen;
-            lblAvgOverall.Location = new System.Drawing.Point(200, 28);
+            lblAvgOverall.Font = new Font("Segoe UI", 11F);
+            lblAvgOverall.ForeColor = Color.FromArgb(161, 161, 170);
+            lblAvgOverall.Location = new Point(250, 25);
             lblAvgOverall.Name = "lblAvgOverall";
-            lblAvgOverall.Size = new System.Drawing.Size(150, 19);
+            lblAvgOverall.Size = new Size(180, 25);
             lblAvgOverall.TabIndex = 1;
             lblAvgOverall.Text = "Ort. Genel Puan: -";
-            // 
+            
             // lblAvgPerformance
-            // 
             lblAvgPerformance.AutoSize = true;
-            lblAvgPerformance.Font = new System.Drawing.Font("Segoe UI", 9F);
-            lblAvgPerformance.Location = new System.Drawing.Point(420, 30);
+            lblAvgPerformance.Font = new Font("Segoe UI", 11F);
+            lblAvgPerformance.ForeColor = Color.FromArgb(161, 161, 170);
+            lblAvgPerformance.Location = new Point(480, 25);
             lblAvgPerformance.Name = "lblAvgPerformance";
-            lblAvgPerformance.Size = new System.Drawing.Size(80, 15);
+            lblAvgPerformance.Size = new Size(110, 25);
             lblAvgPerformance.TabIndex = 2;
             lblAvgPerformance.Text = "Ort. Hız: -";
-            // 
+            
             // lblAvgAccuracy
-            // 
             lblAvgAccuracy.AutoSize = true;
-            lblAvgAccuracy.Font = new System.Drawing.Font("Segoe UI", 9F);
-            lblAvgAccuracy.Location = new System.Drawing.Point(560, 30);
+            lblAvgAccuracy.Font = new Font("Segoe UI", 11F);
+            lblAvgAccuracy.ForeColor = Color.FromArgb(161, 161, 170);
+            lblAvgAccuracy.Location = new Point(650, 25);
             lblAvgAccuracy.Name = "lblAvgAccuracy";
-            lblAvgAccuracy.Size = new System.Drawing.Size(110, 15);
+            lblAvgAccuracy.Size = new Size(160, 25);
             lblAvgAccuracy.TabIndex = 3;
             lblAvgAccuracy.Text = "Ort. Doğruluk: -";
-            // 
+            
             // lblAvgFunctionality
-            // 
             lblAvgFunctionality.AutoSize = true;
-            lblAvgFunctionality.Font = new System.Drawing.Font("Segoe UI", 9F);
-            lblAvgFunctionality.Location = new System.Drawing.Point(730, 30);
+            lblAvgFunctionality.Font = new Font("Segoe UI", 11F);
+            lblAvgFunctionality.ForeColor = Color.FromArgb(161, 161, 170);
+            lblAvgFunctionality.Location = new Point(860, 25);
             lblAvgFunctionality.Name = "lblAvgFunctionality";
-            lblAvgFunctionality.Size = new System.Drawing.Size(90, 15);
+            lblAvgFunctionality.Size = new Size(130, 25);
             lblAvgFunctionality.TabIndex = 4;
             lblAvgFunctionality.Text = "Ort. İşlev: -";
-            // 
+            
+            // pnlFilters
+            pnlFilters.BackColor = Color.FromArgb(30, 30, 46);
+            pnlFilters.Controls.Add(btnClearFilter);
+            pnlFilters.Controls.Add(btnFilter);
+            pnlFilters.Controls.Add(nudMinRating);
+            pnlFilters.Controls.Add(lblMinRating);
+            pnlFilters.Controls.Add(txtUserFilter);
+            pnlFilters.Controls.Add(lblUserFilter);
+            pnlFilters.Controls.Add(dtpEnd);
+            pnlFilters.Controls.Add(lblEndDate);
+            pnlFilters.Controls.Add(dtpStart);
+            pnlFilters.Controls.Add(lblStartDate);
+            pnlFilters.Controls.Add(lblFilterTitle);
+            pnlFilters.Dock = DockStyle.Top;
+            pnlFilters.Location = new Point(0, 140);
+            pnlFilters.Name = "pnlFilters";
+            pnlFilters.Padding = new Padding(20);
+            pnlFilters.Size = new Size(1400, 120);
+            pnlFilters.TabIndex = 2;
+            
+            // lblFilterTitle
+            lblFilterTitle.AutoSize = true;
+            lblFilterTitle.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            lblFilterTitle.ForeColor = Color.White;
+            lblFilterTitle.Location = new Point(20, 15);
+            lblFilterTitle.Name = "lblFilterTitle";
+            lblFilterTitle.Size = new Size(85, 28);
+            lblFilterTitle.TabIndex = 0;
+            lblFilterTitle.Text = "Filtreler";
+            
+            // lblStartDate
+            lblStartDate.AutoSize = true;
+            lblStartDate.Font = new Font("Segoe UI", 10F);
+            lblStartDate.ForeColor = Color.FromArgb(161, 161, 170);
+            lblStartDate.Location = new Point(20, 55);
+            lblStartDate.Name = "lblStartDate";
+            lblStartDate.Size = new Size(110, 23);
+            lblStartDate.TabIndex = 1;
+            lblStartDate.Text = "Başlangıç:";
+            
+            // dtpStart
+            dtpStart.CalendarMonthBackground = Color.FromArgb(39, 39, 58);
+            dtpStart.CalendarTitleBackColor = Color.FromArgb(59, 130, 246);
+            dtpStart.Font = new Font("Segoe UI", 10F);
+            dtpStart.Format = DateTimePickerFormat.Short;
+            dtpStart.Location = new Point(20, 80);
+            dtpStart.Name = "dtpStart";
+            dtpStart.ShowCheckBox = true;
+            dtpStart.Size = new Size(180, 30);
+            dtpStart.TabIndex = 2;
+            
+            // lblEndDate
+            lblEndDate.AutoSize = true;
+            lblEndDate.Font = new Font("Segoe UI", 10F);
+            lblEndDate.ForeColor = Color.FromArgb(161, 161, 170);
+            lblEndDate.Location = new Point(220, 55);
+            lblEndDate.Name = "lblEndDate";
+            lblEndDate.Size = new Size(60, 23);
+            lblEndDate.TabIndex = 3;
+            lblEndDate.Text = "Bitiş:";
+            
+            // dtpEnd
+            dtpEnd.CalendarMonthBackground = Color.FromArgb(39, 39, 58);
+            dtpEnd.CalendarTitleBackColor = Color.FromArgb(59, 130, 246);
+            dtpEnd.Font = new Font("Segoe UI", 10F);
+            dtpEnd.Format = DateTimePickerFormat.Short;
+            dtpEnd.Location = new Point(220, 80);
+            dtpEnd.Name = "dtpEnd";
+            dtpEnd.ShowCheckBox = true;
+            dtpEnd.Size = new Size(180, 30);
+            dtpEnd.TabIndex = 4;
+            
+            // lblUserFilter
+            lblUserFilter.AutoSize = true;
+            lblUserFilter.Font = new Font("Segoe UI", 10F);
+            lblUserFilter.ForeColor = Color.FromArgb(161, 161, 170);
+            lblUserFilter.Location = new Point(420, 55);
+            lblUserFilter.Name = "lblUserFilter";
+            lblUserFilter.Size = new Size(95, 23);
+            lblUserFilter.TabIndex = 5;
+            lblUserFilter.Text = "Kullanıcı:";
+            
+            // txtUserFilter
+            txtUserFilter.BackColor = Color.FromArgb(39, 39, 58);
+            txtUserFilter.BorderStyle = BorderStyle.FixedSingle;
+            txtUserFilter.Font = new Font("Segoe UI", 10F);
+            txtUserFilter.ForeColor = Color.White;
+            txtUserFilter.Location = new Point(420, 80);
+            txtUserFilter.Name = "txtUserFilter";
+            txtUserFilter.Size = new Size(200, 30);
+            txtUserFilter.TabIndex = 6;
+            
+            // lblMinRating
+            lblMinRating.AutoSize = true;
+            lblMinRating.Font = new Font("Segoe UI", 10F);
+            lblMinRating.ForeColor = Color.FromArgb(161, 161, 170);
+            lblMinRating.Location = new Point(640, 55);
+            lblMinRating.Name = "lblMinRating";
+            lblMinRating.Size = new Size(110, 23);
+            lblMinRating.TabIndex = 7;
+            lblMinRating.Text = "Min. Puan:";
+            
+            // nudMinRating
+            nudMinRating.BackColor = Color.FromArgb(39, 39, 58);
+            nudMinRating.BorderStyle = BorderStyle.FixedSingle;
+            nudMinRating.Font = new Font("Segoe UI", 10F);
+            nudMinRating.ForeColor = Color.White;
+            nudMinRating.Location = new Point(640, 80);
+            nudMinRating.Maximum = new decimal(new int[] { 5, 0, 0, 0 });
+            nudMinRating.Name = "nudMinRating";
+            nudMinRating.Size = new Size(100, 30);
+            nudMinRating.TabIndex = 8;
+            
+            // btnFilter
+            btnFilter.BackColor = Color.FromArgb(59, 130, 246);
+            btnFilter.Cursor = Cursors.Hand;
+            btnFilter.FlatAppearance.BorderSize = 0;
+            btnFilter.FlatStyle = FlatStyle.Flat;
+            btnFilter.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            btnFilter.ForeColor = Color.White;
+            btnFilter.Location = new Point(760, 75);
+            btnFilter.Name = "btnFilter";
+            btnFilter.Size = new Size(120, 35);
+            btnFilter.TabIndex = 9;
+            btnFilter.Text = "Filtrele";
+            btnFilter.UseVisualStyleBackColor = false;
+            btnFilter.Click += btnFilter_Click;
+            
+            // btnClearFilter
+            btnClearFilter.BackColor = Color.FromArgb(39, 39, 58);
+            btnClearFilter.Cursor = Cursors.Hand;
+            btnClearFilter.FlatAppearance.BorderSize = 0;
+            btnClearFilter.FlatStyle = FlatStyle.Flat;
+            btnClearFilter.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            btnClearFilter.ForeColor = Color.White;
+            btnClearFilter.Location = new Point(890, 75);
+            btnClearFilter.Name = "btnClearFilter";
+            btnClearFilter.Size = new Size(120, 35);
+            btnClearFilter.TabIndex = 10;
+            btnClearFilter.Text = "Temizle";
+            btnClearFilter.UseVisualStyleBackColor = false;
+            btnClearFilter.Click += btnClearFilter_Click;
+            
+            // pnlData
+            pnlData.BackColor = Color.FromArgb(24, 24, 37);
+            pnlData.Controls.Add(dgvFeedback);
+            pnlData.Dock = DockStyle.Fill;
+            pnlData.Location = new Point(0, 260);
+            pnlData.Name = "pnlData";
+            pnlData.Padding = new Padding(20);
+            pnlData.Size = new Size(1400, 440);
+            pnlData.TabIndex = 3;
+            
+            // dgvFeedback
+            dgvFeedback.AllowUserToAddRows = false;
+            dgvFeedback.AllowUserToDeleteRows = false;
+            dgvFeedback.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvFeedback.BackgroundColor = Color.FromArgb(30, 30, 46);
+            dgvFeedback.BorderStyle = BorderStyle.None;
+            dgvFeedback.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(59, 130, 246);
+            dgvFeedback.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            dgvFeedback.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvFeedback.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(59, 130, 246);
+            dgvFeedback.ColumnHeadersHeight = 40;
+            dgvFeedback.DefaultCellStyle.BackColor = Color.FromArgb(39, 39, 58);
+            dgvFeedback.DefaultCellStyle.Font = new Font("Segoe UI", 10F);
+            dgvFeedback.DefaultCellStyle.ForeColor = Color.White;
+            dgvFeedback.DefaultCellStyle.SelectionBackColor = Color.FromArgb(59, 130, 246);
+            dgvFeedback.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgvFeedback.Dock = DockStyle.Fill;
+            dgvFeedback.EnableHeadersVisualStyles = false;
+            dgvFeedback.GridColor = Color.FromArgb(50, 50, 70);
+            dgvFeedback.Location = new Point(20, 20);
+            dgvFeedback.Name = "dgvFeedback";
+            dgvFeedback.ReadOnly = true;
+            dgvFeedback.RowHeadersVisible = false;
+            dgvFeedback.RowTemplate.Height = 35;
+            dgvFeedback.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvFeedback.Size = new Size(1360, 400);
+            dgvFeedback.TabIndex = 0;
+            
+            // pnlActions
+            pnlActions.BackColor = Color.FromArgb(20, 20, 30);
+            pnlActions.Controls.Add(lblStatus);
+            pnlActions.Controls.Add(btnExportExcel);
+            pnlActions.Controls.Add(btnRefresh);
+            pnlActions.Dock = DockStyle.Bottom;
+            pnlActions.Location = new Point(0, 700);
+            pnlActions.Name = "pnlActions";
+            pnlActions.Size = new Size(1400, 70);
+            pnlActions.TabIndex = 4;
+            
+            // btnRefresh
+            btnRefresh.BackColor = Color.FromArgb(59, 130, 246);
+            btnRefresh.Cursor = Cursors.Hand;
+            btnRefresh.FlatAppearance.BorderSize = 0;
+            btnRefresh.FlatStyle = FlatStyle.Flat;
+            btnRefresh.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            btnRefresh.ForeColor = Color.White;
+            btnRefresh.Location = new Point(20, 15);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(150, 40);
+            btnRefresh.TabIndex = 0;
+            btnRefresh.Text = "🔄 Yenile";
+            btnRefresh.UseVisualStyleBackColor = false;
+            btnRefresh.Click += btnRefresh_Click;
+            
+            // btnExportExcel
+            btnExportExcel.BackColor = Color.FromArgb(34, 197, 94);
+            btnExportExcel.Cursor = Cursors.Hand;
+            btnExportExcel.FlatAppearance.BorderSize = 0;
+            btnExportExcel.FlatStyle = FlatStyle.Flat;
+            btnExportExcel.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            btnExportExcel.ForeColor = Color.White;
+            btnExportExcel.Location = new Point(180, 15);
+            btnExportExcel.Name = "btnExportExcel";
+            btnExportExcel.Size = new Size(180, 40);
+            btnExportExcel.TabIndex = 1;
+            btnExportExcel.Text = "📊 Excel Aktar";
+            btnExportExcel.UseVisualStyleBackColor = false;
+            btnExportExcel.Click += btnExportExcel_Click;
+            
             // lblStatus
-            // 
             lblStatus.AutoSize = true;
-            lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic);
-            lblStatus.ForeColor = System.Drawing.Color.Gray;
-            lblStatus.Location = new System.Drawing.Point(20, 655);
+            lblStatus.Font = new Font("Segoe UI", 10F);
+            lblStatus.ForeColor = Color.FromArgb(161, 161, 170);
+            lblStatus.Location = new Point(380, 23);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new System.Drawing.Size(100, 15);
-            lblStatus.TabIndex = 6;
+            lblStatus.Size = new Size(70, 23);
+            lblStatus.TabIndex = 2;
             lblStatus.Text = "Hazır...";
-            // 
+            
             // FrmAdmin
-            // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1000, 680);
-            Controls.Add(lblStatus);
-            Controls.Add(grpStatistics);
-            Controls.Add(dgvFeedback);
-            Controls.Add(btnExportExcel);
-            Controls.Add(btnRefresh);
-            Controls.Add(grpFilters);
-            Controls.Add(lblTitle);
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(24, 24, 37);
+            ClientSize = new Size(1400, 770);
+            Controls.Add(pnlData);
+            Controls.Add(pnlActions);
+            Controls.Add(pnlFilters);
+            Controls.Add(pnlStats);
+            Controls.Add(pnlTitleBar);
+            MinimumSize = new Size(1200, 700);
             Name = "FrmAdmin";
-            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            Text = "NTM2 Admin Panel";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Admin Paneli";
             Load += FrmAdmin_Load;
-            grpFilters.ResumeLayout(false);
-            grpFilters.PerformLayout();
+            pnlTitleBar.ResumeLayout(false);
+            pnlTitleBar.PerformLayout();
+            pnlStats.ResumeLayout(false);
+            pnlStats.PerformLayout();
+            pnlFilters.ResumeLayout(false);
+            pnlFilters.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nudMinRating).EndInit();
+            pnlData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvFeedback).EndInit();
-            grpStatistics.ResumeLayout(false);
-            grpStatistics.PerformLayout();
+            pnlActions.ResumeLayout(false);
+            pnlActions.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
-        #endregion
-
-        private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.GroupBox grpFilters;
-        private System.Windows.Forms.Label lblStartDate;
-        private System.Windows.Forms.DateTimePicker dtpStart;
-        private System.Windows.Forms.Label lblEndDate;
-        private System.Windows.Forms.DateTimePicker dtpEnd;
-        private System.Windows.Forms.Label lblUserFilter;
-        private System.Windows.Forms.TextBox txtUserFilter;
-        private System.Windows.Forms.Label lblMinRating;
-        private System.Windows.Forms.NumericUpDown nudMinRating;
-        private System.Windows.Forms.Button btnFilter;
-        private System.Windows.Forms.Button btnClearFilter;
-        private System.Windows.Forms.Button btnRefresh;
-        private System.Windows.Forms.Button btnExportExcel;
-        private System.Windows.Forms.DataGridView dgvFeedback;
-        private System.Windows.Forms.GroupBox grpStatistics;
-        private System.Windows.Forms.Label lblTotalFeedback;
-        private System.Windows.Forms.Label lblAvgOverall;
-        private System.Windows.Forms.Label lblAvgPerformance;
-        private System.Windows.Forms.Label lblAvgAccuracy;
-        private System.Windows.Forms.Label lblAvgFunctionality;
-        private System.Windows.Forms.Label lblStatus;
+        private Panel pnlTitleBar;
+        private Label lblTitle;
+        private Panel pnlStats;
+        private Label lblTotalFeedback;
+        private Label lblAvgOverall;
+        private Label lblAvgPerformance;
+        private Label lblAvgAccuracy;
+        private Label lblAvgFunctionality;
+        private Panel pnlFilters;
+        private Label lblFilterTitle;
+        private Label lblStartDate;
+        private DateTimePicker dtpStart;
+        private Label lblEndDate;
+        private DateTimePicker dtpEnd;
+        private Label lblUserFilter;
+        private TextBox txtUserFilter;
+        private Label lblMinRating;
+        private NumericUpDown nudMinRating;
+        private Button btnFilter;
+        private Button btnClearFilter;
+        private Panel pnlData;
+        private DataGridView dgvFeedback;
+        private Panel pnlActions;
+        private Button btnRefresh;
+        private Button btnExportExcel;
+        private Label lblStatus;
     }
 }
