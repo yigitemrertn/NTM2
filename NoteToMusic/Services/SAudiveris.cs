@@ -116,13 +116,15 @@ namespace NoteToMusic.Services
                 {
                     Properties.Settings.Default.AudiverisPath = ofd.FileName;
                     Properties.Settings.Default.Save();
-                    MessageBox.Show("Audiveris path'i başarıyla güncellendi. Lütfen uygulamayı yeniden başlatın.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Audiveris path'i başarıyla güncellendi. Uygulama şimdi yeniden başlatılacak.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Application.Restart();
+                    Environment.Exit(0);
                 }
                 else
                 {
                     MessageBox.Show("Dosya seçilmedi... Program Audiveris olmadan çalışamaz lütfen Audiverisi indirip tekrar başlatın", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Application.Exit();
+                    Application.Restart();
+                    Environment.Exit(0);
                 }
             }
         }
