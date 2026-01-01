@@ -3,7 +3,7 @@
 ; Created: 2025-12-24
 
 #define MyAppName "Note To Music"
-#define MyAppVersion "1.0.1"
+#define MyAppVersion "1.0.2"
 #define MyAppPublisher "Yiğit Emre Erten"
 #define MyAppURL "https://github.com/yigitemrertn/NTM2"
 #define MyAppExeName "NoteToMusic.exe"
@@ -44,11 +44,11 @@ Name: "turkish"; MessagesFile: "compiler:Languages\Turkish.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-; Main executable and dependencies
-Source: "NoteToMusic\bin\Release\net8.0-windows\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "NoteToMusic\bin\Release\net8.0-windows\*.dll"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "NoteToMusic\bin\Release\net8.0-windows\*.json"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "NoteToMusic\bin\Release\net8.0-windows\*.config"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+; Self-contained application (includes .NET 8 runtime)
+Source: "NoteToMusic\bin\Release\net8.0-windows\win-x64\publish\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+
+; Audiveris dependency (bundled in installer)
+Source: "Dependencies\Audiveris.exe"; DestDir: "{app}\Dependencies"; Flags: ignoreversion
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
