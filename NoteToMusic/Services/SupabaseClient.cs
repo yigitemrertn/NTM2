@@ -13,8 +13,8 @@ namespace NoteToMusic.Services
     /// </summary>
     public static class SupabaseClient
     {
-        private static readonly string PROJECT_URL = System.Configuration.ConfigurationManager.AppSettings["SupabaseUrl"];
-        private static readonly string API_KEY = System.Configuration.ConfigurationManager.AppSettings["SupabaseApiKey"];
+        private static readonly string PROJECT_URL = System.Configuration.ConfigurationManager.AppSettings["SupabaseUrl"] ?? "";
+        private static readonly string API_KEY = System.Configuration.ConfigurationManager.AppSettings["SupabaseApiKey"] ?? "";
         private const string TABLE_NAME = "feedback";
 
         private static HttpClient GetClient()
@@ -77,7 +77,7 @@ namespace NoteToMusic.Services
         /// Supabase'den tüm feedback'leri getirir
         /// </summary>
         /// <returns>Feedback listesi veya null</returns>
-        public static async Task<List<Feedback>> GetAllFeedback()
+        public static async Task<List<Feedback>?> GetAllFeedback()
         {
             try
             {

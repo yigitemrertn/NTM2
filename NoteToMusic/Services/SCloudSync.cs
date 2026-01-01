@@ -39,7 +39,7 @@ namespace NoteToMusic.Services
         /// Admin panel için: Supabase'den tüm feedback'leri getirir
         /// </summary>
         /// <returns>Feedback listesi veya null</returns>
-        public static async Task<List<Feedback>> FetchAllFeedbackFromCloud()
+        public static async Task<List<Feedback>?> FetchAllFeedbackFromCloud()
         {
             if (!IsOnline())
             {
