@@ -18,19 +18,16 @@ Note To Music, nota şemalarını (PDF, resim vb.) otomatik olarak tanıyıp MID
   - MusicXML → MIDI (`.mid`)
   - MIDI + SoundFont → WAV (`.wav`)
 - **Ses Oynatma:** Oluşturulan müzik dosyalarını uygulama içinde oynatma
-- **SoundFont Desteği:** `.sf2` ve `.sf3` dosyalarıyla zengin ses kitaplığı kullanımı
+- **SoundFont Desteği:** `.sf2` dosyalarıyla zengin ses kitaplığı kullanımı
 - **BPM Ayarlama:** Tempo kontrolü ile müzik hızını ayarlama
 
 ### 🌐 Online Özellikler
-- **IMSLP Entegrasyonu:** Ücretsiz klasik müzik notaları için online arama ve erişim
-- **Online SoundFont Kaynakları:** Popüler SoundFont sitelerine (MuseScore, Musical Artifacts) kolay erişim
 - **Feedback Sistemi:** Kullanıcı geri bildirimleri ve öneriler (Supabase backend)
 
 ### 🎨 Kullanıcı Arayüzü
 - Modern, kullanıcı dostu Windows Forms arayüzü
 - Canlı arama/filtreleme (nota ve SoundFont listeleri)
 - Zaman çubuğu ve ses seviyesi kontrolü
-- Sürükle-bırak dosya ekleme desteği
 
 ### 👨‍💼 Yönetim
 - Login sistemi
@@ -44,7 +41,7 @@ Note To Music, nota şemalarını (PDF, resim vb.) otomatik olarak tanıyıp MID
 ### 🚀 Son Kullanıcılar İçin (Önerilen)
 
 1. [**Releases sayfasından**](https://github.com/yigitemrertn/NTM2/releases/latest) en son sürümü indirin
-2. `NoteToMusic-Setup-v1.0.2.exe` dosyasını çalıştırın (~185 MB)
+2. `NoteToMusic-Setup-v1.0.2.exe` dosyasını çalıştırın (~109 MB)
 3. Kurulum sihirbazını takip edin
 4. Masaüstü veya Başlat menüsünden uygulamayı başlatın
 
@@ -137,11 +134,10 @@ Proje aşağıdaki NuGet paketlerini kullanır:
 
 1. **Nota Ekleme:**
    - "Nota Ekle" butonuna tıklayın veya dosyayı sürükleyip bırakın
-   - Desteklenen formatlar: `.jpg`, `.png`, `.pdf`, `.bmp`, `.gif`
+   - Desteklenen formatlar: `.jpg`, `.png`, `.bmp`, `.gif`
 
 2. **SoundFont Seçme:**
-   - "SoundFont Ekle" butonuyla `.sf2` veya `.sf3` dosyası ekleyin
-   - VEYA "Online SoundFonts" ile internet üzerinden indirin
+   - "SoundFont Ekle" butonuyla `.sf2` dosyası ekleyin
 
 3. **Dönüştürme:**
    - Listeden bir nota seçin
@@ -152,18 +148,6 @@ Proje aşağıdaki NuGet paketlerini kullanır:
    - Oluşan müzik dosyasını seçin
    - Play/Pause butonuyla kontrolü sağlayın
    - Zaman çubuğu ve ses seviyesini ayarlayın
-
-### Online Özellikler
-
-#### IMSLP Nota Arama
-- "Online Notalar" butonuna tıklayın
-- Besteci veya eser adını arayın
-- IMSLP sitesinde açın ve indirin
-
-#### SoundFont Kaynakları
-- "Online SoundFonts" butonuna tıklayın
-- Önerilen kaynaklara (MuseScore, Musical Artifacts, Archive.org) göz atın
-- İndirdiğiniz `.sf2` dosyalarını "SoundFont Ekle" ile projeye dahil edin
 
 ### Kısayollar
 
@@ -255,8 +239,6 @@ Bu proje MIT lisansı altında yayınlanmıştır. Detaylar için [LICENSE](LICE
 - [Audiveris](https://github.com/Audiveris/audiveris) - OMR (Optical Music Recognition) motoru
 - [NAudio](https://github.com/naudio/NAudio) - Ses ve MIDI kütüphanesi
 - [MeltySynth](https://github.com/sinshu/meltysynth) - SoundFont synthesizer
-- [IMSLP](https://imslp.org) - Ücretsiz nota kütüphanesi
-- [MuseScore](https://musescore.org) - SoundFont kaynakları
 
 ---
 
