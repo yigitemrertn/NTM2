@@ -22,7 +22,7 @@ namespace NoteToMusic.Services
         public SAudiveris()
         {
             // Check bundled Audiveris first, then user settings
-            string bundledPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Dependencies", "Audiveris.exe");
+            string bundledPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Dependencies", "Audiveris", "Audiveris.exe");
             
             if (File.Exists(bundledPath))
             {

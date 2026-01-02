@@ -47,8 +47,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 ; Self-contained application (includes .NET 8 runtime)
 Source: "NoteToMusic\bin\Release\net8.0-windows\win-x64\publish\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
-; Audiveris dependency (bundled in installer)
-Source: "Dependencies\Audiveris.exe"; DestDir: "{app}\Dependencies"; Flags: ignoreversion
+; Audiveris dependency (full installation folder)
+Source: "Dependencies\Audiveris\*"; DestDir: "{app}\Dependencies\Audiveris"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
