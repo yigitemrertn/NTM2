@@ -6,6 +6,8 @@ using System.Linq;
 using System.Windows.Forms;
 using OfficeOpenXml;
 using System.IO;
+using Syncfusion.WinForms.DataGrid;
+using Syncfusion.WinForms.DataGrid.Enums;
 
 namespace NoteToMusic.Forms
 {
@@ -91,30 +93,63 @@ namespace NoteToMusic.Forms
         {
             if (dgvFeedback.Columns.Count > 0)
             {
-                dgvFeedback.Columns["Id"].HeaderText = "ID";
-                dgvFeedback.Columns["Id"].Width = 50;
+                // SfDataGrid column configuration - Width kaldırıldı, AutoSizeColumnsMode.Fill kullanılıyor
+                var idCol = dgvFeedback.Columns["Id"];
+                if (idCol != null)
+                {
+                    idCol.HeaderText = "ID";
+                    idCol.MinimumWidth = 50;
+                }
                 
-                dgvFeedback.Columns["Username"].HeaderText = "Kullanıcı";
-                dgvFeedback.Columns["Username"].Width = 120;
+                var usernameCol = dgvFeedback.Columns["Username"];
+                if (usernameCol != null)
+                {
+                    usernameCol.HeaderText = "Kullanıcı";
+                    usernameCol.MinimumWidth = 100;
+                }
                 
-                dgvFeedback.Columns["PerformanceRating"].HeaderText = "Hız";
-                dgvFeedback.Columns["PerformanceRating"].Width = 60;
+                var perfCol = dgvFeedback.Columns["PerformanceRating"];
+                if (perfCol != null)
+                {
+                    perfCol.HeaderText = "Hız";
+                    perfCol.MinimumWidth = 60;
+                }
                 
-                dgvFeedback.Columns["AccuracyRating"].HeaderText = "Doğruluk";
-                dgvFeedback.Columns["AccuracyRating"].Width = 80;
+                var accCol = dgvFeedback.Columns["AccuracyRating"];
+                if (accCol != null)
+                {
+                    accCol.HeaderText = "Doğruluk";
+                    accCol.MinimumWidth = 80;
+                }
                 
-                dgvFeedback.Columns["FunctionalityRating"].HeaderText = "İşlev";
-                dgvFeedback.Columns["FunctionalityRating"].Width = 60;
+                var funcCol = dgvFeedback.Columns["FunctionalityRating"];
+                if (funcCol != null)
+                {
+                    funcCol.HeaderText = "İşlev";
+                    funcCol.MinimumWidth = 60;
+                }
                 
-                dgvFeedback.Columns["OverallRating"].HeaderText = "Genel";
-                dgvFeedback.Columns["OverallRating"].Width = 60;
+                var overallCol = dgvFeedback.Columns["OverallRating"];
+                if (overallCol != null)
+                {
+                    overallCol.HeaderText = "Genel";
+                    overallCol.MinimumWidth = 60;
+                }
                 
-                dgvFeedback.Columns["Comments"].HeaderText = "Yorum";
-                dgvFeedback.Columns["Comments"].Width = 250;
+                var commentsCol = dgvFeedback.Columns["Comments"];
+                if (commentsCol != null)
+                {
+                    commentsCol.HeaderText = "Yorum";
+                    commentsCol.MinimumWidth = 200;
+                }
                 
-                dgvFeedback.Columns["CreatedDate"].HeaderText = "Tarih";
-                dgvFeedback.Columns["CreatedDate"].Width = 140;
-                dgvFeedback.Columns["CreatedDate"].DefaultCellStyle.Format = "dd.MM.yyyy HH:mm";
+                var dateCol = dgvFeedback.Columns["CreatedDate"];
+                if (dateCol != null)
+                {
+                    dateCol.HeaderText = "Tarih";
+                    dateCol.MinimumWidth = 130;
+                    dateCol.Format = "dd.MM.yyyy HH:mm";
+                }
             }
         }
 

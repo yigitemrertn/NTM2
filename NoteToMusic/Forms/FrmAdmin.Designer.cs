@@ -36,7 +36,7 @@
             btnFilter = new Button();
             btnClearFilter = new Button();
             pnlData = new Panel();
-            dgvFeedback = new DataGridView();
+            dgvFeedback = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             pnlActions = new Panel();
             btnRefresh = new Button();
             btnExportExcel = new Button();
@@ -46,7 +46,7 @@
             pnlFilters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudMinRating).BeginInit();
             pnlData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvFeedback).BeginInit();
+            // SfDataGrid doesn't need ISupportInitialize
             pnlActions.SuspendLayout();
             SuspendLayout();
             
@@ -282,37 +282,41 @@
             pnlData.Dock = DockStyle.Fill;
             pnlData.Location = new Point(0, 260);
             pnlData.Name = "pnlData";
-            pnlData.Padding = new Padding(20);
+            pnlData.Padding = new Padding(10); // 20'den 10'a düşürüldü
             pnlData.Size = new Size(1400, 440);
             pnlData.TabIndex = 3;
             
-            // dgvFeedback
-            dgvFeedback.AllowUserToAddRows = false;
-            dgvFeedback.AllowUserToDeleteRows = false;
-            dgvFeedback.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvFeedback.BackgroundColor = Color.FromArgb(30, 30, 46);
-            dgvFeedback.BorderStyle = BorderStyle.None;
-            dgvFeedback.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(59, 130, 246);
-            dgvFeedback.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            dgvFeedback.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgvFeedback.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(59, 130, 246);
-            dgvFeedback.ColumnHeadersHeight = 40;
-            dgvFeedback.DefaultCellStyle.BackColor = Color.FromArgb(39, 39, 58);
-            dgvFeedback.DefaultCellStyle.Font = new Font("Segoe UI", 10F);
-            dgvFeedback.DefaultCellStyle.ForeColor = Color.White;
-            dgvFeedback.DefaultCellStyle.SelectionBackColor = Color.FromArgb(59, 130, 246);
-            dgvFeedback.DefaultCellStyle.SelectionForeColor = Color.White;
+            // dgvFeedback (SfDataGrid)
+            dgvFeedback.AccessibleName = "";
+            dgvFeedback.AllowEditing = false;
+            dgvFeedback.AllowFiltering = true;
+            dgvFeedback.AllowGrouping = true;
+            dgvFeedback.AllowResizingColumns = true;
+            dgvFeedback.AllowSorting = true;
+            dgvFeedback.AutoGenerateColumns = true;
+            dgvFeedback.AutoSizeColumnsMode = Syncfusion.WinForms.DataGrid.Enums.AutoSizeColumnsMode.Fill;
+            dgvFeedback.BackColor = Color.FromArgb(30, 30, 46);
             dgvFeedback.Dock = DockStyle.Fill;
-            dgvFeedback.EnableHeadersVisualStyles = false;
-            dgvFeedback.GridColor = Color.FromArgb(50, 50, 70);
             dgvFeedback.Location = new Point(20, 20);
             dgvFeedback.Name = "dgvFeedback";
-            dgvFeedback.ReadOnly = true;
-            dgvFeedback.RowHeadersVisible = false;
-            dgvFeedback.RowTemplate.Height = 35;
-            dgvFeedback.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvFeedback.ShowGroupDropArea = true;
             dgvFeedback.Size = new Size(1360, 400);
             dgvFeedback.TabIndex = 0;
+            
+            // Styling - Header
+            dgvFeedback.Style.HeaderStyle.BackColor = Color.FromArgb(59, 130, 246);
+            dgvFeedback.Style.HeaderStyle.TextColor = Color.White;
+            
+            // Styling - Cells  
+            dgvFeedback.Style.CellStyle.BackColor = Color.FromArgb(39, 39, 58);
+            dgvFeedback.Style.CellStyle.TextColor = Color.White;
+            
+            // Styling - Selection
+            dgvFeedback.Style.SelectionStyle.BackColor = Color.FromArgb(59, 130, 246);
+            dgvFeedback.Style.SelectionStyle.TextColor = Color.White;
+            
+            // Grid styling
+            dgvFeedback.Style.BorderColor = Color.FromArgb(50, 50, 70);
             
             // pnlActions
             pnlActions.BackColor = Color.FromArgb(20, 20, 30);
@@ -388,7 +392,7 @@
             pnlFilters.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nudMinRating).EndInit();
             pnlData.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvFeedback).EndInit();
+            // SfDataGrid doesn't need ISupportInitialize
             pnlActions.ResumeLayout(false);
             pnlActions.PerformLayout();
             ResumeLayout(false);
@@ -415,7 +419,7 @@
         private Button btnFilter;
         private Button btnClearFilter;
         private Panel pnlData;
-        private DataGridView dgvFeedback;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid dgvFeedback;
         private Panel pnlActions;
         private Button btnRefresh;
         private Button btnExportExcel;
